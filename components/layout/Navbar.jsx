@@ -2,119 +2,213 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("English");
+
+  const langRef = useRef(null);
+
+  const languages = [
+    { code: "English", name: "English" },
+    { code: "Arabic", name: "Arabic" },
+    { code: "Spanish", name: "Spanish" },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+
+    const handleClickOutside = (event) => {
+      if (langRef.current && !langRef.current.contains(event.target)) {
+        setIsLangOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Service", href: "/services" },
+    { name: "Web Solution", href: "/solutions" },
+    { name: "Product App", href: "/product" },
+    { name: "About", href: "/about" },
+  ];
 
   return (
-    <nav className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
-        <div className="flex items-center gap-2 text-xl font-bold text-[#00c881]">
+    <header
+      className={`sticky top-0 w-full z-50 px-4 py-3 md:px-6 transition-colors duration-300 ${
+        scrolled ? "bg-white/80 backdrop-blur-md" : "bg-white"
+      }`}
+    >
+      <nav
+        className={`max-w-7xl mx-auto transition-all duration-500 ease-in-out border ${
+          scrolled
+            ? "bg-white shadow-lg border-gray-200/50 rounded-2xl py-2 px-6"
+            : "bg-white border-gray-100 rounded-[2rem] py-3 px-8 shadow-sm"
+        }`}
+      >
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Image
-            src="/logo/logo.webp"
-            alt="Remitium Logo"
-            width={130}
-            height={40}
-          />
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-700">
-          <Link href="#" className="hover:text-[#00c881] transition-colors">
-            Home
-          </Link>
-          <Link href="#" className="hover:text-[#00c881] transition-colors">
-            Service
-          </Link>
-          <Link href="#" className="hover:text-[#00c881] transition-colors">
-            Web Solution
-          </Link>
-          <Link href="#" className="hover:text-[#00c881] transition-colors">
-            Product App
-          </Link>
-          <Link href="#" className="hover:text-[#00c881] transition-colors">
-            About
-          </Link>
-        </div>
-
-        {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="flex items-center gap-2 text-sm text-gray-600 border border-gray-200 rounded px-2 py-1">
-            <span>English</span>
-          </div>
           <Link
-            href="#"
-            className="text-sm font-medium hover:text-[#00c881] mr-2"
+            href="/"
+            className="flex-shrink-0 transition-transform hover:scale-105 cursor-pointer"
           >
-            Login
+            <Image
+              src="/logo/logo.webp"
+              alt="Logo"
+              width={110}
+              height={30}
+              className="w-auto h-auto"
+              priority
+            />
           </Link>
-        </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="lg:hidden p-2 text-gray-600 hover:text-[#00c881] focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="px-4 py-2 text-[14px] font-semibold text-gray-600 hover:text-[#00c881] hover:bg-[#00c881]/5 rounded-full transition-all cursor-pointer"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-          <div className="flex flex-col py-4 px-6 gap-4 text-sm font-medium text-gray-700">
-            <Link href="#" className="hover:text-[#00c881] transition-colors">
-              Home
-            </Link>
-            <Link href="#" className="hover:text-[#00c881] transition-colors">
-              Service
-            </Link>
-            <Link href="#" className="hover:text-[#00c881] transition-colors">
-              Web Solution
-            </Link>
-            <Link href="#" className="hover:text-[#00c881] transition-colors">
-              Product App
-            </Link>
-            <Link href="#" className="hover:text-[#00c881] transition-colors">
-              About
-            </Link>
-            <hr className="border-gray-100 my-2" />
-            <div className="flex justify-between items-center">
-              <span className="text-gray-500">Language</span>
-              <span className="text-[#00c881]">English</span>
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Language Switcher */}
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-2 px-4 py-2 text-[14px] font-semibold text-gray-600 hover:bg-gray-100 rounded-full transition-all cursor-pointer"
+              >
+                <span>{currentLang}</span>
+                <svg
+                  className={`w-4 h-4 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {isLangOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-100 rounded-2xl shadow-xl py-2 z-[60]">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setCurrentLang(lang.code);
+                        setIsLangOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#00c881]/10 hover:text-[#00c881] transition-colors cursor-pointer"
+                    >
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+
+            {/* Primary Login Button */}
             <Link
-              href="#"
-              className="text-center bg-[#00c881] text-white py-2 rounded-md hover:bg-[#00a66b] transition-colors"
+              href="/login"
+              className="bg-[#00c881] text-white px-8 py-2.5 rounded-full text-[14px] font-bold shadow-md shadow-[#00c881]/10 hover:bg-[#00a66b] transition-all cursor-pointer"
             >
               Login
             </Link>
           </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden p-2 rounded-full hover:bg-gray-100 cursor-pointer"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <div className="w-5 h-4 flex flex-col justify-between items-center">
+              <span
+                className={`h-[2px] bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? "w-6 rotate-45 translate-y-[7px]" : "w-full"}`}
+              />
+              <span
+                className={`h-[2px] bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : "w-full"}`}
+              />
+              <span
+                className={`h-[2px] bg-gray-900 rounded-full transition-all duration-300 ${isMobileMenuOpen ? "w-6 -rotate-45 -translate-y-[7px]" : "w-full"}`}
+              />
+            </div>
+          </button>
         </div>
-      )}
-    </nav>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-x-4 top-20 lg:hidden transition-all duration-300 transform ${
+          isMobileMenuOpen
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95 pointer-events-none"
+        }`}
+      >
+        <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-2xl">
+          <div className="flex flex-col gap-4 text-center">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xl font-bold text-gray-800 hover:text-[#00c881] cursor-pointer"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="h-px bg-gray-100 my-2" />
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-center gap-4 text-gray-500 font-medium py-2">
+                <button
+                  onClick={() => setCurrentLang("English")}
+                  className={`${currentLang === "English" ? "text-[#00c881]" : ""} cursor-pointer`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => setCurrentLang("Arabic")}
+                  className={`${currentLang === "Arabic" ? "text-[#00c881]" : ""} cursor-pointer`}
+                >
+                  Arabic
+                </button>
+                <button
+                  onClick={() => setCurrentLang("Spanish")}
+                  className={`${currentLang === "Spanish" ? "text-[#00c881]" : ""} cursor-pointer`}
+                >
+                  Spanish
+                </button>
+              </div>
+              <Link
+                href="/login"
+                className="bg-[#00c881] text-white py-4 rounded-full text-lg font-bold cursor-pointer"
+              >
+                Login
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 }
