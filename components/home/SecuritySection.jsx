@@ -1,72 +1,175 @@
-import Card from "../ui/Card";
+import {
+  CreditCard,
+  Eye,
+  Lock,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+} from "lucide-react";
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const HERO_STATS = [
+  { value: "256-bit", label: "AES Encryption" },
+  { value: "99.99%", label: "Uptime SLA" },
+  { value: "0", label: "Breaches" },
+];
+
+const SIDE_CARDS = [
+  {
+    title: "Fraud Detection System",
+    desc: "Our intelligent system monitors system for suspicious activity, providing real-time fraud prevention.",
+    icon: Eye,
+    iconBg: "bg-indigo-50",
+    iconColor: "text-indigo-600",
+  },
+  {
+    title: "Multi-Factor Authentication",
+    desc: "Safeguard your account with an extra layer of protection through two-factor authentication.",
+    icon: Smartphone,
+    iconBg: "bg-blue-50",
+    iconColor: "text-blue-600",
+  },
+];
+
+const BOTTOM_CARDS = [
+  {
+    title: "Platform Support",
+    desc: "Convert data noise intelligent insights for competitive differentiation qulaity check equlity.",
+    icon: Terminal,
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-700",
+  },
+  {
+    title: "Payment Gateways",
+    desc: "Remitium uses industry-standard payment methods like PayPal, Stripe, and others to keep your transfers safe.",
+    icon: CreditCard,
+    iconBg: "bg-rose-50",
+    iconColor: "text-rose-600",
+  },
+  {
+    title: "Compliance Ready",
+    desc: "Fully compliant with global AML and KYC standards, keeping transactions safe.",
+    icon: ShieldCheck,
+    iconBg: "bg-emerald-50",
+    iconColor: "text-emerald-700",
+  },
+];
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function HeroCard() {
+  return (
+    <div className="row-span-2 rounded-2xl p-8 relative overflow-hidden flex flex-col bg-slate-950">
+      <div className="absolute -bottom-5 -right-5 opacity-5 pointer-events-none text-white">
+        <Lock size={180} strokeWidth={1} />
+      </div>
+
+      <div className="flex items-center justify-between mb-8">
+        <span className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium px-3 py-1 rounded-full w-fit">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          Always active
+        </span>
+
+        <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+          <Lock size={28} strokeWidth={2} aria-hidden="true" />
+        </div>
+      </div>
+
+      <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+        End-to-End Encryption
+      </h3>
+      <p className="text-base md:text-lg text-slate-400 leading-relaxed font-light mb-8">
+        All your transactions are protected with advanced encryption, ensuring
+        your data stays secure and private.
+      </p>
+
+      <div className="mt-auto pt-8 border-t border-white/10 grid grid-cols-3 gap-4">
+        {HERO_STATS.map((s) => (
+          <div key={s.label}>
+            <span className="block text-xl md:text-2xl font-bold text-white leading-none">
+              {s.value}
+            </span>
+            <span className="block text-sm text-slate-500 mt-2 uppercase tracking-wide">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SideCard({ title, desc, icon: Icon, iconBg, iconColor }) {
+  return (
+    <div className="group bg-white border border-slate-200 hover:border-emerald-300 rounded-2xl p-8 flex flex-col transition-all duration-300">
+      <div
+        className={`w-12 h-12 rounded-xl ${iconBg} ${iconColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+      >
+        <Icon size={24} strokeWidth={2} />
+      </div>
+      <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
+      <p className="text-base text-slate-600 leading-relaxed font-light">
+        {desc}
+      </p>
+    </div>
+  );
+}
+
+function BottomCard({ title, desc, icon: Icon, iconBg, iconColor }) {
+  return (
+    <div className="group bg-white border border-slate-200 hover:border-emerald-300 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-5 transition-all duration-300">
+      <div
+        className={`w-12 h-12 rounded-xl ${iconBg} ${iconColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
+      >
+        <Icon size={22} strokeWidth={2} />
+      </div>
+      <div>
+        <h4 className="text-lg font-bold text-slate-900 mb-2">{title}</h4>
+        <p className="text-sm md:text-base text-slate-600 leading-relaxed font-light">
+          {desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function SecuritySection() {
-  const securityFeatures = [
-    {
-      title: "End-to-End Encryption",
-      desc: "Your data is secured with industry-standard encryption, protecting it from unauthorized access at all times.",
-    },
-    {
-      title: "Multi-Factor Authentication",
-      desc: "Add an extra layer of security to your account with our robust multi-factor authentication system.",
-    },
-    {
-      title: "Fraud Detection System",
-      desc: "Our intelligent systems monitor transactions in real-time to identify and prevent fraudulent activity.",
-    },
-    {
-      title: "Platform Support",
-      desc: "Get help when you need it with our dedicated customer support team available via chat and email.",
-    },
-    {
-      title: "Payment Gateways",
-      desc: "We partner with trusted and secure payment gateways to process your transactions safely.",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6 bg-[#f8fbfb] relative">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="text-sm font-bold tracking-widest text-[#00c881] uppercase mb-3">
-          Security You Can Trust
-        </div>
-        <h2 className="text-4xl font-bold text-[#0b1727] mb-16">
-          Your Safety Is Our
-          <br />
-          Priority
-        </h2>
+    <section className="py-24 px-6 bg-slate-50">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-6 mb-12">
+          <div className="max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
+              <ShieldCheck size={16} />
+              Security You Can Trust
+            </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
-          {securityFeatures.slice(0, 4).map((feature, idx) => (
-            <Card
-              key={idx}
-              className="w-full md:w-[calc(25%-1.5rem)] min-w-[250px] text-center p-8 hover:-translate-y-2 transition-transform duration-300"
-            >
-              <div className="w-16 h-16 mx-auto bg-blue-50 rounded-full mb-6 flex items-center justify-center text-blue-500 font-bold text-xl">
-                {/* Icon Placeholder */}S
-              </div>
-              <h3 className="text-lg font-bold text-[#0b1727] mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                {feature.desc}
-              </p>
-            </Card>
-          ))}
-
-          <div className="w-full flex justify-center mt-6">
-            <Card className="w-full md:w-[calc(25%-1.5rem)] min-w-[250px] text-center p-8 hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-16 h-16 mx-auto bg-blue-50 rounded-full mb-6 flex items-center justify-center text-blue-500 font-bold text-xl">
-                {/* Icon Placeholder */}G
-              </div>
-              <h3 className="text-lg font-bold text-[#0b1727] mb-3">
-                {securityFeatures[4].title}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                {securityFeatures[4].desc}
-              </p>
-            </Card>
+            <h2 className="text-4xl md:text-6xl font-semibold text-[#0b1727] leading-[1.1] tracking-tight">
+              Your safety is our <br />
+              <span className="text-[#00c881]">Priority</span>
+            </h2>
           </div>
+        </div>
+
+        <div className="h-px bg-slate-200 mb-12" />
+
+        {/* Layout Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <HeroCard />
+          <div className="grid grid-cols-1 gap-6">
+            {SIDE_CARDS.map((card) => (
+              <SideCard key={card.title} {...card} />
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {BOTTOM_CARDS.map((card) => (
+            <BottomCard key={card.title} {...card} />
+          ))}
         </div>
       </div>
     </section>

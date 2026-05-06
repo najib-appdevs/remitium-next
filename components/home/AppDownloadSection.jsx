@@ -1,13 +1,20 @@
+import { AppStoreIcon, GooglePlayIcon } from "@/components/ui/StoreButtonIcon";
+import Image from "next/image";
+
 export default function AppDownloadSection() {
   return (
     <section className="py-24 px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2 relative">
-          {/* Mobile App Mockup Placeholders */}
-          <div className="bg-[#eaf8f3] rounded-3xl w-64 h-[500px] border-8 border-gray-800 shadow-2xl relative z-10 flex flex-col mx-auto md:ml-auto md:mr-10">
-            <div className="flex-1 bg-white rounded-2xl m-2 overflow-hidden border border-gray-100 flex flex-col items-center justify-center text-gray-300">
-              App UI
-            </div>
+          <div className="relative z-10 flex justify-center md:justify-end">
+            <Image
+              src="/images/Download-App.webp"
+              alt="Remitium Mobile App"
+              width={500}
+              height={600}
+              className="max-w-full h-auto object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
           {/* Background decorative elements */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-64 bg-emerald-50 rounded-full -z-10 blur-3xl opacity-50"></div>
@@ -15,8 +22,9 @@ export default function AppDownloadSection() {
 
         <div className="w-full md:w-1/2 space-y-8">
           <div>
-            <div className="text-sm font-bold tracking-widest text-[#00c881] uppercase mb-3">
-              Available On The Go
+            <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
+              <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
+              Download the App
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0b1727] leading-tight mb-6">
               Access Remitium
@@ -24,27 +32,14 @@ export default function AppDownloadSection() {
               Anytime, Anywhere
             </h2>
             <p className="text-gray-500 leading-relaxed max-w-lg">
-              Send money, manage your wallet, and track transactions directly
-              from your smartphone. Download the Remitium app today and
-              experience seamless global transfers on the go.
+              Send money, manage your wallet, and track transactions on the go.
+              Get the Remitium app today!
             </p>
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <button className="bg-[#0b1727] text-white px-6 py-3 rounded-lg flex items-center gap-3 hover:bg-gray-800 transition-colors">
-              <span className="text-2xl">🍎</span>
-              <div className="text-left">
-                <div className="text-[10px] text-gray-400">Download on the</div>
-                <div className="text-sm font-semibold">App Store</div>
-              </div>
-            </button>
-            <button className="bg-[#0b1727] text-white px-6 py-3 rounded-lg flex items-center gap-3 hover:bg-gray-800 transition-colors">
-              <span className="text-2xl">▶️</span>
-              <div className="text-left">
-                <div className="text-[10px] text-gray-400">GET IT ON</div>
-                <div className="text-sm font-semibold">Google Play</div>
-              </div>
-            </button>
+            <AppStoreIcon />
+            <GooglePlayIcon />
           </div>
         </div>
       </div>

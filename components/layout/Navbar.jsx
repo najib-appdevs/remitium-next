@@ -38,23 +38,23 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Service", href: "/services" },
-    { name: "Web Solution", href: "/solutions" },
-    { name: "Product App", href: "/product" },
-    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Fees Calculator", href: "/fees-calculator" },
+    { name: "Download App", href: "/download-app" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
     <header
-      className={`sticky top-0 w-full z-50 px-4 py-3 md:px-6 transition-colors duration-300 ${
-        scrolled ? "bg-white/80 backdrop-blur-md" : "bg-white"
+      className={`fixed top-0 w-full z-50 px-4 py-3 md:px-6 transition-all duration-500 ${
+        scrolled ? "bg-white/60 backdrop-blur-xl border-b border-white/20" : "bg-transparent"
       }`}
     >
       <nav
-        className={`max-w-7xl mx-auto transition-all duration-500 ease-in-out border ${
+        className={`max-w-7xl mx-auto transition-all duration-500 ease-in-out ${
           scrolled
-            ? "bg-white shadow-lg border-gray-200/50 rounded-2xl py-2 px-6"
-            : "bg-white border-gray-100 rounded-[2rem] py-3 px-8 shadow-sm"
+            ? "bg-white/40 shadow-2xl border border-white/40 rounded-2xl py-2 px-6"
+            : "bg-transparent border-transparent py-4 px-8"
         }`}
       >
         <div className="flex items-center justify-between">
