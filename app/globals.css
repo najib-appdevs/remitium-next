@@ -3,11 +3,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand-primary: #00c881;
+  --brand-primary-hover: #00a96c;
+  --brand-bg-light: #f7faf8;
+  --brand-navy: #0b1727;
+  --brand-badge-bg: #e6f9f2;
+  --brand-badge-border: #a3ecd0;
+  --brand-badge-text: #0a7a52;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-bg-light: var(--brand-bg-light);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-badge-bg: var(--brand-badge-bg);
+  --color-brand-badge-border: var(--brand-badge-border);
+  --color-brand-badge-text: var(--brand-badge-text);
   --font-jost: var(--font-jost);
   --font-mono: var(--font-geist-mono);
   --font-sans: var(--font-geist-sans);
