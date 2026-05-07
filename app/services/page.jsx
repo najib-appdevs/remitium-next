@@ -1,6 +1,5 @@
 "use client";
 
-import CTASection from "@/components/home/CTASection";
 import { Banknote, Globe, Wallet, Zap } from "lucide-react";
 
 const SERVICES = [
@@ -113,11 +112,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* ── CTA ── */}
-      <div className="mt-20">
-        <CTASection />
-      </div>
     </div>
   );
 }

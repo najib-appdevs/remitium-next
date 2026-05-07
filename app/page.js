@@ -1,5 +1,4 @@
 import AppDownloadSection from "@/components/home/AppDownloadSection";
-import CTASection from "@/components/home/CTASection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import HeroSection from "@/components/home/HeroSection";
 import ImpactSection from "@/components/home/ImpactSection";
@@ -15,7 +14,7 @@ export default function Home() {
       <AppDownloadSection />
       <ImpactSection />
       <TestimonialSection />
-      <CTASection />
+      {/* <CTASection /> */}
     </div>
   );
 }

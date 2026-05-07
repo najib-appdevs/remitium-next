@@ -131,7 +131,7 @@ function ChevronIcon() {
       className="text-[#a0bab4] ml-auto flex-shrink-0"
       aria-hidden="true"
     >
-      <path d="M9 18l6-6-6-6" />
+      {/* <path d="M9 18l6-6-6-6" /> */}
     </svg>
   );
 }

@@ -1,5 +1,3 @@
-import Button from "../ui/Button";
-
 export default function CTASection() {
   return (
     <section className="bg-[#00c881] py-8 px-6">
@@ -15,12 +13,9 @@ export default function CTASection() {
         </div>
 
         <div className="shrink-0">
-          <Button
-            variant="outline"
-            className="bg-white hover:bg-gray-50 font-bold px-8 py-4 text-lg rounded-xl"
-          >
+          <button className="bg-white hover:bg-gray-50 text-[#00c881] font-bold px-10 py-4 rounded-md transition-all shadow-lg shadow-green-500/20 active:scale-95 text-lg">
             Get Started Now
-          </Button>
+          </button>
         </div>
       </div>
     </section>
