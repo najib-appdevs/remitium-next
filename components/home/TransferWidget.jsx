@@ -32,23 +32,23 @@ export default function TransferWidget() {
   }, [sendAmount]);
 
   return (
-    <div className="w-full bg-white border border-[#e2ede9] rounded-2xl p-7 shadow-sm">
+    <div className="w-full bg-white border border-brand-border-color rounded-2xl p-7 shadow-sm">
       {/* Rate Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
           <p className="text-[11px] font-semibold text-gray-500 tracking-widest uppercase mb-1">
             Live exchange rate
           </p>
-          <p className="font-bold text-[17px] text-[#0b1727]">
+          <p className="font-bold text-[17px] text-brand-navy">
             1 USD ={" "}
-            <span className="text-[#00c881]">
+            <span className="text-brand-primary">
               {EXCHANGE_RATE.toLocaleString()}
             </span>{" "}
             NGN
           </p>
         </div>
-        <span className="inline-flex items-center gap-1.5 bg-[#e6f9f2] text-[#0a7a52] text-[11px] font-bold px-3 py-1 rounded-full border border-[#a3ecd0]">
-          <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
+        <span className="inline-flex items-center gap-1.5 bg-brand-badge-bg text-brand-badge-text text-[11px] font-bold px-3 py-1 rounded-full border border-brand-badge-border">
+          <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
           Live
         </span>
       </div>
@@ -57,14 +57,14 @@ export default function TransferWidget() {
         {/* Sending Field */}
         <div className="flex flex-col gap-2.5">
           <label className="text-[11px] font-bold text-[#00425a] tracking-wide uppercase flex items-center gap-1">
-            Sending Currency <span className="text-[#00c881]">*</span>
+            Sending Currency <span className="text-brand-primary">*</span>
           </label>
-          <div className="flex items-center border border-[#e2ede9] rounded-xl h-[56px] focus-within:border-[#00c881] transition-all bg-white">
+          <div className="flex items-center border border-brand-border-color rounded-xl h-[56px] focus-within:border-brand-primary transition-all bg-white">
             <input
               type="number"
               value={sendAmount}
               onChange={(e) => setSendAmount(e.target.value)}
-              className="flex-1 min-w-0 border-none outline-none px-4 font-bold text-[17px] text-[#0b1727] bg-transparent"
+              className="flex-1 min-w-0 border-none outline-none px-4 font-bold text-[17px] text-brand-navy bg-transparent"
             />
             <div className="flex items-center gap-2 px-3 border-l border-[#eef4f2] bg-[#fafdfc] h-full flex-shrink-0 rounded-r-xl">
               <div className="w-[24px] h-[24px] rounded-full overflow-hidden shadow-sm">
@@ -85,7 +85,7 @@ export default function TransferWidget() {
         {/* Receiving Field */}
         <div className="flex flex-col gap-2.5">
           <label className="text-[11px] font-bold text-[#00425a] tracking-wide uppercase flex items-center gap-1">
-            Receiving Currency <span className="text-[#00c881]">*</span>
+            Receiving Currency <span className="text-brand-primary">*</span>
           </label>
           <div className="flex items-center border border-[#e2ede9] rounded-xl h-[56px] bg-[#f8faf9]">
             <input
@@ -113,7 +113,7 @@ export default function TransferWidget() {
         {/* CUSTOM DROPDOWN METHOD */}
         <div className="flex flex-col gap-2.5" ref={dropdownRef}>
           <label className="text-[11px] font-bold text-[#00425a] tracking-wide uppercase flex items-center gap-1">
-            Transaction Method <span className="text-[#00c881]">*</span>
+            Transaction Method <span className="text-brand-primary">*</span>
           </label>
           <div className="relative">
             <button
@@ -121,7 +121,7 @@ export default function TransferWidget() {
               type="button"
               className={`w-full h-[56px] flex items-center justify-between px-4 bg-white border ${
                 isOpen
-                  ? "border-[#00c881] ring-1 ring-[#00c881]"
+                  ? "border-brand-primary ring-1 ring-brand-primary"
                   : "border-[#e2ede9]"
               } rounded-xl transition-all text-left shadow-sm`}
             >
@@ -129,7 +129,7 @@ export default function TransferWidget() {
                 {selectedMethod}
               </span>
               <svg
-                className={`w-4 h-4 text-[#00c881] transition-transform duration-200 ${
+                className={`w-4 h-4 text-brand-primary transition-transform duration-200 ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -153,8 +153,8 @@ export default function TransferWidget() {
                     }}
                     className={`w-full flex items-center justify-between px-4 py-3.5 text-[14px] font-semibold transition-colors hover:bg-[#f2fcf8] ${
                       selectedMethod === method
-                        ? "bg-[#e6f9f2] text-[#0a7a52]"
-                        : "text-[#3d5a55] hover:text-[#00a96c]"
+                        ? "bg-brand-badge-bg text-brand-badge-text"
+                        : "text-[#3d5a55] hover:text-brand-primary-hover"
                     }`}
                   >
                     {method}
@@ -180,7 +180,7 @@ export default function TransferWidget() {
         </div>
       </div>
 
-      <button className="cursor-pointer w-full flex items-center justify-center gap-2 bg-[#00c881] hover:bg-[#00a96c] active:scale-[0.98] text-white font-bold text-base py-4 rounded-xl transition-all duration-200 shadow-sm shadow-green-500/10">
+      <button className="cursor-pointer w-full flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary-hover active:scale-[0.98] text-white font-bold text-base py-4 rounded-xl transition-all duration-200 shadow-sm shadow-brand-primary/10">
         Continue Transfer
         <svg
           width="18"

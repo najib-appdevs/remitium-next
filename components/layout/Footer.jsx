@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <>
       <CTASection />
-      <footer className="bg-[#0b1727] text-white py-16 px-6 font-sans">
+      <footer className="bg-brand-navy text-white py-16 px-6 font-sans">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* About Section */}
           <div className="md:col-span-4">
@@ -95,7 +95,7 @@ export default function Footer() {
                 placeholder="Enter Email..."
                 className="bg-transparent text-white px-3 py-3 w-full focus:outline-none text-sm placeholder:text-gray-400"
               />
-              <button className="bg-[#00c881] text-white px-8 py-2.5 rounded-full text-sm font-bold hover:bg-[#00a66b] transition-all mr-1">
+              <button className="bg-brand-primary text-white px-8 py-2.5 rounded-full text-sm font-bold hover:bg-brand-primary-hover transition-all mr-1">
                 Go
               </button>
             </div>

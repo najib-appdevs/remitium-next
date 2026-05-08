@@ -47,7 +47,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 px-4 py-3 md:px-6 transition-all duration-500 ${
-        scrolled ? "bg-white/60 backdrop-blur-xl border-b border-white/20" : "bg-transparent"
+        scrolled
+          ? "bg-white/60 backdrop-blur-xl border-b border-white/20"
+          : "bg-transparent"
       }`}
     >
       <nav
@@ -79,7 +81,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-[14px] font-semibold text-gray-600 hover:text-[#00c881] hover:bg-[#00c881]/5 rounded-full transition-all cursor-pointer"
+                className="px-4 py-2 text-[14px] font-semibold text-gray-600 hover:text-brand-primary hover:bg-brand-primary/5 rounded-full transition-all cursor-pointer"
               >
                 {link.name}
               </Link>
@@ -119,7 +121,7 @@ export default function Navbar() {
                         setCurrentLang(lang.code);
                         setIsLangOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#00c881]/10 hover:text-[#00c881] transition-colors cursor-pointer"
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-primary/10 hover:text-brand-primary transition-colors cursor-pointer"
                     >
                       {lang.name}
                     </button>
@@ -131,7 +133,7 @@ export default function Navbar() {
             {/* Primary Login Button */}
             <Link
               href="/login"
-              className="bg-[#00c881] text-white px-8 py-2.5 rounded-full text-[14px] font-bold shadow-md shadow-[#00c881]/10 hover:bg-[#00a66b] transition-all cursor-pointer"
+              className="bg-brand-primary text-white px-8 py-2.5 rounded-full text-[14px] font-bold shadow-md shadow-brand-primary/10 hover:bg-brand-primary-hover transition-all cursor-pointer"
             >
               Login
             </Link>
@@ -172,7 +174,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xl font-bold text-gray-800 hover:text-[#00c881] cursor-pointer"
+                className="text-xl font-bold text-gray-800 hover:text-brand-primary cursor-pointer"
               >
                 {link.name}
               </Link>
@@ -182,26 +184,26 @@ export default function Navbar() {
               <div className="flex justify-center gap-4 text-gray-500 font-medium py-2">
                 <button
                   onClick={() => setCurrentLang("English")}
-                  className={`${currentLang === "English" ? "text-[#00c881]" : ""} cursor-pointer`}
+                  className={`${currentLang === "English" ? "text-brand-primary" : ""} cursor-pointer`}
                 >
                   English
                 </button>
                 <button
                   onClick={() => setCurrentLang("Arabic")}
-                  className={`${currentLang === "Arabic" ? "text-[#00c881]" : ""} cursor-pointer`}
+                  className={`${currentLang === "Arabic" ? "text-brand-primary" : ""} cursor-pointer`}
                 >
                   Arabic
                 </button>
                 <button
                   onClick={() => setCurrentLang("Spanish")}
-                  className={`${currentLang === "Spanish" ? "text-[#00c881]" : ""} cursor-pointer`}
+                  className={`${currentLang === "Spanish" ? "text-brand-primary" : ""} cursor-pointer`}
                 >
                   Spanish
                 </button>
               </div>
               <Link
                 href="/login"
-                className="bg-[#00c881] text-white py-4 rounded-full text-lg font-bold cursor-pointer"
+                className="bg-brand-primary text-white py-4 rounded-full text-lg font-bold cursor-pointer"
               >
                 Login
               </Link>

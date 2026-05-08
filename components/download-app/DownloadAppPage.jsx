@@ -12,10 +12,55 @@ export default function DownloadAppPage() {
       <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-[#fcfdfd]">
         {/* Advanced Mesh Gradient Background */}
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
+          {/* Background: dot grid */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "linear-gradient(var(--brand-primary) 1px, transparent 1px), linear-gradient(90deg, var(--brand-primary) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+          />
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-primary/5 rounded-full blur-[120px] animate-pulse" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-navy/5 rounded-full blur-[100px]" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(0,200,129,0.03)_0%,transparent_70%)]" />
+
+          {/* Additional Blobs */}
+          <div
+            aria-hidden="true"
+            className="absolute top-1/2 -right-48 w-96 h-96 rounded-full pointer-events-none opacity-50"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,200,129,0.1) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute bottom-20 -left-32 w-80 h-80 rounded-full pointer-events-none opacity-40"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(0,66,90,0.06) 0%, transparent 70%)",
+            }}
+          />
         </div>
+
+        {/* Decorative Circles/Dots */}
+        <div
+          className="absolute top-40 left-10 w-3 h-3 rounded-full bg-brand-primary/20 animate-bounce"
+          style={{ animationDuration: "3s" }}
+        />
+        <div className="absolute top-20 right-20 w-2 h-2 rounded-full bg-brand-navy/10 animate-pulse" />
+        <div
+          className="absolute bottom-40 left-1/4 w-4 h-4 rounded-full bg-brand-primary/15 animate-float"
+          style={{ animationDuration: "5s" }}
+        />
+        <div className="absolute top-1/2 right-1/4 w-2 h-2 rounded-full bg-brand-primary/20" />
+        <div
+          className="absolute bottom-20 right-1/3 w-3 h-3 rounded-full bg-brand-navy/5 animate-bounce"
+          style={{ animationDuration: "4s" }}
+        />
+        <div className="absolute top-1/4 left-1/3 w-2 h-2 rounded-full bg-brand-primary/10" />
 
         <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
           {/* Badge */}
@@ -25,7 +70,18 @@ export default function DownloadAppPage() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl md:text-6xl font-semibold text-brand-navy mb-10 leading-[1.1] tracking-tight">
+          <h1 className="relative text-4xl md:text-6xl font-semibold text-brand-navy mb-10 leading-[1.1] tracking-tight">
+            {/* Decorative Headline Dots */}
+            <div className="absolute -top-6 -left-8 w-6 h-6 rounded-full bg-brand-primary/10 animate-pulse hidden md:block" />
+            <div
+              className="absolute -top-12 right-0 w-8 h-8 rounded-full bg-brand-primary/5 animate-float hidden md:block"
+              style={{ animationDuration: "7s" }}
+            />
+            <div
+              className="absolute top-1/2 -right-12 w-4 h-4 rounded-full bg-brand-navy/5 animate-bounce hidden md:block"
+              style={{ animationDuration: "4s" }}
+            />
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-primary/20 animate-float" />
             Transfer Money <br />
             <span className="text-brand-primary relative">
               Anytime Anywhere
@@ -147,9 +203,9 @@ export default function DownloadAppPage() {
                 {/* QR Glass Card */}
 
                 {/* Buttons Stack */}
-                <div className="flex flex- gap-8 mt-6">
-                  <AppStoreIcon className="bg-white !text-brand-navy hover:bg-brand-primary hover:!text-white transition-all shadow-xl !w-44 !h-14" />
-                  <GooglePlayIcon className="bg-white !text-brand-navy hover:bg-brand-primary hover:!text-white transition-all shadow-xl !w-44 !h-14" />
+                <div className="flex flex-col sm:flex-row items-center gap-6 mt-6">
+                  <AppStoreIcon className="hover:scale-105 transition-all shadow-2xl shadow-black/10 !w-52 !h-16 rounded-2xl" />
+                  <GooglePlayIcon className="hover:scale-105 transition-all shadow-2xl shadow-black/10 !w-52 !h-16 rounded-2xl" />
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 export default function CTASection() {
   return (
-    <section className="bg-[#00c881] py-8 px-6">
+    <section className="bg-brand-primary py-8 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -13,7 +13,7 @@ export default function CTASection() {
         </div>
 
         <div className="shrink-0">
-          <button className="bg-white hover:bg-gray-50 text-[#00c881] font-bold px-10 py-4 rounded-md transition-all shadow-lg shadow-green-500/20 active:scale-95 text-lg">
+          <button className="bg-white hover:bg-gray-50 text-brand-primary font-bold px-10 py-4 rounded-md transition-all shadow-lg shadow-brand-primary/20 active:scale-95 text-lg">
             Get Started Now
           </button>
         </div>
