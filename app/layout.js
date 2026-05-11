@@ -1,6 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/utils/SmoothScroll";
+import AOSInit from "@/components/utils/AOSInit";
 import { Geist, Geist_Mono, Jost } from "next/font/google";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col font-sans">
         <Navbar />
         <SmoothScroll /> {/* Smooth scroll */}
+        <AOSInit />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

@@ -210,15 +210,17 @@ function Step({ number, title, description, isLast }) {
 
 export default function FeaturesSection() {
   return (
-    <section className="py-20 px-6 bg-[#f7faf8]">
+    <section className="py-20 px-6 bg-[#f7faf8] overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Left: Illustration */}
-        <DashboardIllustration />
+        <div data-aos="fade-right" data-aos-duration="1000">
+          <DashboardIllustration />
+        </div>
 
         {/* Right: Steps */}
         <div className="flex flex-col gap-8">
           {/* Heading block */}
-          <div>
+          <div data-aos="fade-up" data-aos-duration="800">
             <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
               <span className="w-2 h-2 rounded-full bg-[#00c881]" />
               How it works
@@ -235,11 +237,17 @@ export default function FeaturesSection() {
           {/* Steps */}
           <div className="flex flex-col">
             {STEPS.map((step, i) => (
-              <Step
-                key={step.number}
-                {...step}
-                isLast={i === STEPS.length - 1}
-              />
+              <div 
+                key={step.number} 
+                data-aos="fade-up" 
+                data-aos-delay={i * 150} 
+                data-aos-duration="600"
+              >
+                <Step
+                  {...step}
+                  isLast={i === STEPS.length - 1}
+                />
+              </div>
             ))}
           </div>
         </div>

@@ -46,16 +46,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 px-4 py-3 md:px-6 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/60 backdrop-blur-xl border-b border-white/20"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 w-full z-50 px-4 py-3 md:px-6 transition-all duration-500`}
     >
       <nav
         className={`max-w-7xl mx-auto transition-all duration-500 ease-in-out ${
           scrolled
-            ? "bg-white/40 shadow-2xl border border-white/40 rounded-2xl py-2 px-6"
+            ? "bg-white/80 backdrop-blur-xl shadow-lg border border-white/40 rounded-2xl py-2 px-6"
             : "bg-transparent border-transparent py-4 px-8"
         }`}
       >

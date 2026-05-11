@@ -138,9 +138,9 @@ function BottomCard({ title, desc, icon: Icon, iconBg, iconColor }) {
 
 export default function SecuritySection() {
   return (
-    <section className="py-24 px-6 bg-slate-50">
+    <section className="py-24 px-6 bg-slate-50 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center text-center gap-6 mb-12">
+        <div className="flex flex-col items-center text-center gap-6 mb-12" data-aos="zoom-in" data-aos-duration="1000">
           <div className="max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
               <ShieldCheck size={16} />
@@ -154,21 +154,27 @@ export default function SecuritySection() {
           </div>
         </div>
 
-        <div className="h-px bg-slate-200 mb-12" />
+        <div className="h-px bg-slate-200 mb-12" data-aos="fade-in" data-aos-delay="400" />
 
         {/* Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <HeroCard />
+          <div data-aos="fade-right" data-aos-delay="200">
+            <HeroCard />
+          </div>
           <div className="grid grid-cols-1 gap-6">
-            {SIDE_CARDS.map((card) => (
-              <SideCard key={card.title} {...card} />
+            {SIDE_CARDS.map((card, i) => (
+              <div key={card.title} data-aos="fade-left" data-aos-delay={300 + (i * 100)}>
+                <SideCard {...card} />
+              </div>
             ))}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {BOTTOM_CARDS.map((card) => (
-            <BottomCard key={card.title} {...card} />
+          {BOTTOM_CARDS.map((card, i) => (
+            <div key={card.title} data-aos="fade-up" data-aos-delay={500 + (i * 100)}>
+              <BottomCard {...card} />
+            </div>
           ))}
         </div>
       </div>

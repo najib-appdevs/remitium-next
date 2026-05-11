@@ -310,10 +310,10 @@ export default function TestimonialSection() {
   }, []);
 
   return (
-    <section className="py-20 px-6 bg-[#f7faf8]">
+    <section className="py-20 px-6 bg-[#f7faf8] overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header row */}
-        <div className="flex items-end justify-between gap-4 mb-6">
+        <div className="flex items-end justify-between gap-4 mb-6" data-aos="fade-up" data-aos-duration="800">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
               <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
@@ -360,13 +360,15 @@ export default function TestimonialSection() {
         </div>
 
         {/* Thin divider */}
-        <div className="h-px bg-[#e2ede9] mb-7" />
+        <div className="h-px bg-[#e2ede9] mb-7" data-aos="fade-in" data-aos-delay="400" />
 
         {/* Horizontal scroll track */}
         <div
           ref={trackRef}
           className="flex gap-3.5 overflow-x-auto scroll-smooth pb-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          data-aos="fade-up"
+          data-aos-delay="500"
         >
           {TESTIMONIALS.map((t) => (
             <TestimonialCard key={t.name} {...t} />
@@ -374,7 +376,7 @@ export default function TestimonialSection() {
         </div>
 
         {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-1.5 mt-5">
+        <div className="flex items-center justify-center gap-1.5 mt-5" data-aos="fade-in" data-aos-delay="600">
           {TESTIMONIALS.map((_, i) => (
             <button
               key={i}
@@ -390,7 +392,7 @@ export default function TestimonialSection() {
         </div>
 
         {/* Bottom summary strip */}
-        <div className="mt-5 bg-white border border-[#e2ede9] rounded-[14px] overflow-hidden flex flex-wrap">
+        <div className="mt-5 bg-white border border-[#e2ede9] rounded-[14px] overflow-hidden flex flex-wrap" data-aos="zoom-in" data-aos-delay="700">
           {SUMMARY_STATS.map((s, i) => (
             <div
               key={s.label}

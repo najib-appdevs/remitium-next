@@ -274,10 +274,10 @@ function GlobeCard() {
 
 export default function ImpactSection() {
   return (
-    <section className="py-20 px-6 bg-[#f7faf8]">
+    <section className="py-20 px-6 bg-[#f7faf8] overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8" data-aos="fade-up" data-aos-duration="800">
           <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
             Trusted by Thousands
@@ -296,7 +296,11 @@ export default function ImpactSection() {
         {/* Two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-4">
           {/* LEFT — Stats + Live feed */}
-          <div className="bg-white border border-[#e2ede9] rounded-2xl p-7 flex flex-col gap-5 relative overflow-hidden">
+          <div 
+            className="bg-white border border-[#e2ede9] rounded-2xl p-7 flex flex-col gap-5 relative overflow-hidden"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             {/* Map dot watermark */}
             <div
               aria-hidden="true"
@@ -344,18 +348,22 @@ export default function ImpactSection() {
               <p className="text-[10px] font-medium text-slate-400 tracking-[0.08em] uppercase mb-1">
                 Live transfers
               </p>
-              {LIVE_TRANSFERS.map((t) => (
-                <TransferRow key={t.name} {...t} />
+              {LIVE_TRANSFERS.map((t, i) => (
+                <div key={t.name} data-aos="fade-up" data-aos-delay={300 + (i * 100)}>
+                  <TransferRow {...t} />
+                </div>
               ))}
             </div>
           </div>
 
           {/* RIGHT — Dark globe card + trust badges */}
-          <div className="flex flex-col gap-0">
+          <div className="flex flex-col gap-0" data-aos="fade-left" data-aos-delay="400">
             <GlobeCard />
             <div className="flex flex-col gap-2.5">
-              {TRUST_BADGES.map((b) => (
-                <TrustBadge key={b.title} {...b} />
+              {TRUST_BADGES.map((b, i) => (
+                <div key={b.title} data-aos="fade-up" data-aos-delay={500 + (i * 100)}>
+                  <TrustBadge {...b} />
+                </div>
               ))}
             </div>
           </div>
