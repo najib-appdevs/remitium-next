@@ -21,8 +21,8 @@ export default function DashboardLayout({ children }) {
           onMenuClick={() => setIsSidebarOpen(true)} 
         />
         
-        <main className="flex-1 p-6 lg:p-10">
-          <div className="max-w-7xl mx-auto">
+        <main className="flex-1 p-10">
+          <div className="w-full">
             {children}
           </div>
         </main>

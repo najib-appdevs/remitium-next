@@ -5,6 +5,10 @@
   --foreground: #171717;
   --brand-primary: #00c881;
   --brand-primary-hover: #00a96c;
+  --brand-orange: #fca04b;
+  --brand-pink: #ec4899;
+  --brand-blue: #3b82f6;
+  --brand-emerald: #10b981;
   --brand-bg-light: #f7faf8;
   --brand-navy: #0b1727;
   --brand-badge-bg: #e6f9f2;
@@ -18,6 +22,10 @@
   --color-foreground: var(--foreground);
   --color-brand-primary: var(--brand-primary);
   --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-emerald: var(--brand-emerald);
   --color-brand-bg-light: var(--brand-bg-light);
   --color-brand-navy: var(--brand-navy);
   --color-brand-badge-bg: var(--brand-badge-bg);
@@ -43,4 +51,15 @@ body {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Hide number input spin buttons */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+input[type=number] {
+  -moz-appearance: textfield !important;
 }

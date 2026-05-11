@@ -60,7 +60,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
   return (
     <aside className={`
-      fixed inset-y-0 left-0 z-50 w-72 bg-[#0b1727] text-white transition-transform duration-300 lg:translate-x-0 lg:static lg:inset-0
+      fixed inset-y-0 left-0 z-50 w-72 bg-[#0b1727] text-white transition-transform duration-300 lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
     `}>
       <div className="flex flex-col h-full">
@@ -74,7 +74,7 @@ export default function Sidebar({ isOpen, onClose }) {
               height={30} 
             />
           </Link>
-          <button className="lg:hidden text-gray-400 hover:text-white" onClick={onClose}>
+          <button className="lg:hidden text-gray-300 hover:text-white" onClick={onClose}>
             <X size={24} />
           </button>
         </div>
@@ -83,7 +83,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto custom-scrollbar">
           {MENU_GROUPS.map((group) => (
             <div key={group.title} className="space-y-2">
-              <p className="px-4 text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">
+              <p className="px-4 text-xs font-bold text-gray-500 uppercase mb-4">
                 {group.title}
               </p>
               <div className="space-y-1">
@@ -95,10 +95,10 @@ export default function Sidebar({ isOpen, onClose }) {
                       flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
                       ${isActive(item.href) 
                         ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20" 
-                        : "text-gray-400 hover:text-white hover:bg-white/5"}
+                        : "text-gray-300 hover:text-white hover:bg-white/5"}
                     `}
                   >
-                    <item.icon size={20} className={isActive(item.href) ? "text-white" : "text-gray-400"} />
+                    <item.icon size={20} className={isActive(item.href) ? "text-white" : "text-gray-300"} />
                     {item.name}
                   </Link>
                 ))}
@@ -108,7 +108,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
           {/* Settings Section */}
           <div className="space-y-2">
-            <p className="px-4 text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">
+            <p className="px-4 text-xs font-bold text-gray-500 uppercase mb-4">
               Account Management
             </p>
             <button
@@ -117,7 +117,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
                 ${(pathname.includes("/settings") || pathname === "/profile")
                   ? "text-white bg-white/5" 
-                  : "text-gray-400 hover:text-white hover:bg-white/5"}
+                  : "text-gray-300 hover:text-white hover:bg-white/5"}
               `}
             >
               <div className="flex items-center gap-3">
@@ -140,7 +140,7 @@ export default function Sidebar({ isOpen, onClose }) {
                       flex items-center gap-3 px-4 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-200
                       ${isActive(item.href) 
                         ? "text-brand-primary" 
-                        : "text-gray-500 hover:text-white hover:bg-white/5"}
+                        : "text-gray-300 hover:text-white hover:bg-white/5"}
                     `}
                   >
                     <item.icon size={16} />
@@ -164,7 +164,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 <p className="text-xs text-gray-500 truncate">john@example.com</p>
               </div>
             </div>
-            <button className="w-full flex items-center justify-center gap-2 py-2.5 bg-white/5 hover:bg-red-500/10 text-gray-400 hover:text-red-500 rounded-xl text-xs font-bold transition-all duration-200">
+            <button className="w-full flex items-center justify-center gap-2 py-2.5 bg-white/5 hover:bg-red-500/10 text-gray-300 hover:text-red-500 rounded-xl text-xs font-bold transition-all duration-200">
               <LogOut size={16} />
               Logout
             </button>
