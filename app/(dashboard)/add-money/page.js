@@ -110,7 +110,9 @@ export default function AddMoneyPage() {
     <div className="space-y-8 w-full">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-black text-brand-navy tracking-tight">Add Money</h1>
+        <h1 className="text-2xl font-bold text-gray-700 mb-6">
+            Add Money
+          </h1>
       </div>
 
       {/* Main layout */}

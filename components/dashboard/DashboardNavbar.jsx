@@ -1,9 +1,10 @@
 "use client";
 
-import { Bell, Menu, User, ChevronDown, Globe } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { Bell, ChevronDown, Globe, Menu } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 export default function DashboardNavbar({ onMenuClick }) {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ export default function DashboardNavbar({ onMenuClick }) {
     const lastSegment = segments[segments.length - 1];
     return lastSegment
       .split("-")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
 
@@ -41,18 +42,20 @@ export default function DashboardNavbar({ onMenuClick }) {
   return (
     <header className="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-6 lg:px-10 sticky top-0 z-40">
       <div className="flex items-center gap-4">
-        <button 
+        <button
           className="p-2 -ml-2 text-gray-400 hover:text-brand-navy lg:hidden"
           onClick={onMenuClick}
         >
           <Menu size={24} />
         </button>
-        
+
         {/* Breadcrumbs */}
         <div className="flex items-center gap-2 text-sm">
           <span className="font-bold text-brand-navy">Dashboard</span>
           <span className="text-gray-400">/</span>
-          <span className="text-brand-primary font-medium">{getRouteName(pathname)}</span>
+          <span className="text-brand-primary font-medium">
+            {getRouteName(pathname)}
+          </span>
         </div>
       </div>
 
@@ -65,7 +68,10 @@ export default function DashboardNavbar({ onMenuClick }) {
           >
             <Globe size={14} className="text-brand-primary" />
             <span>{currentLang}</span>
-            <ChevronDown size={14} className={`transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${isLangOpen ? "rotate-180" : ""}`}
+            />
           </button>
 
           {isLangOpen && (
@@ -93,16 +99,17 @@ export default function DashboardNavbar({ onMenuClick }) {
         </button>
 
         {/* Profile */}
-        <Link 
+        <Link
           href="/profile"
           className="flex items-center gap-3 pl-3 sm:pl-6 border-l border-gray-100 hover:opacity-80 transition-opacity cursor-pointer"
         >
-          <div className="text-right hidden sm:block">
-            <p className="text-sm font-bold text-brand-navy leading-none">John Doe</p>
-            <p className="text-[10px] font-bold text-brand-primary uppercase mt-1">Pro Member</p>
-          </div>
           <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 overflow-hidden shadow-sm">
-            <User size={22} />
+            <Image
+              src="/images/profile-default.webp"
+              alt="Remitium"
+              width={120}
+              height={30}
+            />
           </div>
         </Link>
       </div>

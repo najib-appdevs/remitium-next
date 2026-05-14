@@ -1,47 +1,100 @@
-import { ShieldCheck, Smartphone } from "lucide-react";
+import { Apple, Copy, Play } from "lucide-react";
+import Image from "next/image";
 
 export default function TwoFactorPage() {
+  const address = "BTRILINRLMPX3FWH";
+
   return (
-    <div className="space-y-8 max-w-3xl">
-      <div>
-        <h1 className="text-3xl font-black text-brand-navy tracking-tight">2FA Security</h1>
-        <p className="text-gray-500 mt-2">Add an extra layer of security to your account by enabling two-factor authentication.</p>
-      </div>
+    <>
+      <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        {/* Left Column */}
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-2xl font-bold text-gray-700">
+            Two Factor Authenticator
+          </h2>
 
-      <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-10">
-        <div className="flex flex-col md:flex-row gap-10 items-center">
-          <div className="w-24 h-24 bg-brand-primary/10 rounded-[2rem] flex items-center justify-center text-brand-primary shrink-0">
-            <ShieldCheck size={48} />
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-brand-navy">Authenticator App</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Use an app like Google Authenticator or Authy to generate one-time codes for every login attempt and critical transaction.
-            </p>
-            <div className="flex items-center gap-2 text-[10px] font-bold text-brand-primary uppercase tracking-widest bg-brand-primary/5 w-fit px-3 py-1 rounded-md">
-              <Smartphone size={12} />
-              Recommended
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 pt-10 border-t border-gray-100 space-y-6">
-          <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border border-gray-200">
-                <ShieldCheck size={20} className="text-gray-400" />
-              </div>
-              <div>
-                <p className="font-bold text-brand-navy">Two-Factor Authentication</p>
-                <p className="text-xs text-gray-400 mt-1">Status: <span className="text-red-500 font-bold uppercase">Disabled</span></p>
+          <div className="flex-1 bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col">
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-500 mb-2">
+                Address<span className="text-emerald-500">*</span>
+              </label>
+              <div className="flex">
+                <input
+                  type="text"
+                  readOnly
+                  value={address}
+                  className="w-full border border-gray-200 rounded-l-md px-4 py-2 text-gray-600 focus:outline-none"
+                />
+                <button className="cursor-pointer bg-emerald-500 text-white px-4 rounded-r-md hover:bg-emerald-600 transition-colors">
+                  <Copy size={20} />
+                </button>
               </div>
             </div>
-            <button className="bg-brand-primary text-white px-8 py-3 rounded-2xl font-bold hover:bg-brand-primary-hover transition-all">
-              Enable Now
+
+            <div className="flex justify-center mb-8 flex-grow items-center">
+              <div className="p-4 border border-gray-100 rounded-lg">
+                <Image
+                  src="/images/QRCode.png"
+                  alt="QR Code"
+                  width={100}
+                  height={100}
+                  className="w-72 h-72"
+                />
+              </div>
+            </div>
+
+            <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold hover:bg-emerald-600 transition-colors mt-auto">
+              Enable
             </button>
           </div>
         </div>
+
+        {/* Right Column */}
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-2xl font-bold text-gray-700">
+            Google Authenticator
+          </h2>
+
+          <div className="flex-1 bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col">
+            <h3 className="font-bold text-gray-800 mb-4">
+              Download Google Authenticator App
+            </h3>
+            <p className="text-gray-500 text-sm leading-relaxed mb-6">
+              Google Authenticator adds an extra layer of security to your
+              online accounts by adding a second step of verification when you
+              sign in. This means that in addition to your password, you&apos;ll
+              also need to enter a code that is generated by the Google
+              Authenticator app on your phone.
+              <a href="#" className="text-emerald-500 hover:underline ml-1">
+                How to Setup?
+              </a>
+            </p>
+
+            <div className="flex justify-center mb-8 flex-grow items-center">
+              <div className="p-4 border border-gray-100 rounded-lg">
+                <Image
+                  src="/images/Google Authenticator.webp"
+                  alt="QR Code"
+                  width={100}
+                  height={100}
+                  className="w-48 h-48"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3 mt-auto">
+              <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-emerald-600 transition-colors">
+                <Play size={20} fill="currentColor" />
+                Download For Android
+              </button>
+              <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-emerald-600 transition-colors">
+                <Apple size={20} fill="currentColor" />
+                Download For IOS
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

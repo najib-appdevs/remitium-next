@@ -132,7 +132,7 @@ const LOGS = [
 const TH_CLASSES = "px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap";
 
 // ─── Main Component ───────────────────────────────────────────────────────────
-export default function AddMoneyLog() {
+export default function MoneyOutLog() {
 
   return (
     <section className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
@@ -143,7 +143,7 @@ export default function AddMoneyLog() {
           <div className="w-9 h-9 rounded-xl bg-brand-badge-bg text-brand-badge-text flex items-center justify-center flex-shrink-0">
             <IconHistory />
           </div>
-          <p className="text-base font-bold text-brand-navy leading-tight">Add Money Logs</p>
+          <p className="text-base font-bold text-brand-navy leading-tight">Money Out Logs</p>
         </div>
 
         {/* View More */}

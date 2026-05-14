@@ -1,117 +1,227 @@
-import { ArrowRight, Globe, Info, Zap } from "lucide-react";
+"use client";
+import {
+  ArrowLeftRight,
+  Banknote,
+  Calculator,
+  ChevronDown,
+  ShieldCheck,
+  Wallet,
+} from "lucide-react";
+import { useState } from "react";
+import SendRemittanceLog from "./SendRemittanceLog";
+
+const IconRefresh = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="23 4 23 10 17 10" />
+    <polyline points="1 20 1 14 7 14" />
+    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+  </svg>
+);
 
 export default function SendRemittancePage() {
+  const [sendAmount, setSendAmount] = useState(100);
+  const exchangeRate = 764.83;
+  const fees = 2.0;
+  const getAmount = (sendAmount * exchangeRate).toFixed(2);
+  const totalPayable = (parseFloat(sendAmount) + fees).toFixed(2);
+
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-black text-brand-navy tracking-tight">Send Remittance</h1>
-          <p className="text-gray-500 mt-2">Send money to your loved ones across the globe with the best rates.</p>
-        </div>
-      </div>
+    <div className="space-y-8 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* LEFT COLUMN: Input Form */}
+        <div className="space-y-6">
+          <h1 className="text-2xl font-bold text-gray-700 mb-6">
+            Send Remittance
+          </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Main Form Area */}
-        <div className="lg:col-span-8 space-y-6">
-          <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 md:p-12">
+          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 md:p-12">
+            {/* Exchange Rate Badge */}
+            <div className="flex justify-center mb-10">
+              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full py-2 px-5">
+                <span className="text-blue-400">
+                  <IconRefresh />
+                </span>
+                <span className="text-blue-500 font-semibold text-sm">
+                  Exchange Rate
+                </span>
+                <span className="text-blue-300 text-sm">·</span>
+                <span className="text-blue-400 text-sm font-medium">
+                  1 USD = {exchangeRate} NGN
+                </span>
+              </div>
+            </div>
+
             <div className="space-y-8">
-              {/* Amount Inputs */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-                <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">You Send</label>
-                  <div className="flex items-center justify-between">
-                    <input type="number" defaultValue="1000" className="bg-transparent text-2xl font-black text-brand-navy focus:outline-none w-full" />
-                    <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-100 shadow-sm">
-                      <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white font-bold">🇺🇸</div>
+              {/* Currency Inputs */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-xs font-medium uppercase tracking-wide text-gray-500">
+                    You Send
+                    <span className="text-brand-primary normal-case">*</span>
+                  </label>
+                  <div className="flex">
+                    <input
+                      type="number"
+                      value={sendAmount}
+                      onChange={(e) => setSendAmount(e.target.value)}
+                      className="w-full p-4 border border-gray-200 rounded-l-2xl outline-none focus:border-emerald-500 font-bold text-gray-700"
+                    />
+                    <div className="flex items-center gap-2 bg-[#00B67A] text-white px-4 rounded-r-2xl cursor-pointer hover:brightness-95">
+                      <div className="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <span className="text-[10px]">🇺🇸</span>
+                      </div>
                       <span className="font-bold text-sm">USD</span>
+                      <ChevronDown size={14} />
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">They Receive</label>
-                  <div className="flex items-center justify-between">
-                    <input type="number" defaultValue="1450000" className="bg-transparent text-2xl font-black text-brand-navy focus:outline-none w-full" />
-                    <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-100 shadow-sm">
-                      <div className="w-5 h-5 rounded-full bg-emerald-600 flex items-center justify-center text-[10px] text-white font-bold">🇳🇬</div>
+                <div className="space-y-2">
+                  <label className="block text-xs font-medium uppercase tracking-wide text-gray-500">
+                    They Get
+                    <span className="text-brand-primary normal-case">*</span>
+                  </label>
+                  <div className="flex">
+                    <input
+                      type="text"
+                      readOnly
+                      value={getAmount}
+                      className="w-full p-4 border border-gray-200 rounded-l-2xl outline-none bg-gray-50 font-bold text-gray-700"
+                    />
+                    <div className="flex items-center gap-2 bg-[#00B67A] text-white px-4 rounded-r-2xl cursor-pointer hover:brightness-95">
+                      <div className="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <span className="text-[10px]">🇳🇬</span>
+                      </div>
                       <span className="font-bold text-sm">NGN</span>
+                      <ChevronDown size={14} />
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-brand-primary rounded-full items-center justify-center text-white shadow-lg z-10">
-                  <ArrowRight size={20} />
+              {/* Transaction Method */}
+              <div className="space-y-2">
+                <label className="block text-xs font-medium uppercase tracking-wide text-gray-500">
+                  Transaction Method
+                  <span className="text-brand-primary normal-case">*</span>
+                </label>
+                <div className="relative">
+                  <select className="w-full p-4 border border-gray-200 rounded-2xl outline-none appearance-none focus:border-emerald-500 text-gray-600 bg-white">
+                    <option>Bank Transfer</option>
+                    <option>Wallet Transfer</option>
+                  </select>
+                  <ChevronDown
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                    size={18}
+                  />
                 </div>
               </div>
 
-              {/* Rate Info */}
-              <div className="p-6 bg-brand-primary/5 rounded-3xl border border-brand-primary/10 flex flex-col md:flex-row justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center text-brand-primary">
-                    <Zap size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Exchange Rate</p>
-                    <p className="font-bold text-brand-navy">1 USD = 1,450.00 NGN</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-brand-primary/20 rounded-xl flex items-center justify-center text-brand-primary">
-                    <Info size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Fee</p>
-                    <p className="font-bold text-brand-navy">$0.00 (Zero Fee)</p>
-                  </div>
-                </div>
-              </div>
-
-              <button className="w-full bg-brand-navy text-white py-6 rounded-3xl font-bold hover:bg-slate-800 transition-all text-lg shadow-xl shadow-slate-100">
-                Continue to Transfer
+              <button
+                type="button"
+                className="w-full mt-24 bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-4 rounded-xl transition-all text-lg shadow-md shadow-brand-primary/10 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                Continue
               </button>
             </div>
           </div>
         </div>
 
-        {/* Sidebar Info Area */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-emerald-950 text-white rounded-[2.5rem] p-8 shadow-xl relative overflow-hidden">
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-4">Why use Remitium?</h3>
-              <ul className="space-y-4">
-                {[
-                  "Best exchange rates in the market",
-                  "Instant transfers to 100+ countries",
-                  "Zero hidden fees, always transparent",
-                  "Bank-level security for every cent"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-white/70">
-                    <div className="w-5 h-5 bg-brand-primary rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                      <svg width="12" height="12" fill="none" stroke="#fff" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="absolute -bottom-10 -right-10 opacity-10 pointer-events-none">
-              <Globe size={180} />
-            </div>
-          </div>
+        {/* RIGHT COLUMN: Summary */}
+        <div className="space-y-6">
+          <h2 className="text-2xl font-bold text-gray-700 mb-6">Summary</h2>
 
-          <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8">
-            <h3 className="font-bold text-brand-navy mb-4">Delivery Options</h3>
-            <div className="space-y-3">
-              {["Bank Transfer", "Mobile Wallet", "Cash Pickup"].map((opt) => (
-                <div key={opt} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl text-xs font-bold text-gray-600">
-                  {opt}
-                  <span className="text-brand-primary">Available</span>
+          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 h-fit">
+            <div className="divide-y divide-gray-50">
+              {/* Sending Amount */}
+              <div className="flex items-center justify-between py-5 border-b border-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+                    <Calculator size={16} />
+                  </div>
+                  <span className="text-gray-600 font-medium text-sm">
+                    Sending Amount
+                  </span>
                 </div>
-              ))}
+                <span className="font-medium text-base text-gray-600">
+                  {parseFloat(sendAmount).toFixed(2)} USD
+                </span>
+              </div>
+
+              {/* Limit */}
+              <div className="flex items-center justify-between py-5 border-b border-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+                    <ArrowLeftRight size={16} />
+                  </div>
+                  <span className="text-gray-600 font-medium text-sm">
+                    Limit
+                  </span>
+                </div>
+                <span className="font-medium text-base text-gray-600">
+                  1 - 50,000.00 USD
+                </span>
+              </div>
+
+              {/* Total Fees */}
+              <div className="flex items-center justify-between py-5 border-b border-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+                    <Wallet size={16} />
+                  </div>
+                  <span className="text-gray-600 font-medium text-sm">
+                    Total Fees & Charges
+                  </span>
+                </div>
+                <span className="font-medium text-base text-gray-600">
+                  {fees.toFixed(2)} USD
+                </span>
+              </div>
+
+              {/* Will Get */}
+              <div className="flex items-center justify-between py-5 border-b border-gray-50">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+                    <ShieldCheck size={16} />
+                  </div>
+                  <span className="text-gray-600 font-medium text-sm">
+                    Will Get
+                  </span>
+                </div>
+                <span className="font-medium text-base text-gray-600">
+                  {getAmount} NGN
+                </span>
+              </div>
+
+              {/* Total Payable */}
+              <div className="flex items-center justify-between py-5 pt-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+                    <Banknote size={16} />
+                  </div>
+                  <span className="text-gray-600 font-medium text-sm">
+                    Total Payable Amount
+                  </span>
+                </div>
+                <span className="text-gray-600 font-medium text-lg">
+                  {totalPayable} USD
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {/* Send Remittance Log */}
+      <SendRemittanceLog />
     </div>
   );
 }

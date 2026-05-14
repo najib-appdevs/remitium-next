@@ -63,3 +63,16 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield !important;
 }
+
+/* Hide scrollbar */
+/* Chrome, Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  display: none;
+}
+
+/* Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
