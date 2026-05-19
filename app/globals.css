@@ -33,20 +33,22 @@
   --color-brand-badge-text: var(--brand-badge-text);
   --color-brand-border-color: var(--brand-border-color);
   --font-jost: var(--font-jost);
-  --font-mono: var(--font-geist-mono);
-  --font-sans: var(--font-geist-sans);
 }
 
-
 body {
-  background: var(--background); 
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-jost), Arial, Helvetica, sans-serif;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .animate-float {
@@ -60,7 +62,7 @@ input::-webkit-inner-spin-button {
   margin: 0 !important;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield !important;
 }
 

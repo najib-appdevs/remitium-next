@@ -79,7 +79,7 @@ export default function Footer() {
               height={48}
               className="object-contain mb-8 brightness-0 invert"
             />
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-white leading-[1.1]">
               Crafting the future of{" "}
               <em className="not-italic text-emerald-400">Global Liquidity.</em>
             </h2>
@@ -100,12 +100,12 @@ export default function Footer() {
                 placeholder="Your email address"
                 className="flex-1 bg-transparent text-sm text-white placeholder:text-slate-500 pl-5 pr-3 focus:outline-none"
               />
-              <button className="shrink-0 flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 transition-colors text-slate-950 text-xs font-black uppercase tracking-widest rounded-full px-5 py-3">
+              <button className="shrink-0 flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 transition-colors text-slate-950 text-xs font-black uppercase  rounded-full px-5 py-3">
                 Subscribe
                 <Send className="w-3.5 h-3.5" />
               </button>
             </div>
-            <p className="mt-2.5 text-[9px] text-slate-600 uppercase tracking-widest pl-4">
+            <p className="mt-2.5 text-[9px] text-slate-600 uppercase  pl-4">
               Exclusive insights · Weekly digest
             </p>
           </div>
@@ -192,10 +192,10 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 relative">
           <div className="text-center sm:text-left">
-            <p className="text-slate-600 text-[10px] uppercase tracking-widest font-bold">
+            <p className="text-slate-600 text-[10px] uppercase  font-bold">
               © 2026 Remitium. Built with Excellence.
             </p>
-            <p className="text-slate-700 text-[9px] uppercase tracking-widest mt-0.5">
+            <p className="text-slate-700 text-[9px] uppercase  mt-0.5">
               bakedwith GmbH · Berlin · Europe
             </p>
           </div>
@@ -205,7 +205,7 @@ export default function Footer() {
               <Link
                 key={label}
                 href="#"
-                className="group flex items-center gap-1 text-slate-600 hover:text-emerald-500 text-[10px] font-black uppercase tracking-widest transition-colors"
+                className="group flex items-center gap-1 text-slate-600 hover:text-emerald-500 text-[10px] font-black uppercase  transition-colors"
               >
                 {label}
                 <ArrowUpRight className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />

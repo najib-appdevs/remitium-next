@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Search, History } from "lucide-react";
+import { ChevronLeft, ChevronRight, History, Search } from "lucide-react";
 import { useState } from "react";
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────
@@ -257,7 +257,7 @@ export default function RemittanceTable() {
                   <td className={`${TD_CLASSES} font-bold text-slate-800`}>
                     {log.recipient}
                   </td>
-                  <td className={`${TD_CLASSES} font-mono text-[11px]`}>
+                  <td className={`${TD_CLASSES}  text-[11px]`}>
                     {log.transactionId}
                   </td>
                   <td className={TD_CLASSES}>{log.method}</td>

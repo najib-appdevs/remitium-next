@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { History } from "lucide-react";
 
 // ─── Status Config ─────────────────────────────────────────────────────────────
@@ -43,61 +42,61 @@ const LOGS = [
     id: 1,
     title: "Money Out via ADPay USD",
     status: "Pending",
-    payableAmount: 3032.00,
-    amount: 3000.00,
+    payableAmount: 3032.0,
+    amount: 3000.0,
     currency: "USD",
     transactionId: "AM50586973",
     exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 32.00,
-    willReceive: 3000.00,
+    feesCharges: 32.0,
+    willReceive: 3000.0,
   },
   {
     id: 2,
     title: "Money Out via Paypal USD",
     status: "Completed",
-    payableAmount: 510.50,
-    amount: 500.00,
+    payableAmount: 510.5,
+    amount: 500.0,
     currency: "USD",
     transactionId: "AM40471882",
     exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 10.50,
-    willReceive: 500.00,
+    feesCharges: 10.5,
+    willReceive: 500.0,
   },
   {
     id: 3,
     title: "Money Out via Stripe USD",
     status: "Completed",
-    payableAmount: 1215.00,
-    amount: 1200.00,
+    payableAmount: 1215.0,
+    amount: 1200.0,
     currency: "USD",
     transactionId: "AM38295641",
     exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 15.00,
-    willReceive: 1200.00,
+    feesCharges: 15.0,
+    willReceive: 1200.0,
   },
   {
     id: 4,
     title: "Money Out via ADPay USD",
     status: "Failed",
-    payableAmount: 808.00,
-    amount: 800.00,
+    payableAmount: 808.0,
+    amount: 800.0,
     currency: "USD",
     transactionId: "AM27183049",
     exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 8.00,
-    willReceive: 800.00,
+    feesCharges: 8.0,
+    willReceive: 800.0,
   },
   {
     id: 5,
     title: "Money Out via Paypal USD",
     status: "Completed",
-    payableAmount: 253.50,
-    amount: 250.00,
+    payableAmount: 253.5,
+    amount: 250.0,
     currency: "USD",
     transactionId: "AM16072938",
     exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 3.50,
-    willReceive: 250.00,
+    feesCharges: 3.5,
+    willReceive: 250.0,
   },
 ];
 
@@ -128,7 +127,9 @@ export default function MoneyOutLog() {
             <History size={20} />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-gray-800 leading-tight">Money Out Logs</h2>
+            <h2 className="text-lg font-bold text-gray-800 leading-tight">
+              Money Out Logs
+            </h2>
           </div>
         </div>
 
@@ -146,7 +147,9 @@ export default function MoneyOutLog() {
         {LOGS.length === 0 ? (
           <div className="py-16 text-center">
             <History size={40} className="text-gray-300 mx-auto mb-3" />
-            <p className="text-sm font-semibold text-gray-400">No records yet</p>
+            <p className="text-sm font-semibold text-gray-400">
+              No records yet
+            </p>
           </div>
         ) : (
           <table className="w-full text-left border-collapse">
@@ -174,14 +177,14 @@ export default function MoneyOutLog() {
 
                   {/* 2. Transaction ID */}
                   <td className={TD_CLASSES}>
-                    <span className="font-mono text-xs bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
+                    <span className=" text-sm bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
                       {log.transactionId}
                     </span>
                   </td>
 
                   {/* 3. Exchange Rate */}
                   <td className={TD_CLASSES}>
-                    <span className="text-xs text-gray-500 font-medium">
+                    <span className="text-sm text-gray-500 font-medium">
                       {log.exchangeRate}
                     </span>
                   </td>

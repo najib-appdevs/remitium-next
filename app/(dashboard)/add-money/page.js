@@ -148,8 +148,6 @@ export default function AddMoneyPage() {
 
   return (
     <div className="w-full space-y-5">
-      <h1 className="text-2xl font-bold text-gray-700">Add Money</h1>
-
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         {/* ── Form card (50%) ── */}
         <div
@@ -159,15 +157,32 @@ export default function AddMoneyPage() {
             border: "0.5px solid #a7dfbf",
           }}
         >
-          {/* Exchange rate strip */}
-          <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
-            <span className="text-[#0f6e56] flex items-center">
-              <IconRefresh />
-            </span>
-            <span className="text-sm font-medium text-[#0f6e56]">
-              Exchange Rate
-            </span>
-            <span className="text-sm text-[#1d9e75]">· 1 USD = 1.00 USD</span>
+          {/* Form Header / Caption */}
+          <div className="flex flex-col gap-4 pb-3 border-b border-[#a7dfbf]/30">
+            {/* Centered Caption */}
+            <div className="flex flex-col items-center text-center gap-2.5">
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold text-[#0d3d24]">Add Money</h2>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-[#a7dfbf]/20 w-full my-0.5" />
+
+            {/* Exchange Rate Info */}
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
+                <span className="text-[#0f6e56] flex items-center">
+                  <IconRefresh />
+                </span>
+                <span className="text-sm font-medium text-[#0f6e56]">
+                  Exchange Rate
+                </span>
+                <span className="text-sm text-[#1d9e75]">
+                  · 1 USD = 1.00 USD
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Payment Gateway */}
@@ -226,8 +241,8 @@ export default function AddMoneyPage() {
                 className="flex-1 min-w-0 px-3 py-2.5 text-sm text-gray-700 outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <Listbox value={currency} onChange={setCurrency}>
-                <div className="relative flex shrink-0">
-                  <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none">
+                <div className="relative flex shrink-0 rounded-r-lg">
+                  <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none rounded-r-lg">
                     <span>{currency}</span>
                     <span className="text-white flex items-center pointer-events-none">
                       <svg
@@ -281,14 +296,20 @@ export default function AddMoneyPage() {
             border: "0.5px solid #a7dfbf",
           }}
         >
-          <p className="text-sm font-medium   text-gray-400 pb-1.5 border-b border-[#f3f4f6]">
-            Summary
-          </p>
+          {/* Summary Header */}
+          <div className="flex flex-col gap-4 pb-3 border-b border-[#a7dfbf]/30">
+            {/* Centered Caption */}
+            <div className="flex flex-col items-center text-center gap-2.5">
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold text-[#0d3d24]">Summary</h2>
+              </div>
+            </div>
+          </div>
 
           {summaryRows.map(({ icon, label, value }) => (
             <div
               key={label}
-              className="flex items-center justify-between py-1.5 border-b border-[#f3f4f6]"
+              className="flex items-center justify-between border-b border-[#f3f4f6]"
             >
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#e1f5ee] text-[#0f6e56]">
@@ -301,7 +322,7 @@ export default function AddMoneyPage() {
           ))}
 
           {/* Total */}
-          <div className="flex items-center justify-between px-3 py-2 rounded-lg mt-1 bg-[#f0faf5]">
+          <div className="flex items-center justify-between rounded-lg mt-1 bg-[#f0faf5]">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#10b981]">
                 <span className="text-white flex items-center">

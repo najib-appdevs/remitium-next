@@ -91,10 +91,6 @@ export default function SendRemittancePage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* LEFT COLUMN: Input Form */}
         <div className="space-y-6 w-full">
-          <h1 className="text-2xl font-bold text-gray-700 mb-6">
-            Send Remittance
-          </h1>
-
           <div
             className={card}
             style={{
@@ -102,17 +98,29 @@ export default function SendRemittancePage() {
               border: "0.5px solid #a7dfbf",
             }}
           >
-            {/* Exchange Rate Badge */}
-            <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
-              <span className="text-[#0f6e56] flex items-center">
-                <IconRefresh />
-              </span>
-              <span className="text-sm font-medium text-[#0f6e56]">
-                Exchange Rate
-              </span>
-              <span className="text-sm text-[#1d9e75]">
-                · 1 {sendCurrency.code} = {exchangeRate} {receiveCurrency.code}
-              </span>
+            {/* Form Header / Caption */}
+            <div className="flex flex-col gap-4 pb-3 border-b border-[#a7dfbf]/30">
+              {/* Centered Caption */}
+              <div className="flex flex-col items-center text-center gap-2.5">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-[#0d3d24]">Send Remittance</h2>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-[#a7dfbf]/20 w-full my-0.5" />
+
+              {/* Exchange Rate Info */}
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
+                  <span className="text-sm font-medium text-[#0f6e56]">
+                    Exchange Rate
+                  </span>
+                  <span className="text-sm text-[#1d9e75]">
+                    · 1 {sendCurrency.code} = {exchangeRate} {receiveCurrency.code}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col gap-5">
@@ -277,7 +285,6 @@ export default function SendRemittancePage() {
 
         {/* RIGHT COLUMN: Summary */}
         <div className="space-y-6 w-full">
-          <h2 className="text-2xl font-bold text-gray-700 mb-6">Summary</h2>
           <div
             className={card}
             style={{
@@ -285,10 +292,19 @@ export default function SendRemittancePage() {
               border: "0.5px solid #a7dfbf",
             }}
           >
+            {/* Summary Header */}
+            <div className="flex flex-col gap-4 pb-3 border-b border-[#a7dfbf]/30">
+              {/* Centered Caption */}
+              <div className="flex flex-col items-center text-center gap-2.5">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-[#0d3d24]">Summary</h2>
+                </div>
+              </div>
+            </div>
             {summaryRows.map(({ icon, label, value }) => (
               <div
                 key={label}
-                className="flex items-center justify-between py-1.5 border-b border-[#f3f4f6]"
+                className="flex items-center justify-between border-b border-[#f3f4f6]"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#e1f5ee] text-[#0f6e56]">
@@ -303,7 +319,7 @@ export default function SendRemittancePage() {
             ))}
 
             {/* Total */}
-            <div className="flex items-center justify-between px-3 py-2 rounded-lg mt-1 bg-[#f0faf5]">
+            <div className="flex items-center justify-between rounded-lg mt-1 bg-[#f0faf5]">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#10b981]">
                   <span className="text-white flex items-center">

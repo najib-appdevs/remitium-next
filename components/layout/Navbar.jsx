@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -73,15 +75,22 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-4 py-2 text-[14px] font-semibold text-gray-600 hover:text-brand-primary hover:bg-brand-primary/5 rounded-full transition-all cursor-pointer"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`px-4 py-2 text-[14px] rounded-full transition-all cursor-pointer ${
+                    isActive
+                      ? "text-brand-primary font-bold bg-brand-primary/5"
+                      : "font-semibold text-gray-600 hover:text-brand-primary hover:bg-brand-primary/5"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop Actions */}
@@ -165,16 +174,23 @@ export default function Navbar() {
       >
         <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-2xl">
           <div className="flex flex-col gap-4 text-center">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xl font-bold text-gray-800 hover:text-brand-primary cursor-pointer"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`text-xl font-bold transition-colors cursor-pointer ${
+                    isActive
+                      ? "text-brand-primary"
+                      : "text-gray-800 hover:text-brand-primary"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <div className="h-px bg-gray-100 my-2" />
             <div className="flex flex-col gap-3">
               <div className="flex justify-center gap-4 text-gray-500 font-medium py-2">

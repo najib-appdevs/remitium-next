@@ -137,7 +137,7 @@ export default function TransactionsLog() {
 
                 {/* 3. Transaction ID */}
                 <td className={TD_CLASSES}>
-                  <span className="font-mono text-xs bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
+                  <span className=" text-xs bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
                     {tx.transactionId}
                   </span>
                 </td>
@@ -272,7 +272,7 @@ export default function TransactionsLog() {
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                           Transaction ID
                         </td>
-                        <td className="py-2 text-xs font-bold text-gray-700 text-right font-mono">
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right ">
                           {selectedTx.transactionId}
                         </td>
                       </tr>
@@ -331,7 +331,7 @@ export default function TransactionsLog() {
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                           Mobile Method Number
                         </td>
-                        <td className="py-2 text-xs font-bold text-gray-700 text-right font-mono">
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right ">
                           {selectedTx.mobileMethodNumber}
                         </td>
                       </tr>

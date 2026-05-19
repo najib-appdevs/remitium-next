@@ -40,7 +40,7 @@ function FeatureCard({ feature, index, isActive, onCardClick }) {
 
       {/* Index number */}
       <div className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/40 backdrop-blur-md border border-gray-200 flex items-center justify-center">
-        <span className="text-brand-navy/70 text-xs font-mono">
+        <span className="text-brand-navy/70 text-xs ">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>

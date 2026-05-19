@@ -1,8 +1,21 @@
 "use client";
 
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
+import {
+  ChevronDown,
+  CreditCard,
+  FileText,
+  Plus,
+  Upload,
+  X,
+  Zap,
+} from "lucide-react";
 import { useState } from "react";
-import { CreditCard, FileText, Plus, Zap, X, Upload, ChevronDown } from "lucide-react";
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 
 const identityTypes = ["Passport", "National ID Card", "Driving License"];
 
@@ -202,7 +215,7 @@ export default function VirtualCardPage() {
 
               {/* Card Number */}
               <div className="mb-6">
-                <span className="text-xl font-mono tracking-widest text-white/90">
+                <span className="text-xl  tracking-widest text-white/90">
                   {createdCardData.number}
                 </span>
               </div>
@@ -221,7 +234,7 @@ export default function VirtualCardPage() {
                     <p className="text-[9px] text-emerald-400/80 uppercase tracking-wider mb-0.5">
                       Expiry
                     </p>
-                    <span className="text-xs font-bold font-mono">
+                    <span className="text-xs font-bold ">
                       {createdCardData.expiry}
                     </span>
                   </div>
@@ -229,9 +242,7 @@ export default function VirtualCardPage() {
                     <p className="text-[9px] text-emerald-400/80 uppercase tracking-wider mb-0.5">
                       CVV
                     </p>
-                    <span className="text-xs font-bold font-mono">
-                      •••
-                    </span>
+                    <span className="text-xs font-bold ">•••</span>
                   </div>
                 </div>
               </div>
@@ -247,21 +258,24 @@ export default function VirtualCardPage() {
                   Balance: {createdCardData.balance}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Secure shopping with instant freezing and auto-funding from your primary wallet.
+                  Secure shopping with instant freezing and auto-funding from
+                  your primary wallet.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => {
-                    setCreatedCardData(prev => ({
+                    setCreatedCardData((prev) => ({
                       ...prev,
-                      status: prev.status === "Active" ? "Frozen" : "Active"
+                      status: prev.status === "Active" ? "Frozen" : "Active",
                     }));
                   }}
                   className="px-6 py-3 border border-gray-200 hover:border-red-200 text-gray-700 hover:text-red-600 rounded-xl text-sm font-bold transition-all active:scale-95 cursor-pointer"
                 >
-                  {createdCardData.status === "Active" ? "Freeze Card" : "Unfreeze Card"}
+                  {createdCardData.status === "Active"
+                    ? "Freeze Card"
+                    : "Unfreeze Card"}
                 </button>
                 <button
                   onClick={() => {
@@ -342,7 +356,7 @@ export default function VirtualCardPage() {
                     <td className={`${TD_CLASSES} font-bold text-slate-800`}>
                       {tx.type}
                     </td>
-                    <td className={`${TD_CLASSES} font-mono text-[11px]`}>
+                    <td className={`${TD_CLASSES}  text-[11px]`}>
                       {tx.transactionId}
                     </td>
                     <td className={TD_CLASSES}>{tx.requestAmount}</td>
@@ -384,13 +398,12 @@ export default function VirtualCardPage() {
             {/* Modal Body */}
             <div className="p-8 overflow-y-auto custom-scrollbar">
               <form className="space-y-6" onSubmit={handleSubmit}>
-                
                 {/* ─── 1) Personal Information ─── */}
                 <div className="space-y-4">
                   <span className="block text-xs font-bold text-brand-primary uppercase tracking-wider pb-2 border-b border-gray-50">
                     1. Personal Information
                   </span>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
@@ -467,7 +480,12 @@ export default function VirtualCardPage() {
                       </label>
                       <Listbox
                         value={formData.identityType}
-                        onChange={(val) => setFormData((prev) => ({ ...prev, identityType: val }))}
+                        onChange={(val) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            identityType: val,
+                          }))
+                        }
                       >
                         <div className="relative">
                           <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-left cursor-pointer text-sm font-bold text-gray-700">
@@ -508,7 +526,7 @@ export default function VirtualCardPage() {
                         onChange={handleInputChange}
                         placeholder="Enter Identity Number"
                         required
-                        className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700 font-mono"
+                        className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700 "
                       />
                     </div>
                   </div>
@@ -603,7 +621,9 @@ export default function VirtualCardPage() {
                       </label>
                       <Listbox
                         value={formData.country}
-                        onChange={(val) => setFormData((prev) => ({ ...prev, country: val }))}
+                        onChange={(val) =>
+                          setFormData((prev) => ({ ...prev, country: val }))
+                        }
                       >
                         <div className="relative">
                           <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-left cursor-pointer text-sm font-bold text-gray-700">

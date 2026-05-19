@@ -16,9 +16,9 @@ const wallets = [
 
 function WalletCard({ country, code, value, currency }) {
   return (
-    <div className="group relative flex flex-col gap-3 overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.85)] bg-[rgba(255,255,255,0.62)] px-3.5 pb-3.5 pt-4 shadow-[0_2px_16px_rgba(16,185,129,0.07),0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-[12px] transition-[transform,box-shadow] duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(16,185,129,0.13),0_2px_8px_rgba(0,0,0,0.07)]">
+    <div className="group relative flex flex-col gap-3 overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.85)] bg-[rgba(255,255,255,0.62)] px-3.5 pb-3.5 pt-4 shadow-[0_2px_16px_rgba(16,185,129,0.07),0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-[12px] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(16,185,129,0.15),0_4px_12px_rgba(0,0,0,0.08)]">
       {/* Top indicator bar matching ::before pseudo-element */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-[18px_18px_0_0] bg-gradient-to-r from-[#10b981] to-[#34d399] opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-[18px_18px_0_0] bg-gradient-to-r from-[#10b981] to-[#34d399] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
 
       <div className="flex items-center justify-between">
         <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-[#10b98133] bg-[#f0fdf4]">

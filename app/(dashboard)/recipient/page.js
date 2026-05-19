@@ -1,8 +1,13 @@
 "use client";
 
-import { ClipboardClock, Edit2, Trash2, X, ChevronDown } from "lucide-react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
+import { ChevronDown, ClipboardClock, Edit2, Trash2, X } from "lucide-react";
 import { useState } from "react";
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 
 const transactionTypes = [
   "Remitium To Remitium",
@@ -11,11 +16,7 @@ const transactionTypes = [
   "Cash Pickup",
 ];
 
-const countriesList = [
-  "Bangladesh",
-  "United States",
-  "United Kingdom",
-];
+const countriesList = ["Bangladesh", "United States", "United Kingdom"];
 
 const TH_CLASSES =
   "px-6 py-4 text-xs font-bold text-gray-400 uppercase whitespace-nowrap text-left border-b border-gray-100";
@@ -178,8 +179,10 @@ export default function RecipientPage() {
       zip: formData.zip,
       address: formData.address,
       bankName: formData.type === "Bank Transfer" ? formData.bankName : "",
-      accountNumber: formData.type === "Bank Transfer" ? formData.accountNumber : "",
-      routingNumber: formData.type === "Bank Transfer" ? formData.routingNumber : "",
+      accountNumber:
+        formData.type === "Bank Transfer" ? formData.accountNumber : "",
+      routingNumber:
+        formData.type === "Bank Transfer" ? formData.routingNumber : "",
     };
 
     setRecipientsList((prev) => [newRecipient, ...prev]);
@@ -240,8 +243,11 @@ export default function RecipientPage() {
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    const updatedName = `${editFormData.firstName} ${editFormData.middleName ? editFormData.middleName + ' ' : ''}${editFormData.lastName}`.trim().replace(/\s+/g, ' ');
-    
+    const updatedName =
+      `${editFormData.firstName} ${editFormData.middleName ? editFormData.middleName + " " : ""}${editFormData.lastName}`
+        .trim()
+        .replace(/\s+/g, " ");
+
     setRecipientsList((prev) =>
       prev.map((item, idx) =>
         idx === selectedRecipient.index
@@ -256,12 +262,21 @@ export default function RecipientPage() {
               zip: editFormData.zip,
               phone: editFormData.phone,
               address: editFormData.address,
-              bankName: editFormData.type === "Bank Transfer" ? editFormData.bankName : "",
-              accountNumber: editFormData.type === "Bank Transfer" ? editFormData.accountNumber : "",
-              routingNumber: editFormData.type === "Bank Transfer" ? editFormData.routingNumber : "",
+              bankName:
+                editFormData.type === "Bank Transfer"
+                  ? editFormData.bankName
+                  : "",
+              accountNumber:
+                editFormData.type === "Bank Transfer"
+                  ? editFormData.accountNumber
+                  : "",
+              routingNumber:
+                editFormData.type === "Bank Transfer"
+                  ? editFormData.routingNumber
+                  : "",
             }
-          : item
-      )
+          : item,
+      ),
     );
     setIsEditModalOpen(false);
     setSelectedRecipient(null);
@@ -274,7 +289,7 @@ export default function RecipientPage() {
 
   const handleDeleteSubmit = () => {
     setRecipientsList((prev) =>
-      prev.filter((_, idx) => idx !== selectedRecipient.index)
+      prev.filter((_, idx) => idx !== selectedRecipient.index),
     );
     setIsDeleteModalOpen(false);
     setSelectedRecipient(null);
@@ -339,24 +354,23 @@ export default function RecipientPage() {
                     </div>
                   </td>
                   <td className={TD_CLASSES}>
-                    {item.email ? item.email : <span className="text-gray-400 font-medium">N/A</span>}
+                    {item.email ? (
+                      item.email
+                    ) : (
+                      <span className="text-gray-400 font-medium">N/A</span>
+                    )}
                   </td>
-                  <td className={TD_CLASSES}>
-                    {item.country}
-                  </td>
-                  <td className={`${TD_CLASSES} font-mono font-medium text-gray-600`}>
+                  <td className={TD_CLASSES}>{item.country}</td>
+                  <td className={`${TD_CLASSES}  font-medium text-gray-600`}>
                     {item.phone}
                   </td>
-                  <td className={TD_CLASSES}>
-                    {item.city}
-                  </td>
-                  <td className={TD_CLASSES}>
-                    {item.state}
-                  </td>
-                  <td className={TD_CLASSES}>
-                    {item.zip}
-                  </td>
-                  <td className={`${TD_CLASSES} italic truncate max-w-[200px] text-gray-500 font-normal`} title={item.address}>
+                  <td className={TD_CLASSES}>{item.city}</td>
+                  <td className={TD_CLASSES}>{item.state}</td>
+                  <td className={TD_CLASSES}>{item.zip}</td>
+                  <td
+                    className={`${TD_CLASSES} italic truncate max-w-[200px] text-gray-500 font-normal`}
+                    title={item.address}
+                  >
                     {item.address}
                   </td>
                   <td className={`${TD_CLASSES} text-right`}>
@@ -385,7 +399,8 @@ export default function RecipientPage() {
                     colSpan="9"
                     className="px-6 py-8 text-center text-gray-400 font-medium text-sm"
                   >
-                    No recipients found. Click &quot;+ Add Recipient&quot; to add one.
+                    No recipients found. Click &quot;+ Add Recipient&quot; to
+                    add one.
                   </td>
                 </tr>
               )}
@@ -399,9 +414,7 @@ export default function RecipientPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
           <div className="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0">
-              <h2 className="text-xl  text-gray-800">
-                Create Recipient
-              </h2>
+              <h2 className="text-xl  text-gray-800">Create Recipient</h2>
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
@@ -419,7 +432,9 @@ export default function RecipientPage() {
                   </label>
                   <Listbox
                     value={formData.type}
-                    onChange={(val) => setFormData((prev) => ({ ...prev, type: val }))}
+                    onChange={(val) =>
+                      setFormData((prev) => ({ ...prev, type: val }))
+                    }
                   >
                     <div className="relative">
                       <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer text-sm  text-gray-700">
@@ -456,7 +471,9 @@ export default function RecipientPage() {
                   </label>
                   <Listbox
                     value={formData.country}
-                    onChange={(val) => setFormData((prev) => ({ ...prev, country: val }))}
+                    onChange={(val) =>
+                      setFormData((prev) => ({ ...prev, country: val }))
+                    }
                   >
                     <div className="relative">
                       <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer text-sm  text-gray-700">
@@ -518,7 +535,7 @@ export default function RecipientPage() {
                           onChange={handleInputChange}
                           placeholder="Enter Number"
                           required
-                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                         />
                       </div>
                       <div>
@@ -532,7 +549,7 @@ export default function RecipientPage() {
                           onChange={handleInputChange}
                           placeholder="Enter Routing"
                           required
-                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                         />
                       </div>
                     </div>
@@ -656,7 +673,7 @@ export default function RecipientPage() {
                       onChange={handleInputChange}
                       placeholder="Enter Number"
                       required
-                      className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                      className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                     />
                   </div>
                   <div className="md:col-span-3">
@@ -692,9 +709,7 @@ export default function RecipientPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
           <div className="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0">
-              <h2 className="text-xl  text-gray-800">
-                Recipient Edit
-              </h2>
+              <h2 className="text-xl  text-gray-800">Recipient Edit</h2>
               <button
                 onClick={() => {
                   setIsEditModalOpen(false);
@@ -715,7 +730,9 @@ export default function RecipientPage() {
                   </label>
                   <Listbox
                     value={editFormData.type}
-                    onChange={(val) => setEditFormData((prev) => ({ ...prev, type: val }))}
+                    onChange={(val) =>
+                      setEditFormData((prev) => ({ ...prev, type: val }))
+                    }
                   >
                     <div className="relative">
                       <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer text-sm  text-gray-700">
@@ -752,7 +769,9 @@ export default function RecipientPage() {
                   </label>
                   <Listbox
                     value={editFormData.country}
-                    onChange={(val) => setEditFormData((prev) => ({ ...prev, country: val }))}
+                    onChange={(val) =>
+                      setEditFormData((prev) => ({ ...prev, country: val }))
+                    }
                   >
                     <div className="relative">
                       <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer text-sm  text-gray-700">
@@ -814,7 +833,7 @@ export default function RecipientPage() {
                           onChange={handleEditInputChange}
                           placeholder="Enter Number"
                           required
-                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                         />
                       </div>
                       <div>
@@ -828,7 +847,7 @@ export default function RecipientPage() {
                           onChange={handleEditInputChange}
                           placeholder="Enter Routing"
                           required
-                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                          className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                         />
                       </div>
                     </div>
@@ -858,7 +877,10 @@ export default function RecipientPage() {
                     </div>
                     <div>
                       <label className="text-xs  text-gray-700 block mb-1">
-                        Middle Name <span className="text-emerald-400 font-normal">(Optional)</span>
+                        Middle Name{" "}
+                        <span className="text-emerald-400 font-normal">
+                          (Optional)
+                        </span>
                       </label>
                       <input
                         type="text"
@@ -955,7 +977,7 @@ export default function RecipientPage() {
                       value={editFormData.phone}
                       onChange={handleEditInputChange}
                       required
-                      className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 font-mono"
+                      className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-emerald-500  text-gray-700 "
                     />
                   </div>
                   <div>
