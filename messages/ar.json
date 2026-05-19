@@ -1,0 +1,13 @@
+{
+  "Navbar": {
+    "home": "الرئيسية",
+    "services": "الخدمات",
+    "feesCalculator": "حاسبة الرسوم",
+    "downloadApp": "تحميل التطبيق",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "spanish": "الإسبانية"
+  }
+}

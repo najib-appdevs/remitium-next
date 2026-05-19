@@ -1,0 +1,13 @@
+{
+  "Navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "feesCalculator": "Calculadora de Tarifas",
+    "downloadApp": "Descargar App",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "english": "Inglés",
+    "arabic": "Árabe",
+    "spanish": "Español"
+  }
+}

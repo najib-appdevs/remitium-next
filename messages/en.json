@@ -1,0 +1,13 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "services": "Services",
+    "feesCalculator": "Fees Calculator",
+    "downloadApp": "Download App",
+    "contact": "Contact",
+    "login": "Login",
+    "english": "English",
+    "arabic": "Arabic",
+    "spanish": "Spanish"
+  }
+}

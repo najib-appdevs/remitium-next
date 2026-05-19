@@ -1,24 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("Navbar");
+  const locale = useLocale();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("English");
 
   const langRef = useRef(null);
 
   const languages = [
-    { code: "English", name: "English" },
-    { code: "Arabic", name: "Arabic" },
-    { code: "Spanish", name: "Spanish" },
+    { code: "en", name: t("english") },
+    { code: "ar", name: t("arabic") },
+    { code: "es", name: t("spanish") },
   ];
+  
+  const currentLangName = languages.find(l => l.code === locale)?.name || t("english");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -39,11 +43,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Fees Calculator", href: "/fees-calculator" },
-    { name: "Download App", href: "/download-app" },
-    { name: "Contact", href: "/contact" },
+    { name: t("home"), href: "/" },
+    { name: t("services"), href: "/services" },
+    { name: t("feesCalculator"), href: "/fees-calculator" },
+    { name: t("downloadApp"), href: "/download-app" },
+    { name: t("contact"), href: "/contact" },
   ];
 
   return (
@@ -101,7 +105,7 @@ export default function Navbar() {
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-2 px-4 py-2 text-[14px] font-semibold text-gray-600 hover:bg-gray-100 rounded-full transition-all cursor-pointer"
               >
-                <span>{currentLang}</span>
+                <span>{currentLangName}</span>
                 <svg
                   className={`w-4 h-4 transition-transform ${isLangOpen ? "rotate-180" : ""}`}
                   fill="none"
@@ -123,8 +127,8 @@ export default function Navbar() {
                     <button
                       key={lang.code}
                       onClick={() => {
-                        setCurrentLang(lang.code);
                         setIsLangOpen(false);
+                        router.replace(pathname, { locale: lang.code });
                       }}
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-primary/10 hover:text-brand-primary transition-colors cursor-pointer"
                     >
@@ -140,7 +144,7 @@ export default function Navbar() {
               href="/login"
               className="bg-brand-primary text-white px-8 py-2.5 rounded-full text-[14px] font-bold shadow-md shadow-brand-primary/10 hover:bg-brand-primary-hover transition-all cursor-pointer"
             >
-              Login
+              {t("login")}
             </Link>
           </div>
 
@@ -194,30 +198,24 @@ export default function Navbar() {
             <div className="h-px bg-gray-100 my-2" />
             <div className="flex flex-col gap-3">
               <div className="flex justify-center gap-4 text-gray-500 font-medium py-2">
-                <button
-                  onClick={() => setCurrentLang("English")}
-                  className={`${currentLang === "English" ? "text-brand-primary" : ""} cursor-pointer`}
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => setCurrentLang("Arabic")}
-                  className={`${currentLang === "Arabic" ? "text-brand-primary" : ""} cursor-pointer`}
-                >
-                  Arabic
-                </button>
-                <button
-                  onClick={() => setCurrentLang("Spanish")}
-                  className={`${currentLang === "Spanish" ? "text-brand-primary" : ""} cursor-pointer`}
-                >
-                  Spanish
-                </button>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      router.replace(pathname, { locale: lang.code });
+                    }}
+                    className={`${locale === lang.code ? "text-brand-primary" : ""} cursor-pointer`}
+                  >
+                    {lang.name}
+                  </button>
+                ))}
               </div>
               <Link
                 href="/login"
                 className="bg-brand-primary text-white py-4 rounded-full text-lg font-bold cursor-pointer"
               >
-                Login
+                {t("login")}
               </Link>
             </div>
           </div>
