@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations("LoginPage");
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 pt-32 pb-24">
       {/* Main Card */}
@@ -24,10 +27,10 @@ export default function LoginPage() {
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl md:text-[28px] font-bold text-slate-900 mb-2">
-            Login to Your Account
+            {t("heading")}
           </h2>
           <p className="text-slate-500 text-sm md:text-base font-medium">
-            Welcome Back! Access Your Remitium Account to Manage Transfers
+            {t("subheading")}
           </p>
         </div>
 
@@ -39,7 +42,7 @@ export default function LoginPage() {
               name="email"
               type="email"
               required
-              placeholder="Enter Email..."
+              placeholder={t("emailPlaceholder")}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
           </div>
@@ -50,7 +53,7 @@ export default function LoginPage() {
               name="password"
               type="password"
               required
-              placeholder="Enter Password..."
+              placeholder={t("passwordPlaceholder")}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
             <button 
@@ -67,7 +70,7 @@ export default function LoginPage() {
               href="/forgot-password"
               className="text-sm font-bold text-emerald-500 hover:text-emerald-600 hover:underline"
             >
-              Forgot Password?
+              {t("forgotPassword")}
             </Link>
           </div>
 
@@ -76,26 +79,26 @@ export default function LoginPage() {
             type="submit"
             className="w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-4 text-lg"
           >
-            Login Now
+            {t("loginButton")}
           </button>
         </form>
 
         {/* Footer Links */}
         <div className="mt-8 text-center space-y-4">
           <p className="text-sm text-slate-600 font-medium">
-            Don&apos;t Have An Account?{" "}
+            {t("noAccount")}{" "}
             <Link
               href="/register"
               className="text-emerald-500 font-bold hover:text-emerald-600 hover:underline"
             >
-              Register Now
+              {t("registerNow")}
             </Link>
           </p>
           
           <p className="text-xs text-slate-500 leading-relaxed font-medium">
-            By clicking Login you are agreeing with our{" "}
+            {t("termsAgreement")}{" "}
             <Link href="/terms" className="text-emerald-500 font-bold hover:text-emerald-600 hover:underline">
-              Terms of Service
+              {t("termsLink")}
             </Link>
           </p>
         </div>

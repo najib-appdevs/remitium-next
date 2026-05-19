@@ -155,6 +155,18 @@
     "stat4Value": "100+",
     "stat4Label": "دولة مغطاة"
   },
+  "LoginPage": {
+    "heading": "تسجيل الدخول إلى حسابك",
+    "subheading": "مرحبًا بعودتك! قم بالوصول إلى حساب ريمتيوم الخاص بك لإدارة التحويلات",
+    "emailPlaceholder": "أدخل البريد الإلكتروني...",
+    "passwordPlaceholder": "أدخل كلمة المرور...",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "loginButton": "سجل الدخول الآن",
+    "noAccount": "ليس لديك حساب؟",
+    "registerNow": "سجل الآن",
+    "termsAgreement": "بالنقر فوق تسجيل الدخول ، فإنك توافق على",
+    "termsLink": "شروط الخدمة"
+  },
   "Footer": {
     "headingPart1": "صياغة مستقبل",
     "headingHighlight": "السيولة العالمية.",

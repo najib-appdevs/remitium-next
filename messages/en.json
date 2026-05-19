@@ -155,6 +155,18 @@
     "stat4Value": "100+",
     "stat4Label": "Countries covered"
   },
+  "LoginPage": {
+    "heading": "Login to Your Account",
+    "subheading": "Welcome Back! Access Your Remitium Account to Manage Transfers",
+    "emailPlaceholder": "Enter Email...",
+    "passwordPlaceholder": "Enter Password...",
+    "forgotPassword": "Forgot Password?",
+    "loginButton": "Login Now",
+    "noAccount": "Don't Have An Account?",
+    "registerNow": "Register Now",
+    "termsAgreement": "By clicking Login you are agreeing with our",
+    "termsLink": "Terms of Service"
+  },
   "Footer": {
     "headingPart1": "Crafting the future of",
     "headingHighlight": "Global Liquidity.",

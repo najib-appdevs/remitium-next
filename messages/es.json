@@ -155,6 +155,18 @@
     "stat4Value": "100+",
     "stat4Label": "Países cubiertos"
   },
+  "LoginPage": {
+    "heading": "Inicia sesión en tu cuenta",
+    "subheading": "¡Bienvenido de nuevo! Accede a tu cuenta de Remitium para gestionar transferencias",
+    "emailPlaceholder": "Ingresa tu correo...",
+    "passwordPlaceholder": "Ingresa tu contraseña...",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar sesión ahora",
+    "noAccount": "¿No tienes una cuenta?",
+    "registerNow": "Regístrate ahora",
+    "termsAgreement": "Al hacer clic en Iniciar sesión, aceptas nuestros",
+    "termsLink": "Términos de servicio"
+  },
   "Footer": {
     "headingPart1": "Creando el futuro de la",
     "headingHighlight": "Liquidez Global.",
