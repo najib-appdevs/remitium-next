@@ -1,68 +1,63 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const TESTIMONIALS = [
+const getTestimonials = (t) => [
   {
-    quote:
-      "Remitium makes it so easy to send money to my family. Transparent rates, instant transfers — it's the only app I use.",
-    name: "Sarah Johnson",
-    role: "Regular User",
+    quote: t("testimonial1Quote"),
+    name: t("testimonial1Name"),
+    role: t("testimonial1Role"),
     corridor: "🇺🇸 → 🇳🇬",
     initials: "SJ",
     avatarBg: "bg-[#00c881]",
-    tag: { label: "Verified review", style: "green" },
+    tag: { label: t("testimonial1Tag"), style: "green" },
     variant: "white",
   },
   {
-    quote:
-      "I've tried every remittance app out there. Remitium is the only one that's fast, truly transparent, and reliable every single time.",
-    name: "David Mutua",
-    role: "Business User",
+    quote: t("testimonial2Quote"),
+    name: t("testimonial2Name"),
+    role: t("testimonial2Role"),
     corridor: "🇺🇸 → 🇰🇪",
     initials: "DM",
     avatarBg: "bg-[#534ab7]",
-    tag: { label: "Top review", style: "white" },
+    tag: { label: t("testimonial2Tag"), style: "white" },
     variant: "dark",
   },
   {
-    quote:
-      "Sent money to my sister in Accra in under 2 minutes. Incredible speed and the app interface is so clean to use.",
-    name: "Ama Kofi",
-    role: "Verified User",
+    quote: t("testimonial3Quote"),
+    name: t("testimonial3Name"),
+    role: t("testimonial3Role"),
     corridor: "🇬🇧 → 🇬🇭",
     initials: "AK",
     avatarBg: "bg-[#185fa5]",
     variant: "white",
   },
   {
-    quote:
-      "The exchange rates are unbeatable. I save so much compared to my bank every single month.",
-    name: "Rafael Mendez",
-    role: "Frequent Sender",
+    quote: t("testimonial4Quote"),
+    name: t("testimonial4Name"),
+    role: t("testimonial4Role"),
     corridor: "🇪🇸 → 🇲🇽",
     initials: "RM",
     avatarBg: "bg-white/25",
-    tag: { label: "Staff pick", style: "white" },
+    tag: { label: t("testimonial4Tag"), style: "white" },
     variant: "accent",
   },
   {
-    quote:
-      "Zero hidden fees and instant notifications at every step. Customer support responds in under 5 minutes — genuinely world-class.",
-    name: "Lena Nguyen",
-    role: "Regular User",
+    quote: t("testimonial5Quote"),
+    name: t("testimonial5Name"),
+    role: t("testimonial5Role"),
     corridor: "🇨🇦 → 🇻🇳",
     initials: "LN",
     avatarBg: "bg-[#854f0b]",
     variant: "white",
   },
   {
-    quote:
-      "Setup was simple, my first transfer went through in minutes. The live rate display is a nice touch — I always know exactly what I'm paying.",
-    name: "Fatima Omar",
-    role: "New User",
+    quote: t("testimonial6Quote"),
+    name: t("testimonial6Name"),
+    role: t("testimonial6Role"),
     corridor: "🇸🇦 → 🇵🇰",
     initials: "FO",
     avatarBg: "bg-[#993556]",
@@ -70,10 +65,10 @@ const TESTIMONIALS = [
   },
 ];
 
-const SUMMARY_STATS = [
+const getSummaryStats = (t) => [
   {
-    value: "4.9 / 5",
-    label: "Average rating",
+    value: t("stat1Value"),
+    label: t("stat1Label"),
     iconBg: "bg-[#e6f9f2]",
     iconColor: "text-[#0a7a52]",
     icon: (
@@ -90,8 +85,8 @@ const SUMMARY_STATS = [
     ),
   },
   {
-    value: "1.2M+",
-    label: "Happy customers",
+    value: t("stat2Value"),
+    label: t("stat2Label"),
     iconBg: "bg-[#e6f1fb]",
     iconColor: "text-[#185fa5]",
     icon: (
@@ -110,8 +105,8 @@ const SUMMARY_STATS = [
     ),
   },
   {
-    value: "50K+",
-    label: "5-star reviews",
+    value: t("stat3Value"),
+    label: t("stat3Label"),
     iconBg: "bg-[#faeeda]",
     iconColor: "text-[#854f0b]",
     icon: (
@@ -128,8 +123,8 @@ const SUMMARY_STATS = [
     ),
   },
   {
-    value: "100+",
-    label: "Countries covered",
+    value: t("stat4Value"),
+    label: t("stat4Label"),
     iconBg: "bg-[#eeedfe]",
     iconColor: "text-[#534ab7]",
     icon: (
@@ -284,9 +279,13 @@ function TestimonialCard({
 const CARD_WIDTH = 314; // card width + gap
 
 export default function TestimonialSection() {
+  const t = useTranslations("TestimonialSection");
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
-  const total = TESTIMONIALS.length;
+
+  const testimonialsData = getTestimonials(t);
+  const summaryStatsData = getSummaryStats(t);
+  const total = testimonialsData.length;
 
   const goTo = useCallback(
     (i) => {
@@ -317,21 +316,20 @@ export default function TestimonialSection() {
           <div>
             <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
               <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
-              What Our Clients Say
+              {t("badge")}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0b1727] leading-tight tracking-tight">
-              See why people around the world <br className="hidden md:block" />
-              <span className="text-[#00c881]">trust Remitium</span> for their{" "}
-              <br className="hidden md:block" />
-              money transfer needs.
+              {t("headingPart1")} <br className="hidden md:block" />
+              <span className="text-[#00c881]">{t("headingHighlight")}</span>{" "}
+              {t("headingPart2")}
             </h2>
           </div>
 
           {/* Prev / Next buttons */}
           <div className="flex gap-2 pb-1 flex-shrink-0">
             {[
-              { dir: -1, label: "Previous", path: "M19 12H5M12 5l-7 7 7 7" },
-              { dir: 1, label: "Next", path: "M5 12h14M12 5l7 7-7 7" },
+              { dir: -1, label: t("previousBtn"), path: "M19 12H5M12 5l-7 7 7 7" },
+              { dir: 1, label: t("nextBtn"), path: "M5 12h14M12 5l7 7-7 7" },
             ].map(({ dir, label, path }) => (
               <button
                 key={label}
@@ -370,18 +368,18 @@ export default function TestimonialSection() {
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          {TESTIMONIALS.map((t) => (
+          {testimonialsData.map((t) => (
             <TestimonialCard key={t.name} {...t} />
           ))}
         </div>
 
         {/* Dot indicators */}
         <div className="flex items-center justify-center gap-1.5 mt-5" data-aos="fade-in" data-aos-delay="600">
-          {TESTIMONIALS.map((_, i) => (
+          {testimonialsData.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Go to testimonial ${i + 1}`}
+              aria-label={t("goToBtn", { index: i + 1 })}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === current
                   ? "w-5 bg-[#00c881]"
@@ -393,11 +391,11 @@ export default function TestimonialSection() {
 
         {/* Bottom summary strip */}
         <div className="mt-5 bg-white border border-[#e2ede9] rounded-[14px] overflow-hidden flex flex-wrap" data-aos="zoom-in" data-aos-delay="700">
-          {SUMMARY_STATS.map((s, i) => (
+          {summaryStatsData.map((s, i) => (
             <div
               key={s.label}
               className={`flex items-center gap-2.5 px-5 py-3.5 flex-1 min-w-[140px]
-                ${i < SUMMARY_STATS.length - 1 ? "border-r border-[#e2ede9]" : ""}`}
+                ${i < summaryStatsData.length - 1 ? "border-r border-[#e2ede9]" : ""}`}
             >
               <div
                 className={`w-8 h-8 rounded-[9px] ${s.iconBg} ${s.iconColor} flex items-center justify-center flex-shrink-0`}

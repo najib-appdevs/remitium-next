@@ -3,12 +3,14 @@
 import { useState } from "react";
 import Sidebar from "@/components/dashboard/Sidebar";
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
+import SmoothScroll from "@/components/utils/SmoothScroll";
 
 export default function DashboardLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-[#fbfcfd]">
+      <SmoothScroll />
       {/* Sidebar */}
       <Sidebar 
         isOpen={isSidebarOpen} 

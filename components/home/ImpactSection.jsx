@@ -1,107 +1,7 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const STATS = [
-  { value: "5M", suffix: "+", label: "Global transactions\ncompleted" },
-  { value: "1.2M", suffix: "+", label: "Happy customers\nworldwide" },
-  { value: "100", suffix: "+", label: "Active countries\ncovered" },
-];
-
-const LIVE_TRANSFERS = [
-  {
-    fromFlag: "https://flagcdn.com/us.svg",
-    fromAlt: "US",
-    toFlag: "https://flagcdn.com/ng.svg",
-    toAlt: "Nigeria",
-    name: "James O.",
-    method: "Bank Transfer",
-    amount: "+₦76,483",
-    time: "2s ago",
-  },
-  {
-    fromFlag: "https://flagcdn.com/gb.svg",
-    fromAlt: "UK",
-    toFlag: "https://flagcdn.com/gh.svg",
-    toAlt: "Ghana",
-    name: "Ama K.",
-    method: "Mobile Wallet",
-    amount: "+₵ 840",
-    time: "14s ago",
-  },
-  {
-    fromFlag: "https://flagcdn.com/us.svg",
-    fromAlt: "US",
-    toFlag: "https://flagcdn.com/ke.svg",
-    toAlt: "Kenya",
-    name: "David M.",
-    method: "Remitium",
-    amount: "+KSh 2,100",
-    time: "41s ago",
-  },
-];
-
-const TRUST_BADGES = [
-  {
-    title: "FCA Regulated",
-    sub: "Financial Conduct Authority certified",
-    iconBg: "bg-[#e6f9f2]",
-    iconColor: "text-[#0a7a52]",
-    icon: (
-      <svg
-        width="16"
-        height="16"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    title: "PCI-DSS Compliant",
-    sub: "Level 1 payment security standard",
-    iconBg: "bg-[#e6f1fb]",
-    iconColor: "text-[#185fa5]",
-    icon: (
-      <svg
-        width="16"
-        height="16"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <rect x="3" y="11" width="18" height="11" rx="2" />
-        <path d="M7 11V7a5 5 0 0110 0v4" />
-      </svg>
-    ),
-  },
-  {
-    title: "24 / 7 Support",
-    sub: "Always here when you need us",
-    iconBg: "bg-[#faeeda]",
-    iconColor: "text-[#854f0b]",
-    icon: (
-      <svg
-        width="16"
-        height="16"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 8v4l3 3" />
-      </svg>
-    ),
-  },
-];
-
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// Sub-components
 
 function ArrowIcon() {
   return (
@@ -131,7 +31,6 @@ function ChevronIcon() {
       className="text-[#a0bab4] ml-auto flex-shrink-0"
       aria-hidden="true"
     >
-      {/* <path d="M9 18l6-6-6-6" /> */}
     </svg>
   );
 }
@@ -210,6 +109,7 @@ function TrustBadge({ title, sub, icon, iconBg, iconColor }) {
 
 /** Dark card with concentric ring decorations */
 function GlobeCard() {
+  const t = useTranslations("ImpactSection");
   return (
     <div
       className="rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between mb-4"
@@ -249,30 +149,141 @@ function GlobeCard() {
 
       <div className="relative z-10">
         <h3 className="font-extrabold text-white text-[16px] leading-snug mb-1">
-          Sending to
+          {t("globeTitle1")}
           <br />
-          100+ countries
+          {t("globeTitle2")}
         </h3>
         <p className="text-[11px] text-slate-300 font-normal">
-          Every major currency. Every major corridor.
+          {t("globeSubtitle")}
         </p>
       </div>
 
       <div className="relative z-10 mt-auto pt-5 border-t border-white/[0.08]">
         <span className="font-extrabold text-[#00c881] text-[26px] leading-none">
-          $2.4B+
+          {t("globeVolume")}
         </span>
         <p className="text-[10px] text-slate-400 mt-0.5">
-          Total volume processed
+          {t("globeVolumeLabel")}
         </p>
       </div>
     </div>
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// Main Component
 
 export default function ImpactSection() {
+  const t = useTranslations("ImpactSection");
+
+  const STATS = [
+    { value: t("stat1Value"), suffix: "+", label: t("stat1Label") },
+    { value: t("stat2Value"), suffix: "+", label: t("stat2Label") },
+    { value: t("stat3Value"), suffix: "+", label: t("stat3Label") },
+  ];
+
+  const LIVE_TRANSFERS = [
+    {
+      fromFlag: "https://flagcdn.com/us.svg",
+      fromAlt: "US",
+      toFlag: "https://flagcdn.com/ng.svg",
+      toAlt: "Nigeria",
+      name: "James O.",
+      method: t("methodBank"),
+      amount: "+₦76,483",
+      time: t("time2s"),
+    },
+    {
+      fromFlag: "https://flagcdn.com/gb.svg",
+      fromAlt: "UK",
+      toFlag: "https://flagcdn.com/gh.svg",
+      toAlt: "Ghana",
+      name: "Ama K.",
+      method: t("methodWallet"),
+      amount: "+₵ 840",
+      time: t("time14s"),
+    },
+    {
+      fromFlag: "https://flagcdn.com/us.svg",
+      fromAlt: "US",
+      toFlag: "https://flagcdn.com/ke.svg",
+      toAlt: "Kenya",
+      name: "David M.",
+      method: t("methodRemitium"),
+      amount: "+KSh 2,100",
+      time: t("time41s"),
+    },
+    {
+      fromFlag: "https://flagcdn.com/ca.svg",
+      fromAlt: "Canada",
+      toFlag: "https://flagcdn.com/in.svg",
+      toAlt: "India",
+      name: "Rajesh P.",
+      method: t("methodBank"),
+      amount: "+₹45,200",
+      time: t("time1m"),
+    },
+  ];
+
+  const TRUST_BADGES = [
+    {
+      title: t("trust1Title"),
+      sub: t("trust1Sub"),
+      iconBg: "bg-[#e6f9f2]",
+      iconColor: "text-[#0a7a52]",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      ),
+    },
+    {
+      title: t("trust2Title"),
+      sub: t("trust2Sub"),
+      iconBg: "bg-[#e6f1fb]",
+      iconColor: "text-[#185fa5]",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+      ),
+    },
+    {
+      title: t("trust3Title"),
+      sub: t("trust3Sub"),
+      iconBg: "bg-[#faeeda]",
+      iconColor: "text-[#854f0b]",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v4l3 3" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <section className="py-20 px-6 bg-[#f7faf8] overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -280,16 +291,15 @@ export default function ImpactSection() {
         <div className="mb-8" data-aos="fade-up" data-aos-duration="800">
           <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-[#00c881] animate-pulse" />
-            Trusted by Thousands
+            {t("badge")}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-[#0b1727] leading-tight tracking-tight">
-            Our Growing Impact
+            {t("headingPart1")}
             <br />
-            Across the Globe
+            {t("headingPart2")}
           </h2>
           <p className="text-gray-600 leading-relaxed max-w-sm mt-3">
-            Join a community that relies on Remitium for fast, secure, and
-            reliable money transfers.
+            {t("description")}
           </p>
         </div>
 
@@ -344,9 +354,9 @@ export default function ImpactSection() {
             <div className="h-px bg-[#e2ede9] relative z-10" />
 
             {/* Live feed */}
-            <div className="flex flex-col gap-2 relative z-10">
+            <div className="flex flex-col gap-4 relative z-10">
               <p className="text-[10px] font-medium text-slate-400 tracking-[0.08em] uppercase mb-1">
-                Live transfers
+                {t("liveTransfersLabel")}
               </p>
               {LIVE_TRANSFERS.map((t, i) => (
                 <div key={t.name} data-aos="fade-up" data-aos-delay={300 + (i * 100)}>

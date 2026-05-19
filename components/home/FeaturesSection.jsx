@@ -1,27 +1,7 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
-
-const STEPS = [
-  {
-    number: 1,
-    title: "Sign Up or Log In",
-    description:
-      "Create an account in minutes or log in to start your journey with Remitium.",
-  },
-  {
-    number: 2,
-    title: "Add Details and Choose a Service",
-    description:
-      "Enter recipient details, select your preferred service like bank transfer, cash pickup, or mobile wallet, and confirm.",
-  },
-  {
-    number: 3,
-    title: "Send Money Securely",
-    description:
-      "Complete your transaction with confidence using one of our secure payment methods.",
-  },
-];
 
 const RECENT_TRANSFERS = [
   {
@@ -111,6 +91,8 @@ function TransferRow({ fromFlag, fromAlt, toFlag, toAlt, recipient, amount }) {
 }
 
 function DashboardIllustration() {
+  const t = useTranslations("Features");
+
   return (
     <div className="bg-[#e6f9f2] rounded-[20px] p-6 border border-[#a3ecd0] flex flex-col gap-4">
       {/* Phone card */}
@@ -125,18 +107,18 @@ function DashboardIllustration() {
               <p className="text-[11px] font-semibold text-[#0b1727] leading-none">
                 Remitium
               </p>
-              <p className="text-[10px] text-[#7a9990]">Dashboard</p>
+              <p className="text-[10px] text-[#7a9990]">{t("dashboardLabel")}</p>
             </div>
           </div>
           <span className="bg-[#e6f9f2] text-[#0a7a52] text-[10px] font-semibold px-2 py-0.5 rounded-md">
-            Live
+            {t("liveBadge")}
           </span>
         </div>
 
         {/* Total */}
         <div className="border-t border-[#e2ede9] pt-3">
           <p className="text-[10px] text-[#7a9990] mb-1">
-            Total sent this month
+            {t("totalSentLabel")}
           </p>
           <p className="font-bold text-[22px] text-[#0b1727] leading-none">
             $12,480.00
@@ -153,8 +135,8 @@ function DashboardIllustration() {
         {/* Stats grid */}
         <div className="grid grid-cols-2 gap-2">
           {[
-            { label: "Transactions", value: "48" },
-            { label: "Countries", value: "12" },
+            { label: t("transactionsLabel"), value: "48" },
+            { label: t("countriesLabel"), value: "12" },
           ].map((s) => (
             <div key={s.label} className="bg-[#f7faf8] rounded-lg px-3 py-2">
               <p className="text-[10px] text-[#7a9990] font-medium mb-0.5">
@@ -169,7 +151,7 @@ function DashboardIllustration() {
       {/* Recent transfers */}
       <div className="flex flex-col gap-2">
         <p className="text-[10px] text-[#7a9990] font-medium px-0.5">
-          Recent transfers
+          {t("recentTransfersLabel")}
         </p>
         {RECENT_TRANSFERS.map((t) => (
           <TransferRow key={t.recipient} {...t} />
@@ -209,6 +191,26 @@ function Step({ number, title, description, isLast }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function FeaturesSection() {
+  const t = useTranslations("Features");
+
+  const steps = [
+    {
+      number: 1,
+      title: t("step1Title"),
+      description: t("step1Desc"),
+    },
+    {
+      number: 2,
+      title: t("step2Title"),
+      description: t("step2Desc"),
+    },
+    {
+      number: 3,
+      title: t("step3Title"),
+      description: t("step3Desc"),
+    },
+  ];
+
   return (
     <section className="py-20 px-6 bg-[#f7faf8] overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -223,20 +225,20 @@ export default function FeaturesSection() {
           <div data-aos="fade-up" data-aos-duration="800">
             <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
               <span className="w-2 h-2 rounded-full bg-[#00c881]" />
-              How it works
+              {t("howItWorksBadge")}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0b1727] leading-tight tracking-tight">
-              Easy, fast,
+              {t("headingLine1")}
               <br />
-              and secure
+              {t("headingLine2")}
               <br />
-              money transfers
+              {t("headingLine3")}
             </h2>
           </div>
 
           {/* Steps */}
           <div className="flex flex-col">
-            {STEPS.map((step, i) => (
+            {steps.map((step, i) => (
               <div 
                 key={step.number} 
                 data-aos="fade-up" 
@@ -245,7 +247,7 @@ export default function FeaturesSection() {
               >
                 <Step
                   {...step}
-                  isLast={i === STEPS.length - 1}
+                  isLast={i === steps.length - 1}
                 />
               </div>
             ))}

@@ -94,7 +94,7 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto hide-scrollbar">
+        <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto hide-scrollbar" data-lenis-prevent="true">
           {MENU_GROUPS.map((group) => (
             <div key={group.title} className="space-y-2">
               <p className="px-4 text-xs font-bold text-gray-500 uppercase mb-4">
@@ -153,27 +153,33 @@ export default function Sidebar({ isOpen, onClose }) {
               />
             </button>
 
-            {isSettingsOpen && (
-              <div className="mt-1 ml-4 pl-4 border-l border-white/10 space-y-1">
-                {SETTINGS_ITEMS.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`
-                      flex items-center gap-3 px-4 py-2.5 rounded-sm text-[13px] font-medium transition-all duration-200
-                      ${
-                        isActive(item.href)
-                          ? "text-brand-primary"
-                          : "text-gray-300 hover:text-white hover:bg-white/5"
-                      }
-                    `}
-                  >
-                    <item.icon size={16} />
-                    {item.name}
-                  </Link>
-                ))}
+            <div
+              className={`grid transition-all duration-300 ease-in-out ${
+                isSettingsOpen ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="ml-4 pl-4 border-l border-white/10 space-y-1">
+                  {SETTINGS_ITEMS.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`
+                        flex items-center gap-3 px-4 py-2.5 rounded-sm text-[13px] font-medium transition-all duration-200
+                        ${
+                          isActive(item.href)
+                            ? "text-brand-primary"
+                            : "text-gray-300 hover:text-white hover:bg-white/5"
+                        }
+                      `}
+                    >
+                      <item.icon size={16} />
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            )}
+            </div>
 
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer">
               <LogOut size={20} className="text-gray-300" />

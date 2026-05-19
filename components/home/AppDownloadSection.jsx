@@ -1,6 +1,7 @@
 "use client";
 import { AppStoreIcon, GooglePlayIcon } from "@/components/ui/StoreButtonIcon";
 import { CircleDot, Fingerprint, MoveRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 /**
@@ -9,6 +10,7 @@ import Image from "next/image";
  * and ultra-refined frosted glass effects.
  */
 export default function AppDownloadSection() {
+  const t = useTranslations("AppDownloadSection");
   return (
     <section className="relative pt-16 pb-32 px-6 bg-[#fbfcfd] overflow-hidden">
       {/* 1. Large Background Typography (Watermark Effect) */}
@@ -31,31 +33,30 @@ export default function AppDownloadSection() {
         {/* 3. The Main Creative Stack */}
         <div className="flex flex-col items-center -mt-8">
           {/* Tagline */}
-          <div 
+          <div
             className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-12"
             data-aos="fade-down"
             data-aos-duration="600"
           >
             <span className="w-2 h-2 rounded-full bg-[#00c881]" />
-            Download the App
+            {t("badge")}
           </div>
 
           <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20">
             {/* Left Glass Panel: Context */}
-            <div 
+            <div
               className="order-2 lg:order-1 lg:-mr-12 z-30 w-full max-w-sm p-12 bg-white/20 backdrop-blur-3xl border border-white/60 rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.05)] transform lg:-rotate-2 transition-transform hover:rotate-0 duration-700"
               data-aos="fade-right"
               data-aos-delay="200"
             >
               <h3 className="text-3xl font-light text-slate-800 mb-8 leading-tight">
-                Designed for <br />
+                {t("leftPanelHeading")} <br />
                 <span className="font-semibold italic">
-                  Digital Sovereignty
+                  {t("leftPanelHighlight")}
                 </span>
               </h3>
               <p className="text-slate-500 text-sm leading-relaxed mb-10">
-                Send money, manage your wallet, and track transactions on the
-                go. Get the Remitium app today!
+                {t("leftPanelDescription")}
               </p>
 
               <div className="space-y-6">
@@ -64,7 +65,7 @@ export default function AppDownloadSection() {
                     <Fingerprint className="w-6 h-6 text-emerald-500" />
                   </div>
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">
-                    Biometric Vault
+                    {t("biometricVault")}
                   </span>
                 </div>
                 <div className="flex items-center gap-4 group cursor-pointer">
@@ -72,14 +73,14 @@ export default function AppDownloadSection() {
                     <CircleDot className="w-6 h-6 text-blue-400" />
                   </div>
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">
-                    Live FX Sync
+                    {t("liveFxSync")}
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Center: The Hero Image */}
-            <div 
+            <div
               className="order-1 lg:order-2 relative z-20 transition-all duration-1000 hover:scale-[1.05]"
               data-aos="zoom-in"
               data-aos-delay="400"
@@ -99,17 +100,19 @@ export default function AppDownloadSection() {
             </div>
 
             {/* Right Glass Panel: Call to Action */}
-            <div 
+            <div
               className="order-3 lg:-ml-12 z-30 w-full max-w-sm p-12 bg-white/20 backdrop-blur-3xl border border-white/60 rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.05)] transform lg:rotate-2 transition-transform hover:rotate-0 duration-700"
               data-aos="fade-left"
               data-aos-delay="600"
             >
               <p className="text-xs font-black text-emerald-600 uppercase tracking-[0.4em] mb-4">
-                Onboarding
+                {t("onboarding")}
               </p>
               <h3 className="text-3xl font-light text-slate-800 mb-8 leading-tight">
-                Get the <br />
-                <span className="font-semibold italic">Full Version</span>
+                {t("rightPanelHeading")} <br />
+                <span className="font-semibold italic">
+                  {t("rightPanelHighlight")}
+                </span>
               </h3>
 
               <div className="flex flex-col gap-6">
@@ -123,7 +126,7 @@ export default function AppDownloadSection() {
 
               <div className="mt-12 pt-8 border-t border-slate-200/50">
                 <button className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-emerald-500 transition-colors group">
-                  View Features{" "}
+                  {t("viewFeaturesBtn")}{" "}
                   <MoveRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                 </button>
               </div>

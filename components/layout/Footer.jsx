@@ -1,27 +1,28 @@
 "use client";
-import { Mail, MapPin, ArrowUpRight, Sparkles, Send } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Send, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 
-const NAV = {
+const getNav = (t) => ({
   solutions: [
-    { label: "AI Comparison", href: "#" },
-    { label: "Top 7 Automation Tools", href: "#" },
-    { label: "CRM for Law Firms", href: "#" },
+    { label: t("navSolutions1"), href: "#" },
+    { label: t("navSolutions2"), href: "#" },
+    { label: t("navSolutions3"), href: "#" },
   ],
   resources: [
-    { label: "AI Consulting", href: "#" },
-    { label: "200 AI Tools for Marketing", href: "#" },
-    { label: "Open AI Agent Kit Intro", href: "#" },
+    { label: t("navResources1"), href: "#" },
+    { label: t("navResources2"), href: "#" },
+    { label: t("navResources3"), href: "#" },
   ],
   company: [
-    { label: "About us", href: "#" },
-    { label: "Schedule a meeting", href: "#" },
-    { label: "Career", href: "#" },
-    { label: "Medien / Presse", href: "#" },
+    { label: t("navCompany1"), href: "#" },
+    { label: t("navCompany2"), href: "#" },
+    { label: t("navCompany3"), href: "#" },
+    { label: t("navCompany4"), href: "#" },
   ],
-};
+});
 
 function NavGroup({ title, links }) {
   return (
@@ -48,9 +49,11 @@ function NavGroup({ title, links }) {
 }
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+  const NAV = getNav(t);
+
   return (
     <footer className="relative bg-slate-950 overflow-hidden">
-
       {/* ── Texture Layer ── */}
       <div
         className="absolute inset-0 z-0 opacity-[0.03]"
@@ -69,7 +72,6 @@ export default function Footer() {
       ════════════════════════════════ */}
       <div className="relative z-10 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-8 py-20 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
-
           {/* Left: wordmark + tagline */}
           <div className="flex-1 max-w-xl">
             <Image
@@ -80,34 +82,33 @@ export default function Footer() {
               className="object-contain mb-8 brightness-0 invert"
             />
             <h2 className="text-4xl md:text-5xl font-black text-white leading-[1.1]">
-              Crafting the future of{" "}
-              <em className="not-italic text-emerald-400">Global Liquidity.</em>
+              {t("headingPart1")}{" "}
+              <em className="not-italic text-emerald-400">
+                {t("headingHighlight")}
+              </em>
             </h2>
             <p className="mt-4 text-slate-400 text-base font-light max-w-sm">
-              Seamless, AI-powered wealth movement — built for the world&apos;s next economy.
+              {t("description")}
             </p>
           </div>
 
           {/* Right: newsletter pill */}
           <div className="w-full lg:w-auto lg:min-w-[360px]">
-            <p className="text-[9px] font-black uppercase tracking-[0.45em] text-emerald-500 mb-4 flex items-center gap-2">
-              <Sparkles className="w-3 h-3" />
-              Join the Revolution
+            <p className="text-sm font-black text-emerald-500 mb-4 flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              {t("newsletterTitle")}
             </p>
             <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1.5 focus-within:border-emerald-500/50 transition-colors">
               <input
                 type="email"
-                placeholder="Your email address"
+                placeholder={t("newsletterPlaceholder")}
                 className="flex-1 bg-transparent text-sm text-white placeholder:text-slate-500 pl-5 pr-3 focus:outline-none"
               />
               <button className="shrink-0 flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 transition-colors text-slate-950 text-xs font-black uppercase  rounded-full px-5 py-3">
-                Subscribe
+                {t("subscribeBtn")}
                 <Send className="w-3.5 h-3.5" />
               </button>
             </div>
-            <p className="mt-2.5 text-[9px] text-slate-600 uppercase  pl-4">
-              Exclusive insights · Weekly digest
-            </p>
           </div>
         </div>
       </div>
@@ -117,16 +118,15 @@ export default function Footer() {
       ════════════════════════════════ */}
       <div className="relative z-10 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12">
-
           {/* Nav columns */}
           <div className="col-span-1 md:col-span-1 lg:col-span-3">
-            <NavGroup title="Solutions" links={NAV.solutions} />
+            <NavGroup title={t("navSolutionsTitle")} links={NAV.solutions} />
           </div>
           <div className="col-span-1 md:col-span-1 lg:col-span-3">
-            <NavGroup title="Resources" links={NAV.resources} />
+            <NavGroup title={t("navResourcesTitle")} links={NAV.resources} />
           </div>
           <div className="col-span-2 md:col-span-2 lg:col-span-3">
-            <NavGroup title="Company" links={NAV.company} />
+            <NavGroup title={t("navCompanyTitle")} links={NAV.company} />
           </div>
 
           {/* Contact card — floated right */}
@@ -134,7 +134,7 @@ export default function Footer() {
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.45em] text-emerald-500 mb-5 flex items-center gap-2">
                 <span className="block w-4 h-px bg-emerald-500" />
-                Contact
+                {t("contactTitle")}
               </p>
               <div className="space-y-5">
                 <Link
@@ -152,7 +152,9 @@ export default function Footer() {
                   <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-slate-500" />
                   </div>
-                  <span className="text-sm text-slate-500">Berlin, Germany</span>
+                  <span className="text-sm text-slate-500">
+                    {t("location")}
+                  </span>
                 </div>
               </div>
             </div>
@@ -192,16 +194,13 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 relative">
           <div className="text-center sm:text-left">
-            <p className="text-slate-600 text-[10px] uppercase  font-bold">
-              © 2026 Remitium. Built with Excellence.
-            </p>
-            <p className="text-slate-700 text-[9px] uppercase  mt-0.5">
-              bakedwith GmbH · Berlin · Europe
+            <p className="text-slate-600 text-xs uppercase  font-bold">
+              {t("copyright")}
             </p>
           </div>
 
           <div className="flex items-center gap-6">
-            {["Privacy Policy", "Legal notice"].map((label) => (
+            {[t("privacyPolicy"), t("legalNotice")].map((label) => (
               <Link
                 key={label}
                 href="#"

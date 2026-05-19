@@ -8,8 +8,11 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const HeroSection = () => {
+  const t = useTranslations("Hero");
+
   return (
     <section className="relative min-h-screen bg-[var(--background)] flex items-center justify-center overflow-hidden pt-28 pb-16 px-4 sm:px-6">
       {/* Dynamic Background */}
@@ -29,37 +32,36 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-12 items-center gap-y-12 lg:gap-x-28">
         {/* Creative Center-Left Content Area */}
-        <div 
+        <div
           className="col-span-12 lg:col-span-7 xl:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left z-20"
           data-aos="fade-right"
           data-aos-delay="200"
         >
           <div className="inline-flex items-center gap-2 bg-[#e6f9f2] border border-[#a3ecd0] text-[#0a7a52] text-sm font-medium px-4 py-2 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-[#00c881]" />
-            The Premium Way to Transfer Money Globally
+            {t("badge")}
           </div>
 
           <h1 className="text-4xl md:text-6xl xl:text-7xl font-black text-[var(--brand-navy)] leading-[1] tracking-tighter mb-8 max-w-2xl">
-            Go Further, <br />
-            Wait Less <br />
+            {t("heading_1")} <br />
+            {t("heading_2")} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--brand-primary)] via-[var(--brand-primary-hover)] to-[var(--brand-navy)]">
-              Send Globally.
+              {t("heading_highlight")}
             </span>
           </h1>
 
           <p className="max-w-xl text-lg md:text-xl text-gray-500 leading-relaxed mb-10">
-            Remitium redefining borders. Transfer money across 180+ countries
-            instantly with zero hidden fees and bank-level security.
+            {t("description")}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
             <button className="w-full sm:w-auto group relative px-10 py-5 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)] text-white font-extrabold rounded-2xl shadow-xl shadow-green-100 transition-all duration-300 flex items-center justify-center gap-3 active:scale-95">
-              Get Started Now
+              {t("getStartedBtn")}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
             </button>
             <button className="w-full sm:w-auto px-10 py-5 bg-white text-[var(--brand-navy)] font-extrabold rounded-2xl border border-[var(--brand-border-color)] hover:bg-[var(--brand-bg-light)] transition-all flex items-center justify-center gap-2">
               <Zap className="w-4 h-4 text-[var(--brand-primary)]" />
-              Instant Quote
+              {t("instantQuoteBtn")}
             </button>
           </div>
 
@@ -69,14 +71,14 @@ const HeroSection = () => {
               <div className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-[var(--brand-primary)]" />
                 <span className="font-bold text-[var(--brand-navy)] text-sm">
-                  USD/EUR Trade
+                  {t("usdEurTrade")}
                 </span>
               </div>
               <div className="text-3xl font-bold text-[var(--brand-navy)] mt-4">
                 1.0845
               </div>
               <div className="text-[var(--brand-primary)] text-sm font-bold mt-1">
-                +0.22% Today
+                {t("todayGrowth")}
               </div>
               <div className="absolute bottom-6 right-6 w-16 h-16 bg-[var(--brand-primary)] rounded-2xl flex items-center justify-center shadow-lg shadow-green-100">
                 <TrendingUp className="w-8 h-8 text-white" />
@@ -86,7 +88,7 @@ const HeroSection = () => {
         </div>
 
         {/* Abstract Isometric UI Composition - The "Creative" Part */}
-        <div 
+        <div
           className="hidden lg:block col-span-12 lg:col-span-5 xl:col-span-6 relative h-[700px]"
           data-aos="fade-left"
           data-aos-delay="400"
@@ -115,13 +117,13 @@ const HeroSection = () => {
                     <div className="w-3 h-3 bg-green-400 rounded-full" />
                   </div>
                   <div className="px-3 py-1 bg-white rounded-lg border border-[var(--brand-border-color)] text-[10px] font-bold text-gray-400">
-                    RMT.INTL.PAYMENT
+                    {t("paymentRef")}
                   </div>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-white border border-[var(--brand-border-color)] space-y-3">
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                    Active Balance
+                    {t("activeBalance")}
                   </p>
                   <p className="text-3xl font-black text-[var(--brand-navy)]">
                     $74,800.00
@@ -133,17 +135,17 @@ const HeroSection = () => {
                     <QrCode className="w-6 h-6 text-[var(--brand-navy)]" />
                   </div>
                   <p className="font-bold text-[var(--brand-navy)] text-sm mb-1">
-                    Send to Sarah Jenkins
+                    {t("sendToName")}
                   </p>
                   <p className="text-gray-500 text-xs truncate">
-                    sarah.j.design@email.com
+                    {t("sendToEmail")}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-white border border-[var(--brand-border-color)] space-y-3">
                   <div className="flex justify-between items-center text-xs text-gray-400 font-bold">
-                    <span>You pay ($USD)</span>
-                    <span>They get (£GBP)</span>
+                    <span>{t("youPayLabel")}</span>
+                    <span>{t("theyGetLabel")}</span>
                   </div>
                   <div className="flex justify-between items-center text-xl font-bold text-[var(--brand-navy)]">
                     <span>1,500.00</span>
@@ -153,7 +155,7 @@ const HeroSection = () => {
                 </div>
 
                 <button className="w-full py-4 bg-[var(--brand-navy)] text-white font-bold rounded-xl mt-4">
-                  Send Funds
+                  {t("sendFundsBtn")}
                 </button>
               </div>
             </div>
@@ -190,7 +192,7 @@ const HeroSection = () => {
                   <p className="font-bold text-[var(--brand-navy)] text-lg">
                     5,000
                   </p>
-                  <p className="text-gray-400 text-xs">United States (USD)</p>
+                  <p className="text-gray-400 text-xs">{t("usdLabel")}</p>
                 </div>
               </div>
             </div>
@@ -209,7 +211,7 @@ const HeroSection = () => {
                 </div>
                 <div>
                   <p className="font-bold text-lg">4,615</p>
-                  <p className="text-gray-400 text-xs">Europe (EUR)</p>
+                  <p className="text-gray-400 text-xs">{t("eurLabel")}</p>
                 </div>
               </div>
             </div>
@@ -261,6 +263,7 @@ const HeroSection = () => {
                   "rotateX(51deg) rotateY(-11deg) rotateZ(35deg) translateZ(150px)",
               }}
             >
+              {/* Floating Cards */}
               {/* <div className="bg-white/80 backdrop-blur-md p-3 rounded-full border-2 border-white shadow-xl flex items-center gap-2">
                 <ShieldCheck className="w-8 h-8 text-[var(--brand-primary)]" />
                 <div className="text-xs font-bold text-[var(--brand-navy)]">
@@ -283,10 +286,10 @@ const HeroSection = () => {
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                    Live Rate
+                    {t("liveRateLabel")}
                   </p>
                   <p className="text-lg font-black text-[var(--brand-navy)] mb-1">
-                    1 USD = 0.92 EUR
+                    {t("liveRateValue")}
                   </p>
                   <div className="h-1.5 w-32 bg-gray-100 rounded-full overflow-hidden">
                     <div className="h-full w-[70%] bg-blue-400 rounded-full"></div>
