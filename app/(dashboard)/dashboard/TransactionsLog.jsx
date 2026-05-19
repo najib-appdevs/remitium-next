@@ -1,248 +1,426 @@
 "use client";
 
-import React from "react";
+import { FileText, RefreshCw, X } from "lucide-react";
+import { useState } from "react";
 
-// ─── Status Config ─────────────────────────────────────────────────────────────
-const STATUS_MAP = {
-  Completed: {
-    dot: "bg-brand-primary",
-    text: "text-brand-badge-text",
-    bg: "bg-brand-badge-bg",
-    border: "border-brand-badge-border",
-  },
-  Pending: {
-    dot: "bg-brand-orange",
-    text: "text-brand-orange",
-    bg: "bg-orange-50",
-    border: "border-orange-200",
-  },
-  Failed: {
-    dot: "bg-red-500",
-    text: "text-red-500",
-    bg: "bg-red-50",
-    border: "border-red-200",
-  },
-};
-
-function StatusBadge({ status }) {
-  const s = STATUS_MAP[status] ?? STATUS_MAP.Pending;
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full border ${s.bg} ${s.border} ${s.text}`}
-    >
-      <span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />
-      {status}
-    </span>
-  );
-}
-
-// ─── Icons ────────────────────────────────────────────────────────────────────
-const IconHistory = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 3v5h5" />
-    <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8" />
-    <path d="M12 7v5l4 2" />
-  </svg>
-);
-
-
-const IconEmpty = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300 mx-auto">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <line x1="8" y1="21" x2="16" y2="21" />
-    <line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
-
-// ─── Mock Data ────────────────────────────────────────────────────────────────
-const LOGS = [
-  {
-    id: 1,
-    title: "Add Balance via ADPay USD",
-    status: "Pending",
-    payableAmount: 3032.00,
-    amount: 3000.00,
-    currency: "USD",
-    transactionId: "AM50586973",
-    exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 32.00,
-    willReceive: 3000.00,
-    date: "May 11, 2026",
-    time: "06:12 PM",
-  },
-  {
-    id: 2,
-    title: "Add Balance via Paypal USD",
-    status: "Completed",
-    payableAmount: 510.50,
-    amount: 500.00,
-    currency: "USD",
-    transactionId: "AM40471882",
-    exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 10.50,
-    willReceive: 500.00,
-    date: "May 10, 2026",
-    time: "11:45 AM",
-  },
-  {
-    id: 3,
-    title: "Add Balance via Stripe USD",
-    status: "Completed",
-    payableAmount: 1215.00,
-    amount: 1200.00,
-    currency: "USD",
-    transactionId: "AM38295641",
-    exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 15.00,
-    willReceive: 1200.00,
-    date: "May 09, 2026",
-    time: "03:20 PM",
-  },
-  {
-    id: 4,
-    title: "Add Balance via ADPay USD",
-    status: "Failed",
-    payableAmount: 808.00,
-    amount: 800.00,
-    currency: "USD",
-    transactionId: "AM27183049",
-    exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 8.00,
-    willReceive: 800.00,
-    date: "May 08, 2026",
-    time: "09:05 AM",
-  },
-  {
-    id: 5,
-    title: "Add Balance via Paypal USD",
-    status: "Completed",
-    payableAmount: 253.50,
-    amount: 250.00,
-    currency: "USD",
-    transactionId: "AM16072938",
-    exchangeRate: "1.00 USD = 1.00 USD",
-    feesCharges: 3.50,
-    willReceive: 250.00,
-    date: "May 07, 2026",
-    time: "07:50 PM",
-  },
-];
-
-// ─── Table Header ─────────────────────────────────────────────────────────────
-const TH_CLASSES = "px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap";
-
-// ─── Main Component ───────────────────────────────────────────────────────────
 export default function TransactionsLog() {
+  const [selectedTx, setSelectedTx] = useState(null);
+
+  const transactions = [
+    {
+      headerTitle: "Send Remittance To Elton Amena Fields Hubbard",
+      totalAmountText: "26.25 USD",
+      transactionId: "SR07378824",
+      method: "Mobile Wallet",
+      mobileMethodName: "InstaPay EgyptEgyptian Banks Company",
+      mobileMethodNumber: "587",
+      phone: "87",
+      sendingPurpose: "Family",
+      sourceOfFunds: "Business",
+      amount: "25.00 USD",
+      exchangeRate: "1 USD = 149.90 KES",
+      feesCharges: "1.25 USD",
+      paymentMethod: "Wallet (United States - USD)",
+      willGetAmount: "3747.50 KES",
+      status: "Success",
+      bottomActionButton: "Repeat Transaction",
+    },
+    {
+      headerTitle: "Send Remittance To Jane Doe",
+      totalAmountText: "52.00 USD",
+      transactionId: "SR08492048",
+      method: "Bank Transfer",
+      mobileMethodName: "Cairo Bank Egypt",
+      mobileMethodNumber: "912",
+      phone: "43",
+      sendingPurpose: "Family Support",
+      sourceOfFunds: "Salary",
+      amount: "50.00 USD",
+      exchangeRate: "1 USD = 30.90 EGP",
+      feesCharges: "2.00 USD",
+      paymentMethod: "Wallet (United States - USD)",
+      willGetAmount: "1545.00 EGP",
+      status: "Success",
+      bottomActionButton: "Repeat Transaction",
+    },
+    {
+      headerTitle: "Send Remittance To John Smith",
+      totalAmountText: "103.50 USD",
+      transactionId: "SR01948572",
+      method: "Mobile Wallet",
+      mobileMethodName: "Vodafone Cash Egypt",
+      mobileMethodNumber: "382",
+      phone: "99",
+      sendingPurpose: "Education",
+      sourceOfFunds: "Savings",
+      amount: "100.00 USD",
+      exchangeRate: "1 USD = 30.90 EGP",
+      feesCharges: "3.50 USD",
+      paymentMethod: "Wallet (United States - USD)",
+      willGetAmount: "3090.00 EGP",
+      status: "Pending",
+      bottomActionButton: "Repeat Transaction",
+    },
+  ];
+
+  // Important 8 data column headers for the main table rows
+  const headers = [
+    "Remittance Title",
+    "Total Amount",
+    "Transaction ID",
+    "Status",
+    "Method",
+    "Amount",
+    "Exchange Rate",
+    "Action",
+  ];
+
+  const TH_CLASSES =
+    "px-6 py-4 text-xs font-bold text-gray-400 uppercase whitespace-nowrap text-left border-b border-gray-100";
+  const TD_CLASSES =
+    "px-6 py-5 whitespace-nowrap text-sm font-bold text-gray-700 border-b border-gray-50";
 
   return (
-    <section className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
-
-      {/* ── Section Header ── */}
-      <div className="px-8 py-6 border-b border-gray-100 flex items-center justify-between">
+    <section className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden w-full relative">
+      {/* Card Header */}
+      <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between bg-gradient-to-r from-emerald-50/20 to-teal-50/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-brand-badge-bg text-brand-badge-text flex items-center justify-center flex-shrink-0">
-            <IconHistory />
+          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+            <FileText size={20} />
           </div>
-          <p className="text-base font-bold text-brand-navy leading-tight">Transactions Log</p>
+          <div>
+            <h2 className="text-lg font-bold text-gray-800 leading-tight">
+              Transactions Log
+            </h2>
+          </div>
         </div>
-
-        {/* View More */}
-        <button className="px-5 py-2.5 bg-brand-primary text-white text-xs font-bold rounded-xl hover:bg-brand-primary-hover transition-colors cursor-pointer shadow-sm shadow-brand-primary/20">
+        <button
+          type="button"
+          className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]"
+        >
           View More
         </button>
       </div>
 
-      {/* ── Table ── */}
-      <div className="overflow-x-auto">
-        {LOGS.length === 0 ? (
-          <div className="py-16 text-center">
-            <IconEmpty />
-            <p className="mt-4 text-sm font-semibold text-gray-400">No records yet</p>
-          </div>
-        ) : (
-          <table className="w-full text-left">
-            <thead className="bg-gray-50/60 border-b border-gray-100">
-              <tr>
-                <th className={TH_CLASSES}>Title</th>
-                <th className={TH_CLASSES}>Status</th>
-                <th className={TH_CLASSES}>Payable Amount</th>
-                <th className={TH_CLASSES}>Amount</th>
-                <th className={TH_CLASSES}>Transaction ID</th>
-                <th className={TH_CLASSES}>Exchange Rate</th>
-                <th className={TH_CLASSES}>Fees & Charges</th>
-                <th className={TH_CLASSES}>You Will Receive</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {LOGS.map((log) => (
-                <tr
-                  key={log.id}
-                  className="group hover:bg-brand-bg-light transition-colors duration-150"
-                >
-                  {/* Title */}
-                  <td className="px-6 py-5 min-w-[200px]">
-                    <p className="text-sm font-bold text-brand-navy group-hover:text-brand-primary transition-colors leading-tight">
-                      {log.title}
-                    </p>
-                    <p className="text-[10px] text-gray-400 mt-1">{log.date} · {log.time}</p>
-                  </td>
-
-                  {/* Status */}
-                  <td className="px-6 py-5">
-                    <StatusBadge status={log.status} />
-                  </td>
-
-                  {/* Payable Amount */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-sm font-black text-brand-navy">
-                      {log.payableAmount.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-
-                  {/* Amount */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-sm font-semibold text-gray-700">
-                      {log.amount.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-
-                  {/* Transaction ID */}
-                  <td className="px-6 py-5">
-                    <span className="font-mono text-[12px] font-bold text-brand-navy bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
-                      {log.transactionId}
-                    </span>
-                  </td>
-
-                  {/* Exchange Rate */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-medium text-gray-500">
-                      {log.exchangeRate}
-                    </span>
-                  </td>
-
-                  {/* Fees & Charges */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-semibold text-brand-orange">
-                      {log.feesCharges.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-
-                  {/* You Will Receive */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-bold text-brand-primary">
-                      +{log.willReceive.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-                </tr>
+      {/* Main Table (Horizontal structure showing 8 important fields for multiple transactions) */}
+      <div className="overflow-x-auto w-full">
+        <table className="w-full text-left border-collapse">
+          <thead className="bg-gray-50/60">
+            <tr>
+              {headers.map((header) => (
+                <th key={header} className={TH_CLASSES}>
+                  {header}
+                </th>
               ))}
-            </tbody>
-          </table>
-        )}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {transactions.map((tx) => (
+              <tr
+                key={tx.transactionId}
+                onClick={() => setSelectedTx(tx)}
+                className="group hover:bg-emerald-50/10 transition-colors duration-100 cursor-pointer"
+              >
+                {/* 1. Remittance Title */}
+                <td className={`${TD_CLASSES} min-w-[280px]`}>
+                  <span className="text-gray-800 font-bold group-hover:text-[#10b981] transition-colors leading-tight">
+                    {tx.headerTitle}
+                  </span>
+                </td>
+
+                {/* 2. Total Amount */}
+                <td className={TD_CLASSES}>
+                  <span className="text-[#10b981] font-black">
+                    {tx.totalAmountText}
+                  </span>
+                </td>
+
+                {/* 3. Transaction ID */}
+                <td className={TD_CLASSES}>
+                  <span className="font-mono text-xs bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
+                    {tx.transactionId}
+                  </span>
+                </td>
+
+                {/* 4. Status */}
+                <td className={TD_CLASSES}>
+                  <span
+                    className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border shadow-xs ${
+                      tx.status === "Success"
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                        : "border-amber-200 bg-amber-50 text-amber-700"
+                    }`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+                        tx.status === "Success"
+                          ? "bg-emerald-500"
+                          : "bg-amber-500"
+                      }`}
+                    />
+                    {tx.status}
+                  </span>
+                </td>
+
+                {/* 5. Method */}
+                <td className={TD_CLASSES}>{tx.method}</td>
+
+                {/* 6. Amount */}
+                <td className={TD_CLASSES}>{tx.amount}</td>
+
+                {/* 7. Exchange Rate */}
+                <td className={TD_CLASSES}>{tx.exchangeRate}</td>
+
+                {/* 8. Action (Details button) */}
+                <td className={TD_CLASSES} onClick={(e) => e.stopPropagation()}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTx(tx)}
+                    className="py-1.5 px-4 rounded-lg text-white text-xs font-semibold bg-[#10b981] hover:bg-[#059669] transition-all cursor-pointer shadow-sm shadow-emerald-500/10 hover:shadow-emerald-500/20 active:scale-95"
+                  >
+                    Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
+      {/* FULL TRANSACTION DETAILS MODAL (Exactly 16 elements grouped beautifully) */}
+      {selectedTx && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Glassmorphism backdrop */}
+          <div
+            onClick={() => setSelectedTx(null)}
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-300 animate-fade-in"
+          />
+
+          {/* Modal Content container */}
+          <div className="relative bg-white rounded-[2rem] shadow-2xl border border-gray-100 w-full max-w-2xl overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
+            {/* Modal Header */}
+            <div className="px-8 py-5 border-b border-gray-50 flex items-center justify-between bg-gradient-to-r from-emerald-50/20 to-teal-50/10 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                  <FileText size={16} />
+                </div>
+                <span className="text-sm font-bold text-gray-800">
+                  Detailed Receipt
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedTx(null)}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors cursor-pointer"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Modal Scrollable Receipt Details */}
+            <div className="p-8 overflow-y-auto flex flex-col gap-6">
+              {/* Header Title Banner */}
+              <div className="bg-[#f0faf5] border border-[#a7dfbf]/60 rounded-xl p-5 flex flex-col gap-3.5 shadow-xs">
+                <div>
+                  <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none">
+                    Remittance Title
+                  </span>
+                  <span className="text-sm font-extrabold text-[#0d3d24]">
+                    {selectedTx.headerTitle}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center border-t border-[#a7dfbf]/30 pt-3">
+                  <div>
+                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none">
+                      Total Payable Amount
+                    </span>
+                    <span className="text-lg font-black text-[#10b981]">
+                      {selectedTx.totalAmountText}
+                    </span>
+                  </div>
+                  <div>
+                    <span
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border shadow-xs ${
+                        selectedTx.status === "Success"
+                          ? "border-emerald-200 bg-white text-emerald-700"
+                          : "border-amber-200 bg-white text-amber-700"
+                      }`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+                          selectedTx.status === "Success"
+                            ? "bg-emerald-500"
+                            : "bg-amber-500"
+                        }`}
+                      />
+                      {selectedTx.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Grouped Horizontal Receipt Tables */}
+              <div className="flex flex-col gap-5">
+                {/* GROUP 1: Reference & Core Information */}
+                <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
+                  <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
+                    Basic Information
+                  </span>
+                  <table className="w-full text-left border-collapse">
+                    <tbody>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Transaction ID
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right font-mono">
+                          {selectedTx.transactionId}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Status
+                        </td>
+                        <td className="py-2 text-xs font-bold text-[#10b981] text-right">
+                          {selectedTx.status}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Method
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.method}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Sending Purpose
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.sendingPurpose}
+                        </td>
+                      </tr>
+                      <tr className="last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Source of Funds
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.sourceOfFunds}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* GROUP 2: Mobile Network Info */}
+                <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
+                  <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
+                    Recipient Transfer Destination
+                  </span>
+                  <table className="w-full text-left border-collapse">
+                    <tbody>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Mobile Method Name
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.mobileMethodName}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Mobile Method Number
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right font-mono">
+                          {selectedTx.mobileMethodNumber}
+                        </td>
+                      </tr>
+                      <tr className="last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Phone Suffix
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.phone}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* GROUP 3: Pricing & Settlement */}
+                <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
+                  <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
+                    Pricing & Settlement
+                  </span>
+                  <table className="w-full text-left border-collapse">
+                    <tbody>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Amount
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.amount}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Exchange Rate
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.exchangeRate}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Fees & Charges
+                        </td>
+                        <td className="py-2 text-xs font-bold text-red-500 text-right">
+                          +{selectedTx.feesCharges}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-gray-100/70 last:border-none">
+                        <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                          Payment Method
+                        </td>
+                        <td className="py-2 text-xs font-bold text-gray-700 text-right">
+                          {selectedTx.paymentMethod}
+                        </td>
+                      </tr>
+                      <tr className="last:border-none">
+                        <td className="py-2 text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
+                          Will Get Amount
+                        </td>
+                        <td className="py-2 text-sm font-black text-[#10b981] text-right">
+                          {selectedTx.willGetAmount}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-8 py-5 border-t border-gray-50 bg-gray-50/50 flex flex-col sm:flex-row justify-end items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => setSelectedTx(null)}
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-200 text-gray-500 text-xs font-bold hover:bg-gray-100 transition-colors cursor-pointer text-center"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedTx(null)}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl text-white text-xs font-bold cursor-pointer transition-all bg-[#10b981] hover:bg-[#059669] hover:-translate-y-0.5 shadow-md shadow-emerald-500/10 hover:shadow-emerald-500/20"
+              >
+                <RefreshCw size={12} />
+                {selectedTx.bottomActionButton}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

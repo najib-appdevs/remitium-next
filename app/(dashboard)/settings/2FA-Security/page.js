@@ -1,3 +1,4 @@
+"use client";
 import { Apple, Copy, Play } from "lucide-react";
 import Image from "next/image";
 
@@ -5,96 +6,135 @@ export default function TwoFactorPage() {
   const address = "BTRILINRLMPX3FWH";
 
   return (
-    <>
-      <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-        {/* Left Column */}
-        <div className="flex flex-col space-y-4">
-          <h2 className="text-2xl font-bold text-gray-700">
-            Two Factor Authenticator
-          </h2>
+    <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
 
-          <div className="flex-1 bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col">
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-500 mb-2">
-                Address<span className="text-emerald-500">*</span>
-              </label>
-              <div className="flex">
-                <input
-                  type="text"
-                  readOnly
-                  value={address}
-                  className="w-full border border-gray-200 rounded-l-md px-4 py-2 text-gray-600 focus:outline-none"
-                />
-                <button className="cursor-pointer bg-emerald-500 text-white px-4 rounded-r-md hover:bg-emerald-600 transition-colors">
-                  <Copy size={20} />
-                </button>
-              </div>
+      {/* Left Column */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl font-bold text-gray-700">
+          Two Factor Authenticator
+        </h2>
+
+        <div
+          className="flex-1 p-6 rounded-2xl flex flex-col gap-5"
+          style={{
+            background: "#f0faf5",
+            border: "0.5px solid #a7dfbf",
+          }}
+        >
+          {/* Address field */}
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-widest mb-2"
+              style={{ color: "#2d6a45" }}>
+              Address<span className="text-emerald-500">*</span>
+            </label>
+            <div className="flex rounded-xl overflow-hidden"
+              style={{ border: "0.5px solid #a7dfbf" }}>
+              <input
+                type="text"
+                readOnly
+                value={address}
+                className="w-full px-4 py-2.5 text-sm font-mono focus:outline-none"
+                style={{ background: "rgba(255,255,255,0.7)", color: "#0d3d24" }}
+              />
+              <button
+                className="cursor-pointer px-4 flex items-center justify-center transition-colors"
+                style={{ background: "#10b981" }}
+                onMouseOver={e => e.currentTarget.style.background = "#059669"}
+                onMouseOut={e => e.currentTarget.style.background = "#10b981"}
+              >
+                <Copy size={18} color="#fff" />
+              </button>
             </div>
+          </div>
 
-            <div className="flex justify-center mb-8 flex-grow items-center">
-              <div className="p-4 border border-gray-100 rounded-lg">
-                <Image
-                  src="/images/QRCode.png"
-                  alt="QR Code"
-                  width={100}
-                  height={100}
-                  className="w-72 h-72"
-                />
-              </div>
+          {/* QR Code */}
+          <div className="flex-1 flex justify-center items-center">
+            <div className="p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.65)", border: "0.5px solid #c4ecd5" }}>
+              <Image
+                src="/images/QRCode.png"
+                alt="QR Code"
+                width={100}
+                height={100}
+                className="w-48 h-48"
+              />
             </div>
+          </div>
 
-            <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold hover:bg-emerald-600 transition-colors mt-auto">
-              Enable
+          <button
+            className="cursor-pointer w-full py-3 rounded-xl text-white font-semibold text-sm transition-colors mt-auto"
+            style={{ background: "#10b981" }}
+            onMouseOver={e => e.currentTarget.style.background = "#059669"}
+            onMouseOut={e => e.currentTarget.style.background = "#10b981"}
+          >
+            Enable
+          </button>
+        </div>
+      </div>
+
+      {/* Right Column */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl font-bold text-gray-700">
+          Google Authenticator
+        </h2>
+
+        <div
+          className="flex-1 p-6 rounded-2xl flex flex-col gap-5"
+          style={{
+            background: "#f0faf5",
+            border: "0.5px solid #a7dfbf",
+          }}
+        >
+          <h3 className="font-bold text-sm" style={{ color: "#0d3d24" }}>
+            Download Google Authenticator App
+          </h3>
+
+          <p className="text-sm leading-relaxed" style={{ color: "#2d6a45" }}>
+            Google Authenticator adds an extra layer of security to your
+            online accounts by adding a second step of verification when you
+            sign in. This means that in addition to your password, you&apos;ll
+            also need to enter a code that is generated by the Google
+            Authenticator app on your phone.
+            <a href="#" className="text-emerald-500 hover:underline ml-1">
+              How to Setup?
+            </a>
+          </p>
+
+          {/* App Image */}
+          <div className="flex-1 flex justify-center items-center">
+            <div className="p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.65)", border: "0.5px solid #c4ecd5" }}>
+              <Image
+                src="/images/Google Authenticator.webp"
+                alt="QR Code"
+                width={100}
+                height={100}
+                className="w-36 h-36"
+              />
+            </div>
+          </div>
+
+          {/* Download buttons */}
+          <div className="flex flex-col gap-3 mt-auto">
+            <button
+              className="cursor-pointerw-full py-3 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
+              style={{ background: "#10b981" }}
+              onMouseOver={e => e.currentTarget.style.background = "#059669"}
+              onMouseOut={e => e.currentTarget.style.background = "#10b981"}
+            >
+              <Play size={18} fill="currentColor" />
+              Download For Android
+            </button>
+            <button
+              className="cursor-pointer w-full py-3 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
+              style={{ background: "#10b981" }}
+              onMouseOver={e => e.currentTarget.style.background = "#059669"}
+              onMouseOut={e => e.currentTarget.style.background = "#10b981"}
+            >
+              <Apple size={18} fill="currentColor" />
+              Download For IOS
             </button>
           </div>
         </div>
-
-        {/* Right Column */}
-        <div className="flex flex-col space-y-4">
-          <h2 className="text-2xl font-bold text-gray-700">
-            Google Authenticator
-          </h2>
-
-          <div className="flex-1 bg-white p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col">
-            <h3 className="font-bold text-gray-800 mb-4">
-              Download Google Authenticator App
-            </h3>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6">
-              Google Authenticator adds an extra layer of security to your
-              online accounts by adding a second step of verification when you
-              sign in. This means that in addition to your password, you&apos;ll
-              also need to enter a code that is generated by the Google
-              Authenticator app on your phone.
-              <a href="#" className="text-emerald-500 hover:underline ml-1">
-                How to Setup?
-              </a>
-            </p>
-
-            <div className="flex justify-center mb-8 flex-grow items-center">
-              <div className="p-4 border border-gray-100 rounded-lg">
-                <Image
-                  src="/images/Google Authenticator.webp"
-                  alt="QR Code"
-                  width={100}
-                  height={100}
-                  className="w-48 h-48"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-3 mt-auto">
-              <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-emerald-600 transition-colors">
-                <Play size={20} fill="currentColor" />
-                Download For Android
-              </button>
-              <button className="cursor-pointer w-full bg-emerald-500 text-white py-3 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-emerald-600 transition-colors">
-                <Apple size={20} fill="currentColor" />
-                Download For IOS
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
-    </>
+    </div>
   );
 }

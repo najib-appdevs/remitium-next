@@ -1,5 +1,6 @@
 "use client";
 
+import { ChartColumnBig } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -30,9 +31,16 @@ const TransactionSummary = () => {
   return (
     <div className="w-full bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-700">
-          Transaction Summary
-        </h1>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+            <ChartColumnBig size={20} />
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-gray-800 leading-tight">
+              Transaction Summary
+            </h2>
+          </div>
+        </div>
       </div>
       <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">

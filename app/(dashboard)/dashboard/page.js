@@ -3,85 +3,74 @@ import AddMoneyStatistics from "./AddMoneyStatistics";
 import TransactionSummary from "./TransactionSummary";
 import TransactionsLog from "./TransactionsLog";
 
-export default function DashboardPage() {
-  const wallets = [
-    {
-      country: "United States",
-      code: "us",
-      value: "19528.35",
-      currency: "USD",
-    },
-    {
-      country: "United Kingdom",
-      code: "gb",
-      value: "12480.00",
-      currency: "GBP",
-    },
-    {
-      country: "European Union",
-      code: "eu",
-      value: "8240.50",
-      currency: "EUR",
-    },
-    { country: "Japan", code: "jp", value: "15400.00", currency: "JPY" },
-    { country: "Canada", code: "ca", value: "11200.75", currency: "CAD" },
-    { country: "Australia", code: "au", value: "9800.40", currency: "AUD" },
-    { country: "India", code: "in", value: "725000.00", currency: "INR" },
-    { country: "Bangladesh", code: "bd", value: "1345000.00", currency: "BDT" },
-  ];
+const wallets = [
+  { country: "United States", code: "us", value: "19528.35", currency: "USD" },
+  { country: "United Kingdom", code: "gb", value: "12480.00", currency: "GBP" },
+  { country: "European Union", code: "eu", value: "8240.50", currency: "EUR" },
+  { country: "Japan", code: "jp", value: "15400.00", currency: "JPY" },
+  { country: "Canada", code: "ca", value: "11200.75", currency: "CAD" },
+  { country: "Australia", code: "au", value: "9800.40", currency: "AUD" },
+  { country: "India", code: "in", value: "725000.00", currency: "INR" },
+  { country: "Bangladesh", code: "bd", value: "1345000.00", currency: "BDT" },
+];
 
+function WalletCard({ country, code, value, currency }) {
   return (
-    <div className="space-y-8 min-h-screen">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-700">My Wallets</h1>
-        <button className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary-hover text-white px-6 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 active:scale-95 cursor-pointer text-sm">
+    <div className="group relative flex flex-col gap-3 overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.85)] bg-[rgba(255,255,255,0.62)] px-3.5 pb-3.5 pt-4 shadow-[0_2px_16px_rgba(16,185,129,0.07),0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-[12px] transition-[transform,box-shadow] duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(16,185,129,0.13),0_2px_8px_rgba(0,0,0,0.07)]">
+      {/* Top indicator bar matching ::before pseudo-element */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-[18px_18px_0_0] bg-gradient-to-r from-[#10b981] to-[#34d399] opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100" />
+
+      <div className="flex items-center justify-between">
+        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-[#10b98133] bg-[#f0fdf4]">
+          <Image
+            src={`https://flagcdn.com/w80/${code}.png`}
+            alt={`${country} flag`}
+            fill
+            className="object-cover"
+          />
+        </div>
+        <span className="text-[11px] font-bold tracking-[0.5px] text-[#10b981] bg-[rgba(16,185,129,0.1)] rounded-[7px] px-2 py-0.5">
+          {currency}
+        </span>
+      </div>
+
+      <div>
+        <div className="truncate text-[11px] font-medium tracking-[0.3px] text-[#6b7280] mb-1">
+          {country}
+        </div>
+        <div className="text-[17px] font-bold tracking-[-0.5px] text-[#1a4731] leading-[1.1] truncate">
+          {value}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <div>
+      <div className="relative z-10 flex items-center justify-between mb-6">
+        <div className="text-[20px] font-bold text-[#1a4731] tracking-[-0.3px]">
+          My Wallets
+        </div>
+        <button className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]">
           View More
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {wallets.map((wallet) => (
-          <div
-            key={wallet.currency}
-            className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between"
-          >
-            {/* Left Div: Text Content */}
-            <div className="flex flex-col gap-1">
-              <span className="text-sm font-bold text-gray-800 tracking-wide">
-                {wallet.country}
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-gray-900 tracking-tighter">
-                  {wallet.value}
-                </span>
-                <span className="text-2xl font-black text-[#10b981]">
-                  {wallet.currency}
-                </span>
-              </div>
-            </div>
-
-            {/* Right Div: Image Content */}
-            <div className="flex-shrink-0">
-              <div className="relative w-14 h-14 overflow-hidden rounded-full border border-gray-50 shadow-sm">
-                <Image
-                  src={`https://flagcdn.com/w80/${wallet.code}.png`}
-                  alt={`${wallet.country} flag`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
+          <WalletCard key={wallet.currency} {...wallet} />
         ))}
       </div>
-
+      {/* Add Money Statistics and Transaction Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
         <AddMoneyStatistics />
         <TransactionSummary />
       </div>
-
+      {/* Transaction log */}
       <div className="grid grid-cols-1 gap-8 mt-16">
-        <TransactionsLog/>
+        <TransactionsLog />
       </div>
     </div>
   );

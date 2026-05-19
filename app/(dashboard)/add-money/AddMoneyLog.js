@@ -1,20 +1,21 @@
 "use client";
 
 import React from "react";
+import { History } from "lucide-react";
 
 // ─── Status Config ─────────────────────────────────────────────────────────────
 const STATUS_MAP = {
   Completed: {
-    dot: "bg-brand-primary",
-    text: "text-brand-badge-text",
-    bg: "bg-brand-badge-bg",
-    border: "border-brand-badge-border",
+    dot: "bg-emerald-500",
+    text: "text-emerald-700",
+    bg: "bg-emerald-50",
+    border: "border-emerald-200",
   },
   Pending: {
-    dot: "bg-brand-orange",
-    text: "text-brand-orange",
-    bg: "bg-orange-50",
-    border: "border-orange-200",
+    dot: "bg-amber-500",
+    text: "text-amber-700",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
   },
   Failed: {
     dot: "bg-red-500",
@@ -28,31 +29,13 @@ function StatusBadge({ status }) {
   const s = STATUS_MAP[status] ?? STATUS_MAP.Pending;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full border ${s.bg} ${s.border} ${s.text}`}
+      className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border shadow-xs ${s.bg} ${s.border} ${s.text}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />
+      <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${s.dot}`} />
       {status}
     </span>
   );
 }
-
-// ─── Icons ────────────────────────────────────────────────────────────────────
-const IconHistory = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 3v5h5" />
-    <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8" />
-    <path d="M12 7v5l4 2" />
-  </svg>
-);
-
-
-const IconEmpty = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300 mx-auto">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <line x1="8" y1="21" x2="16" y2="21" />
-    <line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 const LOGS = [
@@ -67,8 +50,6 @@ const LOGS = [
     exchangeRate: "1.00 USD = 1.00 USD",
     feesCharges: 32.00,
     willReceive: 3000.00,
-    date: "May 11, 2026",
-    time: "06:12 PM",
   },
   {
     id: 2,
@@ -81,8 +62,6 @@ const LOGS = [
     exchangeRate: "1.00 USD = 1.00 USD",
     feesCharges: 10.50,
     willReceive: 500.00,
-    date: "May 10, 2026",
-    time: "11:45 AM",
   },
   {
     id: 3,
@@ -95,8 +74,6 @@ const LOGS = [
     exchangeRate: "1.00 USD = 1.00 USD",
     feesCharges: 15.00,
     willReceive: 1200.00,
-    date: "May 09, 2026",
-    time: "03:20 PM",
   },
   {
     id: 4,
@@ -109,8 +86,6 @@ const LOGS = [
     exchangeRate: "1.00 USD = 1.00 USD",
     feesCharges: 8.00,
     willReceive: 800.00,
-    date: "May 08, 2026",
-    time: "09:05 AM",
   },
   {
     id: 5,
@@ -123,119 +98,125 @@ const LOGS = [
     exchangeRate: "1.00 USD = 1.00 USD",
     feesCharges: 3.50,
     willReceive: 250.00,
-    date: "May 07, 2026",
-    time: "07:50 PM",
   },
 ];
 
-// ─── Table Header ─────────────────────────────────────────────────────────────
-const TH_CLASSES = "px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap";
+// ─── Component Styles ─────────────────────────────────────────────────────────
+const TH_CLASSES =
+  "px-6 py-4 text-xs font-bold text-gray-400 uppercase whitespace-nowrap text-left border-b border-gray-100";
+const TD_CLASSES =
+  "px-6 py-5 whitespace-nowrap text-sm font-bold text-gray-700 border-b border-gray-50";
 
-// ─── Main Component ───────────────────────────────────────────────────────────
 export default function AddMoneyLog() {
+  const headers = [
+    "Title",
+    "Transaction ID",
+    "Exchange Rate",
+    "Amount",
+    "Fees & Charges",
+    "Will Get",
+    "Payable Amount",
+    "Status",
+  ];
 
   return (
-    <section className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
-
+    <section className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden w-full relative">
       {/* ── Section Header ── */}
-      <div className="px-8 py-6 border-b border-gray-100 flex items-center justify-between">
+      <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between bg-gradient-to-r from-emerald-50/20 to-teal-50/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-brand-badge-bg text-brand-badge-text flex items-center justify-center flex-shrink-0">
-            <IconHistory />
+          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+            <History size={20} />
           </div>
-          <p className="text-base font-bold text-brand-navy leading-tight">Add Money Logs</p>
+          <div>
+            <h2 className="text-lg font-bold text-gray-800 leading-tight">Add Money Logs</h2>
+          </div>
         </div>
 
-        {/* View More */}
-        <button className="px-5 py-2.5 bg-brand-primary text-white text-xs font-bold rounded-xl hover:bg-brand-primary-hover transition-colors cursor-pointer shadow-sm shadow-brand-primary/20">
+        {/* View More Button */}
+        <button
+          type="button"
+          className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]"
+        >
           View More
         </button>
       </div>
 
       {/* ── Table ── */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto w-full">
         {LOGS.length === 0 ? (
           <div className="py-16 text-center">
-            <IconEmpty />
-            <p className="mt-4 text-sm font-semibold text-gray-400">No records yet</p>
+            <History size={40} className="text-gray-300 mx-auto mb-3" />
+            <p className="text-sm font-semibold text-gray-400">No records yet</p>
           </div>
         ) : (
-          <table className="w-full text-left">
-            <thead className="bg-gray-50/60 border-b border-gray-100">
+          <table className="w-full text-left border-collapse">
+            <thead className="bg-gray-50/60">
               <tr>
-                <th className={TH_CLASSES}>Title</th>
-                <th className={TH_CLASSES}>Status</th>
-                <th className={TH_CLASSES}>Payable Amount</th>
-                <th className={TH_CLASSES}>Amount</th>
-                <th className={TH_CLASSES}>Transaction ID</th>
-                <th className={TH_CLASSES}>Exchange Rate</th>
-                <th className={TH_CLASSES}>Fees & Charges</th>
-                <th className={TH_CLASSES}>You Will Receive</th>
+                {headers.map((header) => (
+                  <th key={header} className={TH_CLASSES}>
+                    {header}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {LOGS.map((log) => (
                 <tr
                   key={log.id}
-                  className="group hover:bg-brand-bg-light transition-colors duration-150"
+                  className="group hover:bg-emerald-50/10 transition-colors duration-100"
                 >
-                  {/* Title */}
-                  <td className="px-6 py-5 min-w-[200px]">
-                    <p className="text-sm font-bold text-brand-navy group-hover:text-brand-primary transition-colors leading-tight">
+                  {/* 1. Title */}
+                  <td className={`${TD_CLASSES} min-w-[240px]`}>
+                    <p className="text-gray-800 font-bold group-hover:text-[#10b981] transition-colors leading-tight">
                       {log.title}
                     </p>
-                    <p className="text-[10px] text-gray-400 mt-1">{log.date} · {log.time}</p>
                   </td>
 
-                  {/* Status */}
-                  <td className="px-6 py-5">
-                    <StatusBadge status={log.status} />
-                  </td>
-
-                  {/* Payable Amount */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-sm font-black text-brand-navy">
-                      {log.payableAmount.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-
-                  {/* Amount */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-sm font-semibold text-gray-700">
-                      {log.amount.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
-                  </td>
-
-                  {/* Transaction ID */}
-                  <td className="px-6 py-5">
-                    <span className="font-mono text-[12px] font-bold text-brand-navy bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
+                  {/* 2. Transaction ID */}
+                  <td className={TD_CLASSES}>
+                    <span className="font-mono text-xs bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg">
                       {log.transactionId}
                     </span>
                   </td>
 
-                  {/* Exchange Rate */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-medium text-gray-500">
+                  {/* 3. Exchange Rate */}
+                  <td className={TD_CLASSES}>
+                    <span className="text-xs text-gray-500 font-medium">
                       {log.exchangeRate}
                     </span>
                   </td>
 
-                  {/* Fees & Charges */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-semibold text-brand-orange">
-                      {log.feesCharges.toFixed(2)}
+                  {/* 4. Amount */}
+                  <td className={TD_CLASSES}>
+                    <span className="text-gray-700 font-bold">
+                      {log.amount.toFixed(2)} {log.currency}
                     </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
                   </td>
 
-                  {/* You Will Receive */}
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <span className="text-[12px] font-bold text-brand-primary">
-                      +{log.willReceive.toFixed(2)}
+                  {/* 5. Fees & Charges */}
+                  <td className={TD_CLASSES}>
+                    <span className="text-red-500 font-bold">
+                      +{log.feesCharges.toFixed(2)} {log.currency}
                     </span>
-                    <span className="text-[10px] text-gray-400 ml-1">{log.currency}</span>
+                  </td>
+
+                  {/* 6. Will Get */}
+                  <td className={TD_CLASSES}>
+                    <span className="text-[#10b981] font-black">
+                      {log.willReceive.toFixed(2)} {log.currency}
+                    </span>
+                  </td>
+
+                  {/* 7. Payable Amount */}
+                  <td className={TD_CLASSES}>
+                    <span className="text-[#0d3d24] font-black">
+                      {log.payableAmount.toFixed(2)} {log.currency}
+                    </span>
+                  </td>
+
+                  {/* 8. Status */}
+                  <td className={TD_CLASSES}>
+                    <StatusBadge status={log.status} />
                   </td>
                 </tr>
               ))}

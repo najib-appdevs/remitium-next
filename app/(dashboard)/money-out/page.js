@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
 import { useState } from "react";
 import MoneyOutLog from "./MoneyOutLog";
 
@@ -124,28 +130,13 @@ const IconTotal = () => (
   </svg>
 );
 
-const IconAddMoney = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="12" y1="5" x2="12" y2="19" />
-    <line x1="5" y1="12" x2="19" y2="12" />
-  </svg>
-);
+const card =
+  "bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col gap-5 overflow-visible";
 
 export default function MoneyOutPage() {
   const [amount, setAmount] = useState("");
   const [gateway, setGateway] = useState("Paypal USD");
   const [currency, setCurrency] = useState("United States (USD)");
-  const [isGatewayOpen, setIsGatewayOpen] = useState(false);
-  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
 
   const gateways = ["Paypal USD", "Stripe USD"];
   const currencies = [
@@ -160,27 +151,28 @@ export default function MoneyOutPage() {
   const parsedAmount = parseFloat(amount) || 0;
   const totalPayable = parsedAmount + fee;
 
+  const getFlagCode = (curr) => {
+    if (curr.includes("USD")) return "us";
+    if (curr.includes("EUR")) return "eu";
+    if (curr.includes("GBP")) return "gb";
+    return "us";
+  };
+
   const summaryRows = [
     {
       icon: <IconEntered />,
       label: "Entered Amount",
       value: `${parsedAmount.toFixed(2)} USD`,
-      iconWrapClass: "bg-emerald-50 text-emerald-700",
-      valueClass: "text-gray-600",
     },
     {
       icon: <IconFees />,
       label: "Total Fees & Charges",
       value: `${fee.toFixed(2)} USD`,
-      iconWrapClass: "bg-emerald-50 text-emerald-700",
-      valueClass: "text-gray-600",
     },
     {
       icon: <IconWillGet />,
       label: "Will Get",
       value: `${parsedAmount.toFixed(2)} USD`,
-      iconWrapClass: "bg-emerald-50 text-emerald-700",
-      valueClass: "text-gray-600",
     },
   ];
 
@@ -192,86 +184,66 @@ export default function MoneyOutPage() {
       </div>
 
       {/* Main layout */}
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
         {/* Left: Form */}
-        <div className="w-full lg:w-1/2 bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 md:p-10">
+        <div
+          className={`w-full lg:w-1/2 ${card}`}
+          style={{
+            background: "#f0faf5",
+            border: "0.5px solid #a7dfbf",
+          }}
+        >
           {/* Exchange rate pill */}
-          <div className="flex justify-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full py-2 px-5">
-              <span className="text-blue-400">
-                <IconRefresh />
-              </span>
-              <span className="text-blue-500 font-semibold text-sm">
-                Exchange Rate
-              </span>
-              <span className="text-blue-300 text-sm">·</span>
-              <span className="text-blue-400 text-sm font-medium">
-                1 USD = 289.38 PKR
-              </span>
-            </div>
+          <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
+            <span className="text-[#0f6e56] flex items-center">
+              <IconRefresh />
+            </span>
+            <span className="text-sm font-medium text-[#0f6e56]">
+              Exchange Rate
+            </span>
+            <span className="text-sm text-[#1d9e75]">· 1 USD = 289.38 PKR</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col gap-5">
             {/* Payment Gateway */}
-            <div className="space-y-2">
-              <label className="block text-xs font-medium uppercase tracking-wide text-gray-500">
-                Payment Gateway{" "}
-                <span className="text-brand-primary normal-case">*</span>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-gray-500">
+                Payment Gateway <span className="text-emerald-500">*</span>
               </label>
-              <div className="relative">
-                {/* Custom Styled Dropdown */}
-                <div
-                  className="relative cursor-pointer"
-                  onClick={() => setIsGatewayOpen(!isGatewayOpen)}
-                >
-                  <div className="w-full border border-gray-200 rounded-xl pl-10 pr-8 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary flex items-center justify-between text-gray-600 text-sm min-h-[54px] transition-all hover:border-brand-primary/30">
+              <Listbox value={gateway} onChange={setGateway}>
+                <div className="relative">
+                  <ListboxButton className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-emerald-400 text-left cursor-pointer">
                     <div className="flex items-center gap-3">
                       <span className="text-gray-400">
                         <IconGateway />
                       </span>
                       <span>{gateway}</span>
                     </div>
-                    <span
-                      className={`text-gray-400 transition-transform duration-200 ${isGatewayOpen ? "rotate-180" : ""}`}
-                    >
+                    <span className="text-gray-500 flex items-center pointer-events-none">
                       <IconChevronDown />
                     </span>
-                  </div>
-
-                  {isGatewayOpen && (
-                    <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                      {gateways.map((opt) => (
-                        <div
-                          key={opt}
-                          className={`px-10 py-3 text-sm transition-colors hover:bg-brand-primary/5 hover:text-brand-primary cursor-pointer ${gateway === opt ? "bg-brand-primary/10 text-brand-primary font-bold" : "text-gray-600"}`}
-                          onClick={() => {
-                            setGateway(opt);
-                            setIsGatewayOpen(false);
-                          }}
-                        >
-                          {opt}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  </ListboxButton>
+                  <ListboxOptions className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none py-1">
+                    {gateways.map((opt) => (
+                      <ListboxOption
+                        key={opt}
+                        value={opt}
+                        className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 data-[selected]:bg-emerald-100 data-[selected]:text-emerald-900 data-[selected]:font-semibold"
+                      >
+                        {opt}
+                      </ListboxOption>
+                    ))}
+                  </ListboxOptions>
                 </div>
-
-                {/* Click outside to close */}
-                {isGatewayOpen && (
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setIsGatewayOpen(false)}
-                  />
-                )}
-              </div>
+              </Listbox>
             </div>
 
-            {/* Amount */}
-            <div className="space-y-2">
-              <label className="block text-xs font-medium uppercase tracking-wide text-gray-500">
-                Amount <span className="text-brand-primary normal-case">*</span>
+            {/* Amount & Currency */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-gray-500">
+                Amount <span className="text-emerald-500">*</span>
               </label>
-              <div className="flex">
+              <div className="flex rounded-lg border border-gray-200 focus-within:border-emerald-400 bg-white overflow-visible relative">
                 <input
                   type="number"
                   value={amount}
@@ -280,119 +252,96 @@ export default function MoneyOutPage() {
                   max={5000}
                   step={0.01}
                   placeholder="Enter Amount"
-                  className="w-full border border-gray-200 rounded-l-xl py-4 px-4 focus:outline-none focus:ring-1 focus:ring-brand-primary font-medium text-sm text-gray-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="flex-1 min-w-0 px-3 py-2.5 text-sm text-gray-600 outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none font-bold"
                 />
-                <div className="relative min-w-fit">
-                  <button
-                    type="button"
-                    onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                    className="bg-brand-primary text-white px-4 py-4 rounded-r-xl flex items-center gap-2 font-medium text-sm whitespace-nowrap h-full cursor-pointer"
-                  >
-                    {currency}
-                    <span
-                      className={`transition-transform duration-200 ${isCurrencyOpen ? "rotate-180" : ""}`}
-                    >
+                <Listbox value={currency} onChange={setCurrency}>
+                  <div className="relative flex shrink-0">
+                    <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none rounded-r-lg">
+                      <span>{currency}</span>
                       <IconChevronDown />
-                    </span>
-                  </button>
-
-                  {isCurrencyOpen && (
-                    <div className="absolute top-full right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden min-w-[200px] animate-in fade-in slide-in-from-top-2 duration-200">
+                    </ListboxButton>
+                    <ListboxOptions className="absolute right-0 z-50 mt-10 w-64 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none py-1">
                       {currencies.map((curr) => (
-                        <div
+                        <ListboxOption
                           key={curr}
-                          className={`px-6 py-3 text-sm transition-colors hover:bg-brand-primary/5 hover:text-brand-primary cursor-pointer ${currency === curr ? "bg-brand-primary/10 text-brand-primary font-bold" : "text-gray-600"}`}
-                          onClick={() => {
-                            setCurrency(curr);
-                            setIsCurrencyOpen(false);
-                          }}
+                          value={curr}
+                          className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 data-[selected]:bg-emerald-100 data-[selected]:text-emerald-900 data-[selected]:font-semibold flex items-center gap-2"
                         >
-                          {curr}
-                        </div>
+                          <span>{curr}</span>
+                        </ListboxOption>
                       ))}
-                    </div>
-                  )}
-
-                  {isCurrencyOpen && (
-                    <div
-                      className="fixed inset-0 z-40"
-                      onClick={() => setIsCurrencyOpen(false)}
-                    />
-                  )}
-                </div>
+                    </ListboxOptions>
+                  </div>
+                </Listbox>
               </div>
-              <div className="pt-1 text-right space-y-0.5">
-                <p className="text-[#fca04b] font-medium text-sm">
+              <div className="flex flex-col gap-0.5 mt-1">
+                <p className="text-sm text-[#fca04b] font-medium">
                   Available Balance: {availableBalance.toLocaleString()} USD
+                </p>
+                <p className="text-sm text-[#fca04b] font-medium">
+                  Limit: 1.00 – 5,000.00 USD
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Moved Limit Info Here */}
-          <div className="mt-24 mb-4 text-left">
-            <p className="text-[#fca04b] font-medium text-sm">
-              Limit: 1.00 – 5,000.00 USD
-            </p>
+            <button
+              type="button"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors mt-auto bg-[#10b981] hover:bg-[#059669]"
+            >
+              Money Out
+            </button>
           </div>
-
-          <button
-            type="button"
-            className="w-full bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-4 rounded-xl transition-all text-lg shadow-md shadow-brand-primary/10 flex items-center justify-center gap-2 cursor-pointer"
-          >
-            Money Out
-          </button>
         </div>
 
         {/* Right: Summary */}
-        <div className="w-full lg:w-1/2 bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 h-fit">
-          <p className="text-xs font-medium uppercase tracking-widest text-gray-400 mb-2">
+        <div
+          className={`w-full lg:w-1/2 ${card}`}
+          style={{
+            background: "#f0faf5",
+            border: "0.5px solid #a7dfbf",
+          }}
+        >
+          <p className="text-sm font-medium tracking-widest text-gray-400 pb-1.5 border-b border-[#f3f4f6]">
             Summary
           </p>
 
-          <div className="divide-y divide-gray-50">
-            {summaryRows.map(
-              ({ icon, label, value, iconWrapClass, valueClass }) => (
-                <div
-                  key={label}
-                  className="flex items-center justify-between py-5 border-b border-gray-50 last:border-0"
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center ${iconWrapClass}`}
-                    >
-                      {icon}
-                    </div>
-                    <span className="text-gray-600 font-medium text-sm">
-                      {label}
-                    </span>
-                  </div>
-                  <span className={`font-medium text-base ${valueClass}`}>
-                    {value}
-                  </span>
+          {summaryRows.map(({ icon, label, value }) => (
+            <div
+              key={label}
+              className="flex items-center justify-between py-1.5 border-b border-[#f3f4f6]"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#e1f5ee] text-[#0f6e56]">
+                  {icon}
                 </div>
-              ),
-            )}
+                <span className="text-sm text-gray-500">{label}</span>
+              </div>
+              <span className="text-sm font-medium text-gray-700">{value}</span>
+            </div>
+          ))}
 
-            {/* Total payable — simple row */}
-            <div className="flex items-center justify-between py-5 pt-8">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-700">
+          {/* Total */}
+          <div className="flex items-center justify-between px-3 py-2 rounded-lg mt-1 bg-[#f0faf5]">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#10b981]">
+                <span className="text-white flex items-center">
                   <IconTotal />
-                </div>
-                <span className="text-gray-600 font-medium text-sm">
-                  Total Payable Amount
                 </span>
               </div>
-              <span className="text-gray-600 font-medium text-lg">
-                {totalPayable.toFixed(2)} USD
+              <span className="text-sm font-medium text-[#0d3d24]">
+                Total Payable Amount
               </span>
             </div>
+            <span className="text-base font-medium text-[#0d3d24]">
+              {totalPayable.toFixed(2)} USD
+            </span>
           </div>
         </div>
       </div>
-      {/* money out log table */}
-      <MoneyOutLog />
+
+      <div className="grid grid-cols-1 gap-8 mt-16">
+        <MoneyOutLog />
+      </div>
     </div>
   );
 }

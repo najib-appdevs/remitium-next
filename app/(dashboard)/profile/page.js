@@ -1,234 +1,278 @@
 "use client";
 
-import { ChevronDown, EyeOff, Mail, Upload } from "lucide-react";
+import {
+  ChevronDown,
+  Eye,
+  EyeOff,
+  Lock,
+  Trash2,
+  Upload,
+  User,
+} from "lucide-react";
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 import Image from "next/image";
+import { useState } from "react";
+
+const countriesList = [
+  { name: "Bangladesh", phoneCode: "+880" },
+  { name: "United States", phoneCode: "+1" },
+  { name: "United Kingdom", phoneCode: "+44" },
+];
 
 export default function ProfilePage() {
-  return (
-    <div className="w-full space-y-8">
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* LEFT COLUMN: Header + Profile Info (50%) */}
-        <div className="w-full lg:w-1/2 space-y-6">
-          {/* PAGE HEADER (Outside the white card) */}
-          <div className="flex justify-between items-center px-1">
-            <h1 className="text-2xl font-bold text-gray-700">
-              Profile Settings
-            </h1>
-            <button className="cursor-pointer bg-[#dc3545] hover:bg-red-700 text-white px-6 py-2 rounded-sm font-medium transition-colors flex items-center gap-2">
-              Delete Account
-            </button>
-          </div>
+  const [active, setActive] = useState("profile");
+  const [selectedCountry, setSelectedCountry] = useState(countriesList[0]);
 
-          {/* Profile Card */}
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-            {/* Banner & Avatar Section */}
-            <div className="relative">
-              <div className="h-48 w-full bg-[url('/images/bg_img/side-bg.webp')] bg-cover bg-center bg-no-repeat"></div>
-              <div className="px-8 pb-6 flex items-end gap-4 -mt-12 relative z-10">
-                <div className="relative">
-                  <div className="w-24 h-24 rounded-full border-4 border-white bg-gray-200 overflow-hidden shadow-sm">
-                    <Image
-                      src="/images/profile-default.webp"
-                      alt="User"
-                      width={100}
-                      height={100}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <button className="absolute bottom-0 right-0 bg-brand-emerald text-white p-1.5 rounded-full border-2 border-white hover:brightness-95 transition-all">
-                    <Upload size={14} />
-                  </button>
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-white lg:text-[#1a2b3c] drop-shadow-md lg:drop-shadow-none">
-                    appdevs
-                  </h2>
-                  <div className="flex items-center gap-2 text-white lg:text-gray-500 text-sm">
-                    <Mail size={14} />
-                    <span>user@appdevs.net</span>
-                  </div>
-                </div>
+  return (
+    <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-xl shadow-emerald-900/5 bg-white border border-gray-100 min-h-[600px]">
+      {/* ── Sidebar ── */}
+      <aside className="w-full md:w-72 flex-shrink-0 flex flex-col py-8 bg-[#0a2e1c]">
+        <div className="flex flex-col items-center text-center px-6 mb-10">
+          <div className="relative group mb-4">
+            <div className="w-24 h-24 rounded-2xl flex items-center justify-center overflow-hidden border-4 border-[#1a5c38] shadow-lg transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/images/profile-default.webp"
+                alt="User"
+                width={96}
+                height={96}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                <Upload size={20} className="text-white" />
               </div>
             </div>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-lg border-2 border-[#0a2e1c]" />
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-lg font-semibold text-white tracking-tight">
+              appdevs
+            </h2>
+            <p className="text-xs font-medium text-emerald-400/80">
+              user@appdevs.net
+            </p>
+          </div>
+        </div>
 
-            {/* Profile Form */}
-            <div className="p-8 pt-4 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* FIRST NAME */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    First Name*
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue="App"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
-                  />
-                </div>
+        <nav className="flex flex-col gap-2 px-4">
+          <SbBtn
+            icon={<User size={19} />}
+            label="Profile Settings"
+            active={active === "profile"}
+            onClick={() => setActive("profile")}
+          />
+          <SbBtn
+            icon={<Lock size={19} />}
+            label="Security & Password"
+            active={active === "password"}
+            onClick={() => setActive("password")}
+          />
+        </nav>
 
-                {/* LAST NAME */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    Last Name*
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue="Devs"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
-                  />
-                </div>
+        <div className="mx-6 my-6 h-px bg-emerald-900/50" />
 
-                {/* COUNTRY */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    Country*
-                  </label>
-                  <div className="relative">
-                    <select className="w-full p-3 border border-gray-200 rounded-xl outline-none appearance-none focus:border-brand-emerald text-gray-600 font-medium bg-white">
-                      <option>Bangladesh</option>
-                    </select>
-                    <ChevronDown
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-                      size={18}
-                    />
-                  </div>
-                </div>
+        <div className="mt-auto px-4">
+          <SbBtn icon={<Trash2 size={19} />} label="Delete Account" danger />
+        </div>
+      </aside>
 
-                {/* PHONE */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    Phone
-                  </label>
-                  <div className="flex">
-                    <div className="bg-brand-primary text-white px-4 flex items-center justify-center rounded-l-xl font-bold">
-                      +880
+      {/* ── Main Content ── */}
+      <div className="flex-1 flex flex-col min-w-0 bg-gray-50/30">
+        <div className="flex items-center justify-between px-8 py-6 bg-white border-b border-gray-100">
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 tracking-tight">
+              {active === "profile" ? "Account Settings" : "Security Settings"}
+            </h1>
+            <p className="text-sm text-gray-500 mt-0.5">
+              {active === "profile"
+                ? "Manage your public profile and personal information."
+                : "Secure your account by managing your password."}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-8 md:p-10">
+          {/* Profile panel */}
+          {active === "profile" && (
+            <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <PanelLabel>Personal information</PanelLabel>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <Field label="First Name*">
+                  <input type="text" defaultValue="App" className={inp} />
+                </Field>
+                <Field label="Last Name*">
+                  <input type="text" defaultValue="Devs" className={inp} />
+                </Field>
+
+                <Field label="Country*">
+                  <Listbox value={selectedCountry} onChange={setSelectedCountry}>
+                    <div className="relative">
+                      <ListboxButton className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-700 rounded-xl bg-white border border-gray-200 focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer">
+                        <span>{selectedCountry.name}</span>
+                        <ChevronDown size={16} className="text-gray-400" />
+                      </ListboxButton>
+                      <ListboxOptions className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-auto focus:outline-none py-1">
+                        {countriesList.map((country) => (
+                          <ListboxOption
+                            key={country.name}
+                            value={country}
+                            className={({ active, selected }) =>
+                              `relative cursor-pointer select-none py-2.5 px-4 text-sm ${
+                                active
+                                  ? "bg-emerald-50 text-[#10b981] font-bold"
+                                  : selected
+                                    ? "text-emerald-600 font-bold bg-emerald-50/50"
+                                    : "text-gray-700"
+                              }`
+                            }
+                          >
+                            {country.name}
+                          </ListboxOption>
+                        ))}
+                      </ListboxOptions>
                     </div>
+                  </Listbox>
+                </Field>
+                <Field label="Phone Number">
+                  <div className="flex rounded-xl overflow-hidden border border-gray-200 focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/10 transition-all">
+                    <span className="px-4 flex items-center bg-gray-100 text-gray-600 text-sm font-semibold border-r border-gray-200">
+                      {selectedCountry.phoneCode}
+                    </span>
                     <input
                       type="text"
                       defaultValue="1555555555"
-                      className="w-full p-3 border border-gray-200 border-l-0 rounded-r-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
+                      className="flex-1 min-w-0 px-4 py-3 text-sm text-gray-700 outline-none bg-white"
                     />
                   </div>
-                </div>
-
-                {/* ADDRESS */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    Address
-                  </label>
+                </Field>
+                <Field label="Address">
                   <input
                     type="text"
                     defaultValue="Dhaka, Bangladesh"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
+                    className={inp}
                   />
-                </div>
-
-                {/* CITY */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    City
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue="Dhaka"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
-                  />
-                </div>
-
-                {/* STATE */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    State
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue="Dhaka"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
-                  />
-                </div>
-
-                {/* ZIP CODE */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-600 tracking-wider">
-                    Zip Code
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue="1245"
-                    className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600 font-medium"
-                  />
-                </div>
+                </Field>
+                <Field label="City">
+                  <input type="text" defaultValue="Dhaka" className={inp} />
+                </Field>
+                <Field label="State">
+                  <input type="text" defaultValue="Dhaka" className={inp} />
+                </Field>
+                <Field label="Zip Code">
+                  <input type="text" defaultValue="1245" className={inp} />
+                </Field>
               </div>
 
-              <button className="cursor-pointer w-full py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-primary-hover transition-all shadow-lg shadow-emerald-500/20">
-                Update Profile
-              </button>
+              <div className="mt-10 flex justify-center">
+                <button className="cursor-pointer px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 active:scale-95">
+                  Save Changes
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Password panel */}
+          {active === "password" && (
+            <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <PanelLabel>Security information</PanelLabel>
+              <div className="flex flex-col gap-6 mt-6">
+                <PwField
+                  label="Current Password*"
+                  placeholder="Enter current password"
+                />
+                <PwField
+                  label="New Password*"
+                  placeholder="Create a strong password"
+                />
+                <PwField
+                  label="Confirm Password*"
+                  placeholder="Repeat new password"
+                />
+              </div>
+              <div className="mt-10 flex justify-center">
+                <button className="cursor-pointer px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 active:scale-95">
+                  Update Password
+                </button>
+              </div>
+            </div>
+          )}
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* RIGHT COLUMN: Change Password (50%) */}
-        <div className="w-full lg:w-1/2 space-y-6">
-          <h1 className="text-2xl font-bold text-gray-700 px-1">
-            Change Password
-          </h1>
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-600 tracking-wider">
-                Current Password*
-              </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  placeholder="Current Password"
-                  className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600"
-                />
-                <EyeOff
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
-                  size={18}
-                />
-              </div>
-            </div>
+const inp =
+  "w-full px-4 py-3 text-sm text-gray-700 rounded-xl outline-none bg-white border border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-400";
 
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-600 tracking-wider">
-                New Password*
-              </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600"
-                />
-                <EyeOff
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
-                  size={18}
-                />
-              </div>
-            </div>
+function SbBtn({ icon, label, active = false, danger = false, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-200 group relative cursor-pointer
+        ${
+          active
+            ? "bg-emerald-500 text-white shadow-lg shadow-emerald-900/20"
+            : danger
+              ? "text-red-400 hover:bg-red-500/10"
+              : "text-emerald-100/60 hover:text-white hover:bg-white/5"
+        }`}
+    >
+      <span
+        className={`${active ? "text-white" : danger ? "text-red-400" : "text-emerald-400"} transition-colors`}
+      >
+        {icon}
+      </span>
+      {label}
+      {active && (
+        <span className="absolute right-3 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+      )}
+    </button>
+  );
+}
 
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-600 tracking-wider">
-                Confirm Password*
-              </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-brand-emerald text-gray-600"
-                />
-                <EyeOff
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
-                  size={18}
-                />
-              </div>
-            </div>
+function PanelLabel({ children }) {
+  return (
+    <div className="flex items-center gap-4">
+      <p className="text-xs font-bold uppercase tracking-widest text-emerald-600/80 shrink-0">
+        {children}
+      </p>
+      <div className="h-px w-full bg-gray-100" />
+    </div>
+  );
+}
 
-            <button className="cursor-pointer w-full py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-primary-hover transition-all shadow-lg shadow-emerald-500/20">
-              Change Password
-            </button>
-          </div>
-        </div>
+function Field({ label, children }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="text-[13px] font-semibold text-gray-700 ml-1">
+        {label}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function PwField({ label, placeholder }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="text-[13px] font-semibold text-gray-700 ml-1">
+        {label}
+      </label>
+      <div className="relative">
+        <input
+          type={show ? "text" : "password"}
+          placeholder={placeholder}
+          className={inp + " pr-12"}
+        />
+        <button
+          type="button"
+          onClick={() => setShow(!show)}
+          className="cursor-pointer absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-500 transition-colors p-1"
+        >
+          {show ? <Eye size={18} /> : <EyeOff size={18} />}
+        </button>
       </div>
     </div>
   );
