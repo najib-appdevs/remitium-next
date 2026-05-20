@@ -6,9 +6,9 @@
     "downloadApp": "تحميل التطبيق",
     "contact": "اتصل بنا",
     "login": "تسجيل الدخول",
-    "english": "الإنجليزية",
+    "english": "English",
     "arabic": "العربية",
-    "spanish": "الإسبانية"
+    "spanish": "Español"
   },
   "Hero": {
     "badge": "الطريقة المميزة لتحويل الأموال عالميًا",
@@ -188,6 +188,446 @@
     "rememberedYourPassword": "هل تذكرت كلمة المرور؟",
     "backToSignIn": "العودة إلى تسجيل الدخول"
   },
+  "DashboardPage": {
+    "myWallets": "محافظي",
+    "viewMore": "عرض المزيد",
+    "unitedStates": "الولايات المتحدة",
+    "unitedKingdom": "المملكة المتحدة",
+    "europeanUnion": "الاتحاد الأوروبي",
+    "japan": "اليابان",
+    "canada": "كندا",
+    "australia": "أستراليا",
+    "india": "الهند",
+    "bangladesh": "بنغلاديش"
+  },
+  "DashboardNavbar": {
+    "dashboard": "لوحة التحكم",
+    "profileAlt": "صورة الملف الشخصي",
+    "routes": {
+      "overview": "نظرة عامة",
+      "add-money": "إضافة أموال",
+      "cardyfie-virtual-card": "بطاقة كارديفاي الافتراضية",
+      "money-out": "سحب أموال",
+      "profile": "الملف الشخصي",
+      "recipient": "المستلم",
+      "send-remittance": "إرسال حوالة",
+      "settings": "الإعدادات",
+      "transaction": "المعاملة",
+      "2FA-Security": "الأمان ثنائي العامل 2FA",
+      "KYC-verification": "التحقق من الهوية KYC"
+    }
+  },
+  "TransactionSummary": {
+    "title": "ملخص المعاملات",
+    "sendRemittance": "إرسال حوالة",
+    "moneyOut": "سحب أموال",
+    "all": "الكل",
+    "months": {
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    }
+  },
+  "AddMoneyStatistics": {
+    "title": "إحصائيات إضافة الأموال",
+    "amount": "المبلغ",
+    "overview": "نظرة عامة على إضافة الأموال",
+    "months": {
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    }
+  },
+  "AddMoney": {
+    "title": "إضافة أموال",
+    "exchangeRate": "سعر الصرف",
+    "paymentGateway": "بوابة الدفع",
+    "amountCurrency": "المبلغ والعملة",
+    "enterAmountPlaceholder": "أدخل المبلغ",
+    "availableBalance": "الرصيد المتاح: {balance} دولار أمريكي",
+    "limit": "الحد: {min} – {max} دولار أمريكي",
+    "summary": "الملخص",
+    "enteredAmount": "المبلغ المدخل",
+    "totalFeesCharges": "إجمالي الرسوم والمصاريف",
+    "willGet": "ستحصل على",
+    "totalPayableAmount": "إجمالي المبلغ المستحق الدفع",
+    "logsTitle": "سجلات إضافة الأموال",
+    "viewMore": "عرض المزيد",
+    "noRecords": "لا توجد سجلات بعد",
+    "addBalanceVia": "إضافة رصيد عبر {gateway}",
+    "gateways": {
+      "paypal": "بايبال بالدولار الأمريكي (Paypal USD)",
+      "stripe": "سترايب بالدولار الأمريكي (Stripe USD)"
+    },
+    "currencies": {
+      "usd": "الولايات المتحدة (USD)",
+      "eur": "الاتحاد الأوروبي (EUR)",
+      "gbp": "المملكة المتحدة (GBP)"
+    },
+    "status": {
+      "completed": "مكتمل",
+      "pending": "قيد الانتظار",
+      "failed": "فاشل"
+    },
+    "headers": {
+      "title": "العنوان",
+      "transactionId": "رقم المعاملة",
+      "exchangeRate": "سعر الصرف",
+      "amount": "المبلغ",
+      "feesCharges": "الرسوم والمصاريف",
+      "willGet": "ستحصل على",
+      "payableAmount": "المبلغ المستحق الدفع",
+      "status": "الحالة"
+    }
+  },
+  "SendRemittance": {
+    "title": "إرسال حوالة",
+    "exchangeRate": "سعر الصرف",
+    "youSend": "أنت ترسل",
+    "theyGet": "يحصلون على",
+    "transactionMethod": "طريقة المعاملة",
+    "continue": "متابعة",
+    "summary": "الملخص",
+    "sendingAmount": "مبلغ الإرسال",
+    "limit": "الحد",
+    "totalFeesCharges": "إجمالي الرسوم والمصاريف",
+    "willGet": "ستحصل على",
+    "totalPayableAmount": "إجمالي المبلغ المستحق الدفع",
+    "logsTitle": "سجلات إرسال الحوالات",
+    "viewMore": "عرض المزيد",
+    "detailedReceipt": "إيصال مفصل",
+    "basicInformation": "معلومات أساسية",
+    "recipientDestination": "جهة تحويل المستلم",
+    "pricingSettlement": "الأسعار والتسوية",
+    "close": "إغلاق",
+    "repeatTransaction": "تكرار المعاملة",
+    "sendRemittanceTo": "إرسال حوالة إلى {name}",
+    "paymentMethodWallet": "المحفظة (الولايات المتحدة - دولار أمريكي)",
+    "status": {
+      "success": "ناجح",
+      "pending": "قيد الانتظار",
+      "failed": "فاشل"
+    },
+    "methods": {
+      "bankTransfer": "تحويل بنكي",
+      "walletTransfer": "تحويل المحفظة",
+      "mobileWallet": "محفظة الهاتف المحمول"
+    },
+    "countries": {
+      "us": "الولايات المتحدة",
+      "gb": "المملكة المتحدة",
+      "eu": "الاتحاد الأوروبي",
+      "ng": "نيجيريا",
+      "gh": "غانا",
+      "ke": "كينيا"
+    },
+    "purposes": {
+      "family": "عائلة",
+      "familySupport": "دعم الأسرة",
+      "education": "تعليم"
+    },
+    "sources": {
+      "business": "أعمال",
+      "salary": "راتب",
+      "savings": "مدخرات"
+    },
+    "headers": {
+      "remittanceTitle": "عنوان الحوالة",
+      "totalAmount": "المبلغ الإجمالي",
+      "transactionId": "رقم المعاملة",
+      "status": "الحالة",
+      "method": "الطريقة",
+      "amount": "المبلغ",
+      "exchangeRate": "سعر الصرف",
+      "action": "الإجراء"
+    },
+    "modalFields": {
+      "transactionId": "رقم المعاملة",
+      "status": "الحالة",
+      "method": "الطريقة",
+      "sendingPurpose": "الغرض من الإرسال",
+      "sourceOfFunds": "مصدر الأموال",
+      "mobileMethodName": "اسم طريقة الهاتف المحمول",
+      "mobileMethodNumber": "رقم طريقة الهاتف المحمول",
+      "phoneSuffix": "لاحقة الهاتف",
+      "amount": "المبلغ",
+      "exchangeRate": "سعر الصرف",
+      "feesCharges": "الرسوم والمصاريف",
+      "paymentMethod": "طريقة الدفع",
+      "willGetAmount": "مبلغ الاستلام"
+    }
+  },
+  "MoneyOut": {
+    "title": "سحب أموال",
+    "exchangeRate": "سعر الصرف",
+    "paymentGateway": "بوابة الدفع",
+    "amount": "المبلغ",
+    "enterAmountPlaceholder": "أدخل المبلغ",
+    "availableBalance": "الرصيد المتاح: {balance} دولار أمريكي",
+    "limit": "الحد: {min} – {max} دولار أمريكي",
+    "moneyOutBtn": "سحب أموال",
+    "summary": "الملخص",
+    "enteredAmount": "المبلغ المدخل",
+    "totalFeesCharges": "إجمالي الرسوم والمصاريف",
+    "willGet": "ستحصل على",
+    "totalPayableAmount": "إجمالي المبلغ المستحق الدفع",
+    "logsTitle": "سجلات سحب الأموال",
+    "viewMore": "عرض المزيد",
+    "noRecords": "لا توجد سجلات بعد",
+    "moneyOutVia": "سحب أموال عبر {gateway}",
+    "gateways": {
+      "paypal": "بايبال بالدولار الأمريكي (Paypal USD)",
+      "stripe": "سترايب بالدولار الأمريكي (Stripe USD)",
+      "adpay": "إيه دي باي بالدولار الأمريكي (ADPay USD)"
+    },
+    "currencies": {
+      "usd": "الولايات المتحدة (USD)",
+      "eur": "الاتحاد الأوروبي (EUR)",
+      "gbp": "المملكة المتحدة (GBP)"
+    },
+    "status": {
+      "completed": "مكتمل",
+      "pending": "قيد الانتظار",
+      "failed": "فاشل"
+    },
+    "headers": {
+      "title": "العنوان",
+      "transactionId": "رقم المعاملة",
+      "exchangeRate": "سعر الصرف",
+      "amount": "المبلغ",
+      "feesCharges": "الرسوم والمصاريف",
+      "willGet": "ستحصل على",
+      "payableAmount": "المبلغ المستحق الدفع",
+      "status": "الحالة"
+    }
+  },
+  "TransactionsLog": {
+    "title": "سجل المعاملات",
+    "viewMore": "عرض المزيد",
+    "details": "التفاصيل",
+    "detailedReceipt": "إيصال مفصل",
+    "totalPayableAmount": "إجمالي المبلغ المستحق الدفع",
+    "basicInformation": "معلومات أساسية",
+    "recipientDestination": "جهة تحويل المستلم",
+    "phoneSuffix": "لاحقة الهاتف",
+    "pricingSettlement": "الأسعار والتسوية",
+    "close": "إغلاق",
+    "repeatTransaction": "تكرار المعاملة",
+    "sendRemittanceTo": "إرسال حوالة إلى {name}",
+    "paymentMethodWallet": "المحفظة (الولايات المتحدة - دولار أمريكي)",
+    "statusSuccess": "ناجح",
+    "statusPending": "قيد الانتظار",
+    "willGetAmount": "سيحصل عليه",
+    "headers": {
+      "remittanceTitle": "عنوان الحوالة",
+      "totalAmount": "المبلغ الإجمالي",
+      "transactionId": "رقم المعاملة",
+      "status": "الحالة",
+      "method": "الطريقة",
+      "amount": "المبلغ",
+      "exchangeRate": "سعر الصرف",
+      "action": "الإجراء"
+    },
+    "methods": {
+      "mobileWallet": "محفظة الهاتف المحمول",
+      "bankTransfer": "تحويل بنكي"
+    },
+    "purposes": {
+      "family": "عائلة",
+      "familySupport": "دعم الأسرة",
+      "education": "تعليم"
+    },
+    "sources": {
+      "business": "أعمال",
+      "salary": "راتب",
+      "savings": "مدخرات"
+    },
+    "modalFields": {
+      "sendingPurpose": "الغرض من الإرسال",
+      "sourceOfFunds": "مصدر الأموال",
+      "mobileMethodName": "اسم طريقة الهاتف المحمول",
+      "mobileMethodNumber": "رقم طريقة الهاتف المحمول",
+      "feesCharges": "الرسوم والمصاريف",
+      "paymentMethod": "طريقة الدفع"
+    }
+  },
+  "Profile": {
+    "userAvatarAlt": "الصورة الشخصية للمستخدم",
+    "profileSettingsTab": "إعدادات الملف الشخصي",
+    "securityPasswordTab": "الأمان وكلمة المرور",
+    "deleteAccountTab": "حذف الحساب",
+    "accountSettingsHeading": "إعدادات الحساب",
+    "securitySettingsHeading": "إعدادات الأمان",
+    "accountSettingsSub": "إدارة ملفك الشخصي العام ومعلوماتك الشخصية.",
+    "securitySettingsSub": "احمِ حسابك من خلال إدارة كلمة المرور الخاصة بك.",
+    "personalInfoLabel": "المعلومات الشخصية",
+    "firstNameField": "الاسم الأول*",
+    "lastNameField": "اسم العائلة*",
+    "countryField": "البلد*",
+    "phoneField": "رقم الهاتف",
+    "addressField": "العنوان",
+    "cityField": "المدينة",
+    "stateField": "الولاية / المحافظة",
+    "zipField": "الرمز البريدي",
+    "saveBtn": "حفظ التغييرات",
+    "securityInfoLabel": "معلومات الأمان",
+    "currentPasswordLabel": "كلمة المرور الحالية*",
+    "currentPasswordPlaceholder": "أدخل كلمة المرور الحالية",
+    "newPasswordLabel": "كلمة المرور الجديدة*",
+    "newPasswordPlaceholder": "أنشئ كلمة مرور قوية",
+    "confirmPasswordLabel": "تأكيد كلمة المرور*",
+    "confirmPasswordPlaceholder": "كرر كلمة المرور الجديدة",
+    "updatePasswordBtn": "تحديث كلمة المرور"
+  },
+  "TwoFactor": {
+    "twoFactorTitle": "المصادقة الثنائية",
+    "addressLabel": "العنوان",
+    "qrAlt": "رمز الاستجابة السريعة (QR)",
+    "enableBtn": "تفعيل",
+    "googleAuthTitle": "أداة مصادقة جوجل",
+    "downloadAppTitle": "تنزيل تطبيق مصادقة جوجل (Google Authenticator)",
+    "securityDescription": "تضيف أداة مصادقة جوجل طبقة أمان إضافية لحساباتك عبر الإنترنت من خلال إضافة خطوة تحقق ثانية عند تسجيل الدخول. وهذا يعني أنه بالإضافة إلى كلمة المرور الخاصة بك، ستحتاج أيضاً إلى إدخال رمز يتم إنشاؤه بواسطة تطبيق مصادقة جوجل على هاتفك.",
+    "howToSetupLink": "كيفية الإعداد؟",
+    "googleAuthAlt": "شعار مصادقة جوجل",
+    "downloadAndroidBtn": "تنزيل لأجهزة أندرويد",
+    "downloadIosBtn": "تنزيل لأجهزة آيفون (iOS)"
+  },
+  "KYC": {
+    "proofOfIdentity": "إثبات الهوية",
+    "kycInformation": "معلومات KYC",
+    "statusVerified": "تم التحقق",
+    "verifiedDescription": "تم التحقق من معلومات KYC الخاصة بك بنجاح"
+  },
+  "VirtualCard": {
+    "title": "البطاقات الافتراضية",
+    "btnCreate": "إنشاء بطاقة",
+    "identityTypes": {
+      "nid": "بطاقة الهوية الوطنية (NID)",
+      "passport": "جواز السفر",
+      "bvn": "رقم التحقق البنكي (BVV)"
+    },
+    "countries": {
+      "bangladesh": "بغلاديش",
+      "usa": "الولايات المتحدة",
+      "uk": "المملكة المتحدة",
+      "canada": "كندا",
+      "australia": "أستراليا"
+    },
+    "card": {
+      "badge": "بطاقة افتراضية",
+      "brandName": "Cardyfie",
+      "holderLabel": "حامل البطاقة",
+      "expiryLabel": "تاريخ الانتهاء",
+      "cvvLabel": "رمز الأمان (CVV)",
+      "accountTag": "حساب البطاقة",
+      "balanceLabel": "الرصيد",
+      "description": "تسوق آمن مع إمكانيات التجميد الفوري والتمويل التلقائي من محفظتك الأساسية.",
+      "activeStatus": "نشطة",
+      "frozenStatus": "مجمدة",
+      "btnFreeze": "تجميد البطاقة",
+      "btnUnfreeze": "إلغاء تجميد البطاقة",
+      "btnDelete": "حذف البطاقة"
+    },
+    "empty": {
+      "title": "لا توجد بطاقات افتراضية نشطة",
+      "description": "أنشئ بطاقة افتراضية آمنة لاشتراكاتك عبر الإنترنت والتسوق الآمن مع ميزات التجميد الفوري.",
+      "btnAction": "أنشئ بطاقتك الأولى"
+    },
+    "transactions": {
+      "title": "المعاملات الأخيرة",
+      "btnViewMore": "عرض المزيد",
+      "thType": "النوع",
+      "thId": "رقم المعاملة",
+      "thReqAmount": "المبلغ المطلوب",
+      "thFees": "الرسوم والمصاريف",
+      "thTotal": "المبلغ الإجمالي",
+      "thStatus": "الحالة"
+    },
+    "transactionTypes": {
+      "cardFund": "تمويل البطاقة",
+      "bankTransfer": "تحويل بنكي",
+      "mobileRecharge": "شحن رصيد الهاتف",
+      "walletTopUp": "شحن المحفظة",
+      "utilityPayment": "دفع الفواتير الخدمية"
+    },
+    "modal": {
+      "headerTitle": "إنشاء بطاقة افتراضية",
+      "section1Title": "١. المعلومات الشخصية",
+      "labelFirstName": "الاسم الأول*",
+      "placeholderFirstName": "أدخل الاسم الأول",
+      "labelLastName": "اسم العائلة*",
+      "placeholderLastName": "أدخل اسم العائلة",
+      "labelEmail": "البريد الإلكتروني*",
+      "placeholderEmail": "أدخل البريد الإلكتروني",
+      "labelDob": "تاريخ الميلاد*",
+      "labelDobHint": "(يجب أن يتطابق مع هويتك)",
+      "section2Title": "٢. التحقق من الهوية",
+      "labelIdentityType": "نوع الهوية*",
+      "labelIdentityNumber": "رقم الهوية*",
+      "placeholderIdentityNumber": "أدخل رقم الهوية",
+      "labelUploadFront": "صورة بطاقة الهوية (الوجه الأمامي)*",
+      "uploadFrontPlaceholder": "رفع الوجه الأمامي",
+      "labelUploadBack": "صورة بطاقة الهوية (الوجه الخلفي)*",
+      "uploadBackPlaceholder": "رفع الوجه الخلفي",
+      "labelUploadUserPhoto": "صورتك الشخصية*",
+      "uploadUserPhotoPlaceholder": "رفع صورتك الشخصية",
+      "section3Title": "٣. معلومات العنوان",
+      "labelHouseNumber": "رقم المنزل*",
+      "placeholderHouseNumber": "أدخل رقم المنزل",
+      "labelCountry": "البلد*",
+      "labelCity": "المدينة*",
+      "placeholderCity": "أدخل المدينة",
+      "labelState": "الولاية/المحافظة*",
+      "placeholderState": "أدخل الولاية/المحافظة",
+      "labelZipCode": "الرمز البريدي*",
+      "placeholderZipCode": "أدخل الرمز",
+      "labelAddress": "العنوان*",
+      "placeholderAddress": "أدخل العنوان السكني الكامل",
+      "btnSubmit": "إرسال"
+    }
+  },
+  "RemittanceLog": {
+    "title": "جميع سجلات المعاملات",
+    "searchPlaceholder": "البحث عن المعاملات...",
+    "noRecords": "لم يتم العثور على سجلات معاملات تطابق بحثك.",
+    "btnRepeat": "إعادة العملية",
+    "paginationPrev": "الصفحة السابقة",
+    "paginationNext": "الصفحة التالية",
+    "tableHeaders": {
+      "recipient": "المستلم",
+      "transactionId": "رقم المعاملة",
+      "method": "الطريقة",
+      "methodName": "اسم الطريقة",
+      "numberPhone": "الرقم/الهاتف",
+      "purpose": "الغرض",
+      "source": "المصدر",
+      "amount": "المبلغ",
+      "fees": "الرسوم",
+      "totalPayable": "إجمالي المستحق",
+      "exchangeRate": "سعر الصرف",
+      "willGet": "سيحصل على",
+      "status": "الحالة",
+      "action": "الإجراء"
+    }
+  },
   "Footer": {
     "headingPart1": "صياغة مستقبل",
     "headingHighlight": "السيولة العالمية.",
@@ -215,5 +655,32 @@
     "companyAddress": "bakedwith GmbH · برلين · أوروبا",
     "privacyPolicy": "سياسة الخصوصية",
     "legalNotice": "إشعار قانوني"
+  },
+  "Sidebar": {
+    "groups": {
+      "general": "عام",
+      "payments": "المدفوعات والتحويلات",
+      "finance": "المالية",
+      "accountManagement": "إدارة الحساب"
+    },
+    "menu": {
+      "dashboard": "لوحة القيادة",
+      "addMoney": "إضافة أموال",
+      "recipient": "المستلم",
+      "sendRemittance": "إرسال حوالة",
+      "moneyOut": "سحب أموال",
+      "virtualCard": "بطاقة افتراضية",
+      "transaction": "المعاملات",
+      "settings": "الإعدادات",
+      "profile": "الملف الشخصي",
+      "security2fa": "أمان 2FA",
+      "kyc": "التحقق من الهوية (KYC)",
+      "logout": "تسجيل الخروج"
+    },
+    "helpCenter": {
+      "title": "مركز المساعدة",
+      "sub": "كيف يمكننا مساعدتك؟",
+      "btn": "الحصول على الدعم"
+    }
   }
 }

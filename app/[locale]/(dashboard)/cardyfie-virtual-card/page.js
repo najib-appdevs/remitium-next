@@ -16,18 +16,9 @@ import {
   Zap,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
-const identityTypes = ["Passport", "National ID Card", "Driving License"];
-
-const countriesList = [
-  "Bangladesh",
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-];
-
-// ─── Status Badge ─────────────────────────────────────────────────────────────
+// Status Badge
 function StatusBadge({ status }) {
   return (
     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 text-[11px] font-bold">
@@ -37,103 +28,92 @@ function StatusBadge({ status }) {
   );
 }
 
-const TRANSACTIONS = [
-  {
-    id: 1,
-    type: "Card Fund",
-    status: "Success",
-    totalAmount: "6.05 USD",
-    transactionId: "CF18278982",
-    requestAmount: "5.00 USD",
-    fees: "1.05 USD",
-  },
-  {
-    id: 2,
-    type: "Bank Transfer",
-    status: "Success",
-    totalAmount: "12.50 USD",
-    transactionId: "BT92837465",
-    requestAmount: "10.00 USD",
-    fees: "2.50 USD",
-  },
-  {
-    id: 3,
-    type: "Mobile Recharge",
-    status: "Success",
-    totalAmount: "15.75 USD",
-    transactionId: "MR56473829",
-    requestAmount: "15.00 USD",
-    fees: "0.75 USD",
-  },
-  {
-    id: 4,
-    type: "Wallet Top-up",
-    status: "Success",
-    totalAmount: "25.30 USD",
-    transactionId: "WT83726194",
-    requestAmount: "24.00 USD",
-    fees: "1.30 USD",
-  },
-  {
-    id: 5,
-    type: "Utility Payment",
-    status: "Success",
-    totalAmount: "40.00 USD",
-    transactionId: "UP19283746",
-    requestAmount: "38.50 USD",
-    fees: "1.50 USD",
-  },
-  {
-    id: 6,
-    type: "Crypto Purchase",
-    status: "Success",
-    totalAmount: "102.99 USD",
-    transactionId: "CP66554433",
-    requestAmount: "100.00 USD",
-    fees: "2.99 USD",
-  },
-  {
-    id: 7,
-    type: "Subscription",
-    status: "Success",
-    totalAmount: "9.99 USD",
-    transactionId: "SB11223344",
-    requestAmount: "8.99 USD",
-    fees: "1.00 USD",
-  },
-  {
-    id: 8,
-    type: "Cash Out",
-    status: "Success",
-    totalAmount: "55.20 USD",
-    transactionId: "CO77889911",
-    requestAmount: "53.00 USD",
-    fees: "2.20 USD",
-  },
-];
-
 const TH_CLASSES =
-  "px-4 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 whitespace-nowrap";
+  "px-4 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 whitespace-nowrap text-start";
 const TD_CLASSES =
-  "px-4 py-4 text-[12px] text-slate-600 border-b border-gray-50 whitespace-nowrap";
+  "px-4 py-4 text-[12px] text-slate-600 border-b border-gray-50 whitespace-nowrap text-start";
 
 export default function VirtualCardPage() {
+  const t = useTranslations("VirtualCard");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasActiveCard, setHasActiveCard] = useState(false);
   const [createdCardData, setCreatedCardData] = useState(null);
+
+  // Dynamic localization arrays derived from your translation bundles
+  const identityTypes = [
+    t("identityTypes.nid"),
+    t("identityTypes.passport"),
+    t("identityTypes.bvn"),
+  ];
+
+  const countriesList = [
+    t("countries.bangladesh"),
+    t("countries.usa"),
+    t("countries.uk"),
+    t("countries.canada"),
+    t("countries.australia"),
+  ];
+
+  const TRANSACTIONS = [
+    {
+      id: 1,
+      type: t("transactionTypes.cardFund"),
+      status: t("card.activeStatus"),
+      totalAmount: "6.05 USD",
+      transactionId: "CF18278982",
+      requestAmount: "5.00 USD",
+      fees: "1.05 USD",
+    },
+    {
+      id: 2,
+      type: t("transactionTypes.bankTransfer"),
+      status: t("card.activeStatus"),
+      totalAmount: "12.50 USD",
+      transactionId: "BT92837465",
+      requestAmount: "10.00 USD",
+      fees: "2.50 USD",
+    },
+    {
+      id: 3,
+      type: t("transactionTypes.mobileRecharge"),
+      status: t("card.activeStatus"),
+      totalAmount: "15.75 USD",
+      transactionId: "MR56473829",
+      requestAmount: "15.00 USD",
+      fees: "0.75 USD",
+    },
+    {
+      id: 4,
+      type: t("transactionTypes.walletTopUp"),
+      status: t("card.activeStatus"),
+      totalAmount: "25.30 USD",
+      transactionId: "WT83726194",
+      requestAmount: "24.00 USD",
+      fees: "1.30 USD",
+    },
+    {
+      id: 5,
+      type: t("transactionTypes.utilityPayment"),
+      status: t("card.activeStatus"),
+      totalAmount: "40.00 USD",
+      transactionId: "UP19283746",
+      requestAmount: "38.50 USD",
+      fees: "1.50 USD",
+    },
+  ];
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     dob: "",
-    identityType: "Passport",
+    identityType: t("identityTypes.passport"),
     identityNumber: "",
     idFront: null,
     idBack: null,
     yourPhoto: null,
     houseNumber: "",
-    country: "Bangladesh",
+    country: t("countries.bangladesh"),
     city: "",
     state: "",
     zipCode: "",
@@ -168,23 +148,23 @@ export default function VirtualCardPage() {
       expiry: "12/31",
       cvv: "382",
       balance: "0.00 USD",
-      status: "Active",
+      status: t("card.activeStatus"),
     });
     setIsModalOpen(false);
   };
 
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full space-y-8 text-start">
       {/* Page Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-700">Virtual Cards</h1>
+        <h1 className="text-2xl font-bold text-gray-700">{t("title")}</h1>
         {!hasActiveCard && (
           <button
             onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary-hover text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 active:scale-95 cursor-pointer"
           >
             <Plus size={18} fill="currentColor" />
-            Create Card
+            {t("btnCreate")}
           </button>
         )}
       </div>
@@ -194,18 +174,17 @@ export default function VirtualCardPage() {
         {hasActiveCard && createdCardData ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center py-6">
             {/* The Stunning Glassmorphic Card */}
-            <div className="relative w-full max-w-sm h-56 rounded-2xl p-6 text-white overflow-hidden shadow-2xl bg-gradient-to-br from-slate-900 via-emerald-950 to-emerald-900 transition-all duration-300 hover:scale-[1.02]">
-              {/* Card Patterns */}
+            <div className="relative w-full max-w-sm h-56 rounded-2xl p-6 text-white overflow-hidden shadow-2xl bg-gradient-to-br from-slate-900 via-emerald-950 to-emerald-900 transition-all duration-300 hover:scale-[1.02] ltr:mr-auto rtl:ml-auto">
               <div className="absolute right-0 bottom-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
               <div className="absolute left-0 top-0 w-32 h-32 bg-teal-500/10 rounded-full blur-xl pointer-events-none" />
 
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">
-                    Virtual Card
+                    {t("card.badge")}
                   </p>
                   <h3 className="text-lg font-black tracking-wide text-white mt-0.5">
-                    Cardyfie
+                    {t("card.brandName")}
                   </h3>
                 </div>
                 <div className="bg-emerald-500/20 px-2.5 py-1 rounded-md border border-emerald-400/20 text-xs font-bold text-emerald-400">
@@ -215,7 +194,7 @@ export default function VirtualCardPage() {
 
               {/* Card Number */}
               <div className="mb-6">
-                <span className="text-xl  tracking-widest text-white/90">
+                <span className="text-xl tracking-widest text-white/90">
                   {createdCardData.number}
                 </span>
               </div>
@@ -223,7 +202,7 @@ export default function VirtualCardPage() {
               <div className="flex justify-between items-end">
                 <div>
                   <p className="text-[9px] text-emerald-400/80 uppercase tracking-wider mb-0.5">
-                    Card Holder
+                    {t("card.holderLabel")}
                   </p>
                   <span className="text-sm font-bold tracking-wide">
                     {createdCardData.name}
@@ -232,15 +211,13 @@ export default function VirtualCardPage() {
                 <div className="flex gap-4">
                   <div>
                     <p className="text-[9px] text-emerald-400/80 uppercase tracking-wider mb-0.5">
-                      Expiry
+                      {t("card.expiryLabel")}
                     </p>
-                    <span className="text-xs font-bold ">
-                      {createdCardData.expiry}
-                    </span>
+                    <span className="text-xs font-bold ">{createdCardData.expiry}</span>
                   </div>
                   <div>
                     <p className="text-[9px] text-emerald-400/80 uppercase tracking-wider mb-0.5">
-                      CVV
+                      {t("card.cvvLabel")}
                     </p>
                     <span className="text-xs font-bold ">•••</span>
                   </div>
@@ -252,14 +229,13 @@ export default function VirtualCardPage() {
             <div className="lg:col-span-2 space-y-6">
               <div>
                 <span className="text-xs text-emerald-600 font-bold uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">
-                  Card Account
+                  {t("card.accountTag")}
                 </span>
                 <h3 className="text-2xl font-black text-gray-800 mt-2">
-                  Balance: {createdCardData.balance}
+                  {t("card.balanceLabel")}: {createdCardData.balance}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Secure shopping with instant freezing and auto-funding from
-                  your primary wallet.
+                  {t("card.description")}
                 </p>
               </div>
 
@@ -268,14 +244,14 @@ export default function VirtualCardPage() {
                   onClick={() => {
                     setCreatedCardData((prev) => ({
                       ...prev,
-                      status: prev.status === "Active" ? "Frozen" : "Active",
+                      status: prev.status === t("card.activeStatus") ? t("card.frozenStatus") : t("card.activeStatus"),
                     }));
                   }}
                   className="px-6 py-3 border border-gray-200 hover:border-red-200 text-gray-700 hover:text-red-600 rounded-xl text-sm font-bold transition-all active:scale-95 cursor-pointer"
                 >
-                  {createdCardData.status === "Active"
-                    ? "Freeze Card"
-                    : "Unfreeze Card"}
+                  {createdCardData.status === t("card.activeStatus")
+                    ? t("card.btnFreeze")
+                    : t("card.btnUnfreeze")}
                 </button>
                 <button
                   onClick={() => {
@@ -284,33 +260,30 @@ export default function VirtualCardPage() {
                   }}
                   className="px-6 py-3 border border-red-100 hover:border-red-200 text-red-500 rounded-xl text-sm font-bold transition-all active:scale-95 cursor-pointer"
                 >
-                  Delete Card
+                  {t("card.btnDelete")}
                 </button>
               </div>
             </div>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            {/* Centered Visual Placeholder */}
             <div className="bg-brand-bg-light p-6 rounded-full border border-brand-border-color mb-6">
               <CreditCard size={48} className="text-brand-primary" />
             </div>
 
             <h2 className="text-2xl font-bold text-gray-700 mb-2">
-              No active virtual cards
+              {t("empty.title")}
             </h2>
             <p className="text-gray-500 mb-8 max-w-sm text-sm">
-              Generate a secure virtual card for your online subscriptions and
-              safe shopping with instant freeze capabilities.
+              {t("empty.description")}
             </p>
 
-            {/* Main Center Button */}
             <button
               onClick={() => setIsModalOpen(true)}
               className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary-hover text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 active:scale-95 cursor-pointer"
             >
               <Zap size={18} fill="currentColor" />
-              Create Your First Card
+              {t("empty.btnAction")}
             </button>
           </div>
         )}
@@ -318,33 +291,36 @@ export default function VirtualCardPage() {
 
       {/* 2) Recent Transactions */}
       <section className="mt-16">
-        <div className="flex items-center justify-between my-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 shadow-inner">
-              <FileText size={20} />
-            </div>
-            <div>
-              <h2 className="text-lg font-bold text-gray-800 leading-tight">
-                Recent Transactions
-              </h2>
-            </div>
-          </div>
-          <button className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary-hover text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 active:scale-95 cursor-pointer">
-            View More
-          </button>
-        </div>
-
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between bg-gradient-to-r from-emerald-50/20 to-teal-50/10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+                <FileText size={18} />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-800 leading-tight">
+                  {t("transactions.title")}
+                </h2>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]"
+            >
+              {t("transactions.btnViewMore")}
+            </button>
+          </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-gray-50/50">
-                  <th className={TH_CLASSES}>Type</th>
-                  <th className={TH_CLASSES}>Transaction ID</th>
-                  <th className={TH_CLASSES}>Request Amount</th>
-                  <th className={TH_CLASSES}>Fees & Charges</th>
-                  <th className={TH_CLASSES}>Total Amount</th>
-                  <th className={TH_CLASSES}>Status</th>
+                  <th className={TH_CLASSES}>{t("transactions.thType")}</th>
+                  <th className={TH_CLASSES}>{t("transactions.thId")}</th>
+                  <th className={TH_CLASSES}>{t("transactions.thReqAmount")}</th>
+                  <th className={TH_CLASSES}>{t("transactions.thFees")}</th>
+                  <th className={TH_CLASSES}>{t("transactions.thTotal")}</th>
+                  <th className={TH_CLASSES}>{t("transactions.thStatus")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -356,14 +332,12 @@ export default function VirtualCardPage() {
                     <td className={`${TD_CLASSES} font-bold text-slate-800`}>
                       {tx.type}
                     </td>
-                    <td className={`${TD_CLASSES}  text-[11px]`}>
+                    <td className={`${TD_CLASSES} text-[11px]`}>
                       {tx.transactionId}
                     </td>
                     <td className={TD_CLASSES}>{tx.requestAmount}</td>
                     <td className={TD_CLASSES}>{tx.fees}</td>
-                    <td
-                      className={`${TD_CLASSES} font-black text-brand-primary`}
-                    >
+                    <td className={`${TD_CLASSES} font-black text-brand-primary`}>
                       {tx.totalAmount}
                     </td>
                     <td className={TD_CLASSES}>
@@ -379,13 +353,13 @@ export default function VirtualCardPage() {
 
       {/* Create Card Customer Form Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs" data-lenis-prevent="true">
           <div className="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Modal Header */}
             <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
               <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
                 <CreditCard className="text-brand-primary" size={24} />
-                Create Virtual Card
+                {t("modal.headerTitle")}
               </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
@@ -401,34 +375,34 @@ export default function VirtualCardPage() {
                 {/* ─── 1) Personal Information ─── */}
                 <div className="space-y-4">
                   <span className="block text-xs font-bold text-brand-primary uppercase tracking-wider pb-2 border-b border-gray-50">
-                    1. Personal Information
+                    {t("modal.section1Title")}
                   </span>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        First Name*
+                        {t("modal.labelFirstName")}
                       </label>
                       <input
                         type="text"
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        placeholder="Enter First Name"
+                        placeholder={t("modal.placeholderFirstName")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
                     </div>
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Last Name*
+                        {t("modal.labelLastName")}
                       </label>
                       <input
                         type="text"
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        placeholder="Enter Last Name"
+                        placeholder={t("modal.placeholderLastName")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
@@ -438,21 +412,22 @@ export default function VirtualCardPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Email*
+                        {t("modal.labelEmail")}
                       </label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Enter Email Address"
+                        placeholder={t("modal.placeholderEmail")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
                     </div>
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Date Of Birth*
+                        {t("modal.labelDob")}
+                        <span className="text-xs font-bold text-emerald-600 mx-2">{t("modal.labelDobHint")}</span>
                       </label>
                       <input
                         type="date"
@@ -469,14 +444,13 @@ export default function VirtualCardPage() {
                 {/* ─── 2) Identity Verification ─── */}
                 <div className="space-y-4 pt-4">
                   <span className="block text-xs font-bold text-brand-primary uppercase tracking-wider pb-2 border-b border-gray-50">
-                    2. Identity Verification
+                    {t("modal.section2Title")}
                   </span>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Identity Type Listbox */}
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Identity Type*
+                        {t("modal.labelIdentityType")}
                       </label>
                       <Listbox
                         value={formData.identityType}
@@ -488,7 +462,7 @@ export default function VirtualCardPage() {
                         }
                       >
                         <div className="relative">
-                          <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-left cursor-pointer text-sm font-bold text-gray-700">
+                          <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-start cursor-pointer text-sm font-bold text-gray-700">
                             <span>{formData.identityType}</span>
                             <ChevronDown size={16} className="text-gray-400" />
                           </ListboxButton>
@@ -498,12 +472,11 @@ export default function VirtualCardPage() {
                                 key={type}
                                 value={type}
                                 className={({ active, selected }) =>
-                                  `relative cursor-pointer select-none py-2.5 px-4 text-sm ${
-                                    active
-                                      ? "bg-emerald-50 text-brand-primary font-bold"
-                                      : selected
-                                        ? "text-emerald-600 font-bold bg-emerald-50/50"
-                                        : "text-gray-700"
+                                  `relative cursor-pointer select-none py-2.5 px-4 text-sm ${active
+                                    ? "bg-emerald-50 text-brand-primary font-bold"
+                                    : selected
+                                      ? "text-emerald-600 font-bold bg-emerald-50/50"
+                                      : "text-gray-700"
                                   }`
                                 }
                               >
@@ -517,25 +490,24 @@ export default function VirtualCardPage() {
 
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Identity Number*
+                        {t("modal.labelIdentityNumber")}
                       </label>
                       <input
                         type="text"
                         name="identityNumber"
                         value={formData.identityNumber}
                         onChange={handleInputChange}
-                        placeholder="Enter Identity Number"
+                        placeholder={t("modal.placeholderIdentityNumber")}
                         required
-                        className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700 "
+                        className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
                     </div>
                   </div>
 
-                  {/* Image uploads block */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        ID Card Image (Front Side)*
+                        {t("modal.labelUploadFront")}
                       </label>
                       <div className="relative border border-dashed border-gray-300 hover:border-brand-primary rounded-xl p-4 flex flex-col items-center text-center transition-all bg-gray-50/50 hover:bg-emerald-50/10 cursor-pointer">
                         <input
@@ -547,14 +519,14 @@ export default function VirtualCardPage() {
                         />
                         <Upload size={20} className="text-gray-400 mb-1" />
                         <span className="text-[11px] font-bold text-gray-500 truncate max-w-full">
-                          {filePreviews.idFront || "Upload Front Side"}
+                          {filePreviews.idFront || t("modal.uploadFrontPlaceholder")}
                         </span>
                       </div>
                     </div>
 
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        ID Card Image (Back Side)*
+                        {t("modal.labelUploadBack")}
                       </label>
                       <div className="relative border border-dashed border-gray-300 hover:border-brand-primary rounded-xl p-4 flex flex-col items-center text-center transition-all bg-gray-50/50 hover:bg-emerald-50/10 cursor-pointer">
                         <input
@@ -566,14 +538,14 @@ export default function VirtualCardPage() {
                         />
                         <Upload size={20} className="text-gray-400 mb-1" />
                         <span className="text-[11px] font-bold text-gray-500 truncate max-w-full">
-                          {filePreviews.idBack || "Upload Back Side"}
+                          {filePreviews.idBack || t("modal.uploadBackPlaceholder")}
                         </span>
                       </div>
                     </div>
 
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Your Photo*
+                        {t("modal.labelUploadUserPhoto")}
                       </label>
                       <div className="relative border border-dashed border-gray-300 hover:border-brand-primary rounded-xl p-4 flex flex-col items-center text-center transition-all bg-gray-50/50 hover:bg-emerald-50/10 cursor-pointer">
                         <input
@@ -585,7 +557,7 @@ export default function VirtualCardPage() {
                         />
                         <Upload size={20} className="text-gray-400 mb-1" />
                         <span className="text-[11px] font-bold text-gray-500 truncate max-w-full">
-                          {filePreviews.yourPhoto || "Upload Your Photo"}
+                          {filePreviews.yourPhoto || t("modal.uploadUserPhotoPlaceholder")}
                         </span>
                       </div>
                     </div>
@@ -595,29 +567,28 @@ export default function VirtualCardPage() {
                 {/* ─── 3) Address Details ─── */}
                 <div className="space-y-4 pt-4">
                   <span className="block text-xs font-bold text-brand-primary uppercase tracking-wider pb-2 border-b border-gray-50">
-                    3. Address Information
+                    {t("modal.section3Title")}
                   </span>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        House Number*
+                        {t("modal.labelHouseNumber")}
                       </label>
                       <input
                         type="text"
                         name="houseNumber"
                         value={formData.houseNumber}
                         onChange={handleInputChange}
-                        placeholder="Enter House Number"
+                        placeholder={t("modal.placeholderHouseNumber")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
                     </div>
 
-                    {/* Country Listbox dropdown */}
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Country*
+                        {t("modal.labelCountry")}
                       </label>
                       <Listbox
                         value={formData.country}
@@ -626,7 +597,7 @@ export default function VirtualCardPage() {
                         }
                       >
                         <div className="relative">
-                          <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-left cursor-pointer text-sm font-bold text-gray-700">
+                          <ListboxButton className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-white focus:border-brand-primary focus:outline-none transition-all text-start cursor-pointer text-sm font-bold text-gray-700">
                             <span>{formData.country}</span>
                             <ChevronDown size={16} className="text-gray-400" />
                           </ListboxButton>
@@ -636,12 +607,11 @@ export default function VirtualCardPage() {
                                 key={country}
                                 value={country}
                                 className={({ active, selected }) =>
-                                  `relative cursor-pointer select-none py-2.5 px-4 text-sm ${
-                                    active
-                                      ? "bg-emerald-50 text-brand-primary font-bold"
-                                      : selected
-                                        ? "text-emerald-600 font-bold bg-emerald-50/50"
-                                        : "text-gray-700"
+                                  `relative cursor-pointer select-none py-2.5 px-4 text-sm ${active
+                                    ? "bg-emerald-50 text-brand-primary font-bold"
+                                    : selected
+                                      ? "text-emerald-600 font-bold bg-emerald-50/50"
+                                      : "text-gray-700"
                                   }`
                                 }
                               >
@@ -655,14 +625,14 @@ export default function VirtualCardPage() {
 
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        City*
+                        {t("modal.labelCity")}
                       </label>
                       <input
                         type="text"
                         name="city"
                         value={formData.city}
                         onChange={handleInputChange}
-                        placeholder="Enter City"
+                        placeholder={t("modal.placeholderCity")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
@@ -672,28 +642,28 @@ export default function VirtualCardPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        State*
+                        {t("modal.labelState")}
                       </label>
                       <input
                         type="text"
                         name="state"
                         value={formData.state}
                         onChange={handleInputChange}
-                        placeholder="Enter State"
+                        placeholder={t("modal.placeholderState")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
                     </div>
                     <div>
                       <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Zip Code*
+                        {t("modal.labelZipCode")}
                       </label>
                       <input
                         type="text"
                         name="zipCode"
                         value={formData.zipCode}
                         onChange={handleInputChange}
-                        placeholder="Enter Code"
+                        placeholder={t("modal.placeholderZipCode")}
                         required
                         className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                       />
@@ -702,14 +672,14 @@ export default function VirtualCardPage() {
 
                   <div>
                     <label className="text-xs font-bold text-gray-700 block mb-1">
-                      Address*
+                      {t("modal.labelAddress")}
                     </label>
                     <input
                       type="text"
                       name="address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      placeholder="Enter Full Residential Address"
+                      placeholder={t("modal.placeholderAddress")}
                       required
                       className="w-full p-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-brand-primary font-bold text-gray-700"
                     />
@@ -721,7 +691,7 @@ export default function VirtualCardPage() {
                   type="submit"
                   className="w-full py-4 bg-brand-primary hover:bg-brand-primary-hover text-white font-bold rounded-xl transition-all mt-6 shadow-lg shadow-brand-primary/20 cursor-pointer"
                 >
-                  Submit
+                  {t("modal.btnSubmit")}
                 </button>
               </form>
             </div>

@@ -6,8 +6,8 @@
     "downloadApp": "Descargar App",
     "contact": "Contacto",
     "login": "Iniciar sesión",
-    "english": "Inglés",
-    "arabic": "Árabe",
+    "english": "English",
+    "arabic": "العربية",
     "spanish": "Español"
   },
   "Hero": {
@@ -188,6 +188,446 @@
     "rememberedYourPassword": "¿Ya recordaste tu contraseña?",
     "backToSignIn": "Volver a Iniciar sesión"
   },
+  "DashboardPage": {
+    "myWallets": "Mis billeteras",
+    "viewMore": "Ver más",
+    "unitedStates": "Estados Unidos",
+    "unitedKingdom": "Reino Unido",
+    "europeanUnion": "Unión Europea",
+    "japan": "Japón",
+    "canada": "Canadá",
+    "australia": "Australia",
+    "india": "India",
+    "bangladesh": "Bangladés"
+  },
+  "DashboardNavbar": {
+    "dashboard": "Panel",
+    "profileAlt": "Imagen de Perfil",
+    "routes": {
+      "overview": "Resumen",
+      "add-money": "Agregar dinero",
+      "cardyfie-virtual-card": "Tarjeta virtual Cardyfie",
+      "money-out": "Retirar dinero",
+      "profile": "Perfil",
+      "recipient": "Destinatario",
+      "send-remittance": "Enviar remesa",
+      "settings": "Configuración",
+      "transaction": "Transacción",
+      "2FA-Security": "Seguridad 2FA",
+      "KYC-verification": "Verificación KYC"
+    }
+  },
+  "TransactionSummary": {
+    "title": "Resumen de transacciones",
+    "sendRemittance": "Enviar remesa",
+    "moneyOut": "Retirar dinero",
+    "all": "TODO",
+    "months": {
+      "jan": "Ene",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Abr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Ago",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dic"
+    }
+  },
+  "AddMoneyStatistics": {
+    "title": "Estadísticas de agregar dinero",
+    "amount": "Cantidad",
+    "overview": "Resumen de agregar dinero",
+    "months": {
+      "jan": "Ene",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Abr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Ago",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dic"
+    }
+  },
+  "AddMoney": {
+    "title": "Agregar dinero",
+    "exchangeRate": "Tipo de cambio",
+    "paymentGateway": "Pasarela de pago",
+    "amountCurrency": "Cantidad y moneda",
+    "enterAmountPlaceholder": "Ingrese la cantidad",
+    "availableBalance": "Saldo disponible: {balance} USD",
+    "limit": "Límite: {min} – {max} USD",
+    "summary": "Resumen",
+    "enteredAmount": "Cantidad ingresada",
+    "totalFeesCharges": "Tasas y cargos totales",
+    "willGet": "Obtendrá",
+    "totalPayableAmount": "Cantidad total a pagar",
+    "logsTitle": "Registros de agregar dinero",
+    "viewMore": "Ver más",
+    "noRecords": "No hay registros aún",
+    "addBalanceVia": "Agregar saldo a través de {gateway}",
+    "gateways": {
+      "paypal": "Paypal USD",
+      "stripe": "Stripe USD"
+    },
+    "currencies": {
+      "usd": "Estados Unidos (USD)",
+      "eur": "Unión Europea (EUR)",
+      "gbp": "Reino Unido (GBP)"
+    },
+    "status": {
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "headers": {
+      "title": "Título",
+      "transactionId": "ID de transacción",
+      "exchangeRate": "Tipo de cambio",
+      "amount": "Cantidad",
+      "feesCharges": "Tasas y cargos",
+      "willGet": "Obtendrá",
+      "payableAmount": "Cantidad a pagar",
+      "status": "Estado"
+    }
+  },
+  "SendRemittance": {
+    "title": "Enviar remesa",
+    "exchangeRate": "Tipo de cambio",
+    "youSend": "Usted envía",
+    "theyGet": "Ellos reciben",
+    "transactionMethod": "Método de transacción",
+    "continue": "Continuar",
+    "summary": "Resumen",
+    "sendingAmount": "Cantidad de envío",
+    "limit": "Límite",
+    "totalFeesCharges": "Tasas y cargos totales",
+    "willGet": "Obtendrá",
+    "totalPayableAmount": "Cantidad total a pagar",
+    "logsTitle": "Registros de enviar remesas",
+    "viewMore": "Ver más",
+    "detailedReceipt": "Recibo detallado",
+    "basicInformation": "Información básica",
+    "recipientDestination": "Destino de transferencia del destinatario",
+    "pricingSettlement": "Precios y liquidación",
+    "close": "Cerrar",
+    "repeatTransaction": "Repetir transacción",
+    "sendRemittanceTo": "Enviar remesa a {name}",
+    "paymentMethodWallet": "Billetera (Estados Unidos - USD)",
+    "status": {
+      "success": "Éxito",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "methods": {
+      "bankTransfer": "Transferencia bancaria",
+      "walletTransfer": "Transferencia de billetera",
+      "mobileWallet": "Billetera móvil"
+    },
+    "countries": {
+      "us": "Estados Unidos",
+      "gb": "Reino Unido",
+      "eu": "Unión Europea",
+      "ng": "Nigeria",
+      "gh": "Ghana",
+      "ke": "Kenia"
+    },
+    "purposes": {
+      "family": "Familia",
+      "familySupport": "Soporte familiar",
+      "education": "Educación"
+    },
+    "sources": {
+      "business": "Negocios",
+      "salary": "Salario",
+      "savings": "Ahorros"
+    },
+    "headers": {
+      "remittanceTitle": "Título de la remesa",
+      "totalAmount": "Cantidad total",
+      "transactionId": "ID de transacción",
+      "status": "Estado",
+      "method": "Método",
+      "amount": "Cantidad",
+      "exchangeRate": "Tipo de cambio",
+      "action": "Acción"
+    },
+    "modalFields": {
+      "transactionId": "ID de transacción",
+      "status": "Estado",
+      "method": "Método",
+      "sendingPurpose": "Propósito de envío",
+      "sourceOfFunds": "Origen de los fondos",
+      "mobileMethodName": "Nombre del método móvil",
+      "mobileMethodNumber": "Número del método móvil",
+      "phoneSuffix": "Sufijo telefónico",
+      "amount": "Cantidad",
+      "exchangeRate": "Tipo de cambio",
+      "feesCharges": "Tasas y cargos",
+      "paymentMethod": "Método de pago",
+      "willGetAmount": "Cantidad a recibir"
+    }
+  },
+  "MoneyOut": {
+    "title": "Retirar dinero",
+    "exchangeRate": "Tipo de cambio",
+    "paymentGateway": "Pasarela de pago",
+    "amount": "Cantidad",
+    "enterAmountPlaceholder": "Ingrese la cantidad",
+    "availableBalance": "Saldo disponible: {balance} USD",
+    "limit": "Límite: {min} – {max} USD",
+    "moneyOutBtn": "Retirar dinero",
+    "summary": "Resumen",
+    "enteredAmount": "Cantidad ingresada",
+    "totalFeesCharges": "Tasas y cargos totales",
+    "willGet": "Obtendrá",
+    "totalPayableAmount": "Cantidad total a pagar",
+    "logsTitle": "Registros de retirar dinero",
+    "viewMore": "Ver más",
+    "noRecords": "No hay registros aún",
+    "moneyOutVia": "Retiro de dinero a través de {gateway}",
+    "gateways": {
+      "paypal": "Paypal USD",
+      "stripe": "Stripe USD",
+      "adpay": "ADPay USD"
+    },
+    "currencies": {
+      "usd": "Estados Unidos (USD)",
+      "eur": "Unión Europea (EUR)",
+      "gbp": "Reino Unido (GBP)"
+    },
+    "status": {
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "headers": {
+      "title": "Título",
+      "transactionId": "ID de transacción",
+      "exchangeRate": "Tipo de cambio",
+      "amount": "Cantidad",
+      "feesCharges": "Tasas y cargos",
+      "willGet": "Obtendrá",
+      "payableAmount": "Cantidad a pagar",
+      "status": "Estado"
+    }
+  },
+  "TransactionsLog": {
+    "title": "Registro de transacciones",
+    "viewMore": "Ver más",
+    "details": "Detalles",
+    "detailedReceipt": "Recibo detallado",
+    "totalPayableAmount": "Cantidad total a pagar",
+    "basicInformation": "Información básica",
+    "recipientDestination": "Destino de transferencia del destinatario",
+    "phoneSuffix": "Sufijo telefónico",
+    "pricingSettlement": "Precios y liquidación",
+    "close": "Cerrar",
+    "repeatTransaction": "Repetir transacción",
+    "sendRemittanceTo": "Enviar remesa a {name}",
+    "paymentMethodWallet": "Billetera (Estados Unidos - USD)",
+    "statusSuccess": "Éxito",
+    "statusPending": "Pendiente",
+    "willGetAmount": "Obtendrán",
+    "headers": {
+      "remittanceTitle": "Título de la remesa",
+      "totalAmount": "Cantidad total",
+      "transactionId": "ID de transacción",
+      "status": "Estado",
+      "method": "Método",
+      "amount": "Cantidad",
+      "exchangeRate": "Tipo de cambio",
+      "action": "Acción"
+    },
+    "methods": {
+      "mobileWallet": "Billetera móvil",
+      "bankTransfer": "Transferencia bancaria"
+    },
+    "purposes": {
+      "family": "Familia",
+      "familySupport": "Soporte familiar",
+      "education": "Educación"
+    },
+    "sources": {
+      "business": "Negocios",
+      "salary": "Salario",
+      "savings": "Ahorros"
+    },
+    "modalFields": {
+      "sendingPurpose": "Propósito de envío",
+      "sourceOfFunds": "Origen de los fondos",
+      "mobileMethodName": "Nombre del método móvil",
+      "mobileMethodNumber": "Número del método móvil",
+      "feesCharges": "Tasas y cargos",
+      "paymentMethod": "Método de pago"
+    }
+  },
+  "Profile": {
+    "userAvatarAlt": "Foto de perfil del usuario",
+    "profileSettingsTab": "Configuración del perfil",
+    "securityPasswordTab": "Seguridad y contraseña",
+    "deleteAccountTab": "Eliminar cuenta",
+    "accountSettingsHeading": "Configuración de la cuenta",
+    "securitySettingsHeading": "Configuración de seguridad",
+    "accountSettingsSub": "Gestione su perfil público e información personal.",
+    "securitySettingsSub": "Proteja su cuenta gestionando su contraseña.",
+    "personalInfoLabel": "Información personal",
+    "firstNameField": "Nombre*",
+    "lastNameField": "Apellido*",
+    "countryField": "País*",
+    "phoneField": "Número de teléfono",
+    "addressField": "Dirección",
+    "cityField": "Ciudad",
+    "stateField": "Estado",
+    "zipField": "Código postal",
+    "saveBtn": "Guardar cambios",
+    "securityInfoLabel": "Información de seguridad",
+    "currentPasswordLabel": "Contraseña actual*",
+    "currentPasswordPlaceholder": "Ingrese la contraseña actual",
+    "newPasswordLabel": "Nueva contraseña*",
+    "newPasswordPlaceholder": "Cree una contraseña segura",
+    "confirmPasswordLabel": "Confirmar contraseña*",
+    "confirmPasswordPlaceholder": "Repita la nueva contraseña",
+    "updatePasswordBtn": "Actualizar contraseña"
+  },
+  "TwoFactor": {
+    "twoFactorTitle": "Autenticación de dos factores",
+    "addressLabel": "Dirección",
+    "qrAlt": "Código QR",
+    "enableBtn": "Habilitar",
+    "googleAuthTitle": "Google Authenticator",
+    "downloadAppTitle": "Descargar la aplicación Google Authenticator",
+    "securityDescription": "Google Authenticator añade una capa adicional de seguridad a sus cuentas en línea al agregar un segundo paso de verificación al iniciar sesión. Esto significa que además de su contraseña, también deberá ingresar un código generado por la aplicación Google Authenticator en su teléfono.",
+    "howToSetupLink": "¿Cómo configurar?",
+    "googleAuthAlt": "Logotipo de Google Authenticator",
+    "downloadAndroidBtn": "Descargar para Android",
+    "downloadIosBtn": "Descargar para iOS"
+  },
+  "KYC": {
+    "proofOfIdentity": "Prueba de Identidad",
+    "kycInformation": "Información de KYC",
+    "statusVerified": "Verificado",
+    "verifiedDescription": "Su información de KYC está verificada"
+  },
+  "VirtualCard": {
+    "title": "Tarjetas Virtuales",
+    "btnCreate": "Crear Tarjeta",
+    "identityTypes": {
+      "nid": "Documento Nacional de Identidad (NID)",
+      "passport": "Pasaporte",
+      "bvn": "Número de Verificación Bancaria (BVN)"
+    },
+    "countries": {
+      "bangladesh": "Bangladés",
+      "usa": "Estados Unidos",
+      "uk": "Reino Unido",
+      "canada": "Canadá",
+      "australia": "Australia"
+    },
+    "card": {
+      "badge": "Tarjeta Virtual",
+      "brandName": "Cardyfie",
+      "holderLabel": "Titular de la Tarjeta",
+      "expiryLabel": "Vencimiento",
+      "cvvLabel": "CVV",
+      "accountTag": "Cuenta de Tarjeta",
+      "balanceLabel": "Saldo",
+      "description": "Compras seguras con congelación instantánea y autofinanciación desde su billetera principal.",
+      "activeStatus": "Activa",
+      "frozenStatus": "Congelada",
+      "btnFreeze": "Congelar Tarjeta",
+      "btnUnfreeze": "Descongelar Tarjeta",
+      "btnDelete": "Eliminar Tarjeta"
+    },
+    "empty": {
+      "title": "No hay tarjetas virtuales activas",
+      "description": "Genere una tarjeta virtual segura para sus suscripciones en línea y compras seguras con capacidades de congelación instantánea.",
+      "btnAction": "Cree su Primera Tarjeta"
+    },
+    "transactions": {
+      "title": "Transacciones Recientes",
+      "btnViewMore": "Ver Más",
+      "thType": "Tipo",
+      "thId": "ID de Transacción",
+      "thReqAmount": "Monto Solicitado",
+      "thFees": "Comisiones y Cargos",
+      "thTotal": "Monto Total",
+      "thStatus": "Estado"
+    },
+    "transactionTypes": {
+      "cardFund": "Fondeo de Tarjeta",
+      "bankTransfer": "Transferencia Bancaria",
+      "mobileRecharge": "Recarga Móvil",
+      "walletTopUp": "Recarga de Billetera",
+      "utilityPayment": "Pago de Servicios"
+    },
+    "modal": {
+      "headerTitle": "Crear Tarjeta Virtual",
+      "section1Title": "1. Información Personal",
+      "labelFirstName": "Nombre*",
+      "placeholderFirstName": "Ingrese su primer nombre",
+      "labelLastName": "Apellido*",
+      "placeholderLastName": "Ingrese su apellido",
+      "labelEmail": "Correo Electrónico*",
+      "placeholderEmail": "Ingrese su correo electrónico",
+      "labelDob": "Fecha de Nacimiento*",
+      "labelDobHint": "(Debe coincidir con su identificación)",
+      "section2Title": "2. Verificación de Identidad",
+      "labelIdentityType": "Tipo de Identificación*",
+      "labelIdentityNumber": "Número de Identificación*",
+      "placeholderIdentityNumber": "Ingrese el número de identificación",
+      "labelUploadFront": "Imagen de Identificación (Frente)*",
+      "uploadFrontPlaceholder": "Subir parte frontal",
+      "labelUploadBack": "Imagen de Identificación (Reverso)*",
+      "uploadBackPlaceholder": "Subir parte trasera",
+      "labelUploadUserPhoto": "Su Foto*",
+      "uploadUserPhotoPlaceholder": "Subir su foto",
+      "section3Title": "3. Información de Dirección",
+      "labelHouseNumber": "Número de Casa*",
+      "placeholderHouseNumber": "Ingrese el número de casa",
+      "labelCountry": "País*",
+      "labelCity": "Ciudad*",
+      "placeholderCity": "Ingrese la ciudad",
+      "labelState": "Estado/Provincia*",
+      "placeholderState": "Ingrese el estado o provincia",
+      "labelZipCode": "Código Postal*",
+      "placeholderZipCode": "Ingrese el código",
+      "labelAddress": "Dirección*",
+      "placeholderAddress": "Ingrese la dirección residencial completa",
+      "btnSubmit": "Enviar"
+    }
+  },
+  "RemittanceLog": {
+    "title": "Todos los Registros de Transacciones",
+    "searchPlaceholder": "Buscar transacciones...",
+    "noRecords": "No se encontraron registros de transacciones que coincidan con su búsqueda.",
+    "btnRepeat": "Repetir",
+    "paginationPrev": "Página Anterior",
+    "paginationNext": "Página Siguiente",
+    "tableHeaders": {
+      "recipient": "Destinatario",
+      "transactionId": "ID de Transacción",
+      "method": "Método",
+      "methodName": "Nombre del Método",
+      "numberPhone": "Número/Teléfono",
+      "purpose": "Propósito",
+      "source": "Origen",
+      "amount": "Monto",
+      "fees": "Comisiones",
+      "totalPayable": "Total a Pagar",
+      "exchangeRate": "Tipo de Cambio",
+      "willGet": "Recibirá",
+      "status": "Estado",
+      "action": "Acción"
+    }
+  },
   "Footer": {
     "headingPart1": "Creando el futuro de la",
     "headingHighlight": "Liquidez Global.",
@@ -215,5 +655,32 @@
     "companyAddress": "bakedwith GmbH · Berlín · Europa",
     "privacyPolicy": "Política de privacidad",
     "legalNotice": "Aviso legal"
+  },
+  "Sidebar": {
+    "groups": {
+      "general": "General",
+      "payments": "Pagos y transferencias",
+      "finance": "Finanzas",
+      "accountManagement": "Gestión de cuenta"
+    },
+    "menu": {
+      "dashboard": "Panel de control",
+      "addMoney": "Añadir dinero",
+      "recipient": "Destinatario",
+      "sendRemittance": "Enviar remesa",
+      "moneyOut": "Retirar dinero",
+      "virtualCard": "Tarjeta virtual",
+      "transaction": "Transacción",
+      "settings": "Configuración",
+      "profile": "Perfil",
+      "security2fa": "Seguridad 2FA",
+      "kyc": "Verificación KYC",
+      "logout": "Cerrar sesión"
+    },
+    "helpCenter": {
+      "title": "Centro de ayuda",
+      "sub": "¿Cómo podemos ayudarte?",
+      "btn": "Obtener soporte"
+    }
   }
 }

@@ -3,6 +3,10 @@
 import { ChevronLeft, ChevronRight, History, Search } from "lucide-react";
 import { useState } from "react";
 
+// Placeholder for your framework's localization tool (e.g., next-intl or react-i18next)
+// If you pass translations down as custom props, you can change this setup accordingly.
+import { useTranslations } from "next-intl"; 
+
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 function StatusBadge({ status }) {
   return (
@@ -52,121 +56,7 @@ const LOGS = [
     paymentMethod: "Wallet (USD)",
     receive: "3747.50 KES",
     status: "Success",
-  },
-  {
-    id: 3,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
-  {
-    id: 4,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
-  {
-    id: 5,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
-  {
-    id: 6,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
-  {
-    id: 7,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
-  {
-    id: 8,
-    recipient: "Elton Amena Fields Hubbard",
-    totalPayable: "26.25 USD",
-    baseAmount: "25.00 USD",
-    transactionId: "SR07378824",
-    method: "Mobile Wallet",
-    methodName: "InstaPay Egypt",
-    methodNumber: "587",
-    phone: "87",
-    purpose: "Family",
-    source: "Business",
-    amount: "25.00 USD",
-    rate: "1 USD = 149.90 KES",
-    fees: "1.25 USD",
-    paymentMethod: "Wallet (USD)",
-    receive: "3747.50 KES",
-    status: "Success",
-  },
+  }
 ];
 
 const TH_CLASSES =
@@ -175,6 +65,7 @@ const TD_CLASSES =
   "px-4 py-4 text-[12px] text-slate-600 border-b border-gray-50 whitespace-nowrap";
 
 export default function RemittanceTable() {
+  const t = useTranslations("RemittanceLog");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -210,7 +101,7 @@ export default function RemittanceTable() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-800 leading-tight">
-                All Transaction Logs
+                {t("title")}
               </h1>
             </div>
           </div>
@@ -223,7 +114,7 @@ export default function RemittanceTable() {
               value={searchQuery}
               onChange={handleSearchChange}
               className="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-brand-primary focus:border-brand-primary block w-full pl-10 p-2.5 outline-none transition-all focus:bg-white focus:shadow-sm"
-              placeholder="Search transactions..."
+              placeholder={t("searchPlaceholder")}
             />
           </div>
         </div>
@@ -232,20 +123,20 @@ export default function RemittanceTable() {
           <table className="w-full text-left border-collapse min-w-[1200px]">
             <thead>
               <tr className="bg-gray-50/50">
-                <th className={TH_CLASSES}>Recipient</th>
-                <th className={TH_CLASSES}>Transaction ID</th>
-                <th className={TH_CLASSES}>Method</th>
-                <th className={TH_CLASSES}>Method Name</th>
-                <th className={TH_CLASSES}>Number/Phone</th>
-                <th className={TH_CLASSES}>Purpose</th>
-                <th className={TH_CLASSES}>Source</th>
-                <th className={TH_CLASSES}>Amount</th>
-                <th className={TH_CLASSES}>Fees</th>
-                <th className={TH_CLASSES}>Total Payable</th>
-                <th className={TH_CLASSES}>Exchange Rate</th>
-                <th className={TH_CLASSES}>Will Get</th>
-                <th className={TH_CLASSES}>Status</th>
-                <th className={`${TH_CLASSES} text-right`}>Action</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.recipient")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.transactionId")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.method")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.methodName")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.numberPhone")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.purpose")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.source")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.amount")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.fees")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.totalPayable")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.exchangeRate")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.willGet")}</th>
+                <th className={TH_CLASSES}>{t("tableHeaders.status")}</th>
+                <th className={`${TH_CLASSES} text-right`}>{t("tableHeaders.action")}</th>
               </tr>
             </thead>
             <tbody>
@@ -257,7 +148,7 @@ export default function RemittanceTable() {
                   <td className={`${TD_CLASSES} font-bold text-slate-800`}>
                     {log.recipient}
                   </td>
-                  <td className={`${TD_CLASSES}  text-[11px]`}>
+                  <td className={`${TD_CLASSES} text-[11px]`}>
                     {log.transactionId}
                   </td>
                   <td className={TD_CLASSES}>{log.method}</td>
@@ -291,7 +182,7 @@ export default function RemittanceTable() {
                   </td>
                   <td className={`${TD_CLASSES} text-right`}>
                     <button className="bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white px-3 py-1 rounded-md font-bold text-[10px] transition-all uppercase tracking-tighter cursor-pointer">
-                      Repeat
+                      {t("btnRepeat")}
                     </button>
                   </td>
                 </tr>
@@ -302,7 +193,7 @@ export default function RemittanceTable() {
                     colSpan="14"
                     className="text-center py-12 text-gray-400 font-medium text-sm"
                   >
-                    No transaction records found matching your search.
+                    {t("noRecords")}
                   </td>
                 </tr>
               )}
@@ -311,7 +202,7 @@ export default function RemittanceTable() {
         </div>
       </section>
 
-      {/* ─── Pagination  ─── */}
+      {/* ─── Pagination ─── */}
       <div className="px-6 py-6 border-t border-gray-100 flex items-center justify-center bg-gray-50/20">
         <div className="flex items-center gap-1.5">
           <button
@@ -322,7 +213,7 @@ export default function RemittanceTable() {
                 ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
                 : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50 active:scale-95"
             }`}
-            title="Previous Page"
+            title={t("paginationPrev")}
           >
             <ChevronLeft size={16} />
           </button>
@@ -351,7 +242,7 @@ export default function RemittanceTable() {
                 ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
                 : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50 active:scale-95"
             }`}
-            title="Next Page"
+            title={t("paginationNext")}
           >
             <ChevronRight size={16} />
           </button>

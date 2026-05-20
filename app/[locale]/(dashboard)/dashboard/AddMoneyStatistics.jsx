@@ -1,6 +1,7 @@
 "use client";
 
 import { ChartNoAxesCombined } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   Bar,
   BarChart,
@@ -14,21 +15,28 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "Jan", amount: 5190.88 },
-  { month: "Feb", amount: 2000.0 },
-  { month: "Mar", amount: 1000.0 },
-  { month: "Apr", amount: 1400.0 },
-  { month: "May", amount: 400.0 },
-  { month: "Jun", amount: 2450.0 },
-  { month: "Jul", amount: 5500.88 },
-  { month: "Aug", amount: 4325.93 },
-  { month: "Sep", amount: 6000.0 },
-  { month: "Oct", amount: 2500.0 },
-  { month: "Nov", amount: 1000.0 },
-  { month: "Dec", amount: 1500.0 },
+  { monthKey: "jan", amount: 5190.88 },
+  { monthKey: "feb", amount: 2000.0 },
+  { monthKey: "mar", amount: 1000.0 },
+  { monthKey: "apr", amount: 1400.0 },
+  { monthKey: "may", amount: 400.0 },
+  { monthKey: "jun", amount: 2450.0 },
+  { monthKey: "jul", amount: 5500.88 },
+  { monthKey: "aug", amount: 4325.93 },
+  { monthKey: "sep", amount: 6000.0 },
+  { monthKey: "oct", amount: 2500.0 },
+  { monthKey: "nov", amount: 1000.0 },
+  { monthKey: "dec", amount: 1500.0 },
 ];
 
 const AddMoneyStatistics = () => {
+  const t = useTranslations("AddMoneyStatistics");
+
+  const chartData = data.map((item) => ({
+    ...item,
+    month: t(`months.${item.monthKey}`),
+  }));
+
   return (
     <div className="w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between mb-6">
@@ -38,7 +46,7 @@ const AddMoneyStatistics = () => {
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800 leading-tight">
-              Add Money Statistics
+              {t("title")}
             </h2>
           </div>
         </div>
@@ -47,7 +55,7 @@ const AddMoneyStatistics = () => {
       <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={data}
+            data={chartData}
             margin={{ top: 60, right: 10, left: 10, bottom: 20 }}
             barGap={0}
           >
@@ -76,7 +84,7 @@ const AddMoneyStatistics = () => {
                 border: "none",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               }}
-              formatter={(value) => [`$${value.toFixed(2)}`, "Amount"]}
+              formatter={(value) => [`$${value.toFixed(2)}`, t("amount")]}
             />
 
             <Bar
@@ -120,7 +128,7 @@ const AddMoneyStatistics = () => {
       </div>
 
       <h3 className="text-center mt-2 text-base font-bold text-gray-700">
-        Add Money Overview
+        {t("overview")}
       </h3>
     </div>
   );

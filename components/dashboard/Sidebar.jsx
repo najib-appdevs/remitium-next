@@ -20,59 +20,82 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-
-const MENU_GROUPS = [
-  {
-    title: "General",
-    items: [{ name: "Dashboard", href: "/dashboard", icon: LayoutDashboard }],
-  },
-  {
-    title: "Payments & Transfers",
-    items: [
-      { name: "Add Money", href: "/add-money", icon: PlusCircle },
-      { name: "Recipient", href: "/recipient", icon: Users },
-      { name: "Send Remittance", href: "/send-remittance", icon: SendToBack },
-      { name: "Money Out", href: "/money-out", icon: Send },
-    ],
-  },
-  {
-    title: "Finance",
-    items: [
-      {
-        name: "Virtual Card",
-        href: "/cardyfie-virtual-card",
-        icon: CreditCard,
-      },
-      { name: "Transaction", href: "/transaction", icon: History },
-    ],
-  },
-];
-
-const SETTINGS_ITEMS = [
-  { name: "Profile", href: "/profile", icon: User },
-  { name: "2FA Security", href: "/settings/2FA-Security", icon: ShieldCheck },
-  {
-    name: "KYC Verification",
-    href: "/settings/KYC-verification",
-    icon: UserCheck,
-  },
-];
 
 export default function Sidebar({ isOpen, onClose }) {
   const pathname = usePathname();
+  const t = useTranslations("Sidebar");
+
   const [isSettingsOpen, setIsSettingsOpen] = useState(
     pathname.includes("/settings") || pathname === "/profile",
   );
 
   const isActive = (href) => pathname === href;
 
+  const MENU_GROUPS = [
+    {
+      title: t("groups.general"),
+      items: [
+        {
+          name: t("menu.dashboard"),
+          href: "/dashboard",
+          icon: LayoutDashboard,
+        },
+      ],
+    },
+    {
+      title: t("groups.payments"),
+      items: [
+        { name: t("menu.addMoney"), href: "/add-money", icon: PlusCircle },
+        { name: t("menu.recipient"), href: "/recipient", icon: Users },
+        {
+          name: t("menu.sendRemittance"),
+          href: "/send-remittance",
+          icon: SendToBack,
+        },
+        { name: t("menu.moneyOut"), href: "/money-out", icon: Send },
+      ],
+    },
+    {
+      title: t("groups.finance"),
+      items: [
+        {
+          name: t("menu.virtualCard"),
+          href: "/cardyfie-virtual-card",
+          icon: CreditCard,
+        },
+        { name: t("menu.transaction"), href: "/transaction", icon: History },
+      ],
+    },
+  ];
+
+  const SETTINGS_ITEMS = [
+    { name: t("menu.profile"), href: "/profile", icon: User },
+    {
+      name: t("menu.security2fa"),
+      href: "/settings/2FA-Security",
+      icon: ShieldCheck,
+    },
+    {
+      name: t("menu.kyc"),
+      href: "/settings/KYC-verification",
+      icon: UserCheck,
+    },
+  ];
+
   return (
     <aside
       className={`
-      fixed inset-y-0 left-0 z-50 w-72 bg-[#0b1727] text-white transition-transform duration-300 lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen
-      ${isOpen ? "translate-x-0" : "-translate-x-full"}
-    `}
+        fixed inset-y-0 z-50 w-72 bg-[#0b1727] text-white transition-transform duration-300
+        ltr:left-0 rtl:right-0
+        ltr:lg:translate-x-0 rtl:lg:translate-x-0
+        lg:sticky lg:top-0 lg:h-screen
+        ${isOpen
+          ? "translate-x-0"
+          : "ltr:-translate-x-full rtl:translate-x-full"
+        }
+      `}
     >
       <div className="flex flex-col h-full">
         {/* Header */}
@@ -88,13 +111,17 @@ export default function Sidebar({ isOpen, onClose }) {
           <button
             className="lg:hidden text-gray-300 hover:text-white"
             onClick={onClose}
+            aria-label="Close sidebar"
           >
             <X size={24} />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto hide-scrollbar" data-lenis-prevent="true">
+        <nav
+          className="flex-1 px-4 py-4 space-y-8 overflow-y-auto hide-scrollbar"
+          data-lenis-prevent="true"
+        >
           {MENU_GROUPS.map((group) => (
             <div key={group.title} className="space-y-2">
               <p className="px-4 text-xs font-bold text-gray-500 uppercase mb-4">
@@ -130,7 +157,7 @@ export default function Sidebar({ isOpen, onClose }) {
           {/* Settings Section */}
           <div className="space-y-2">
             <p className="px-4 text-xs font-bold text-gray-500 uppercase mb-4">
-              Account Management
+              {t("groups.accountManagement")}
             </p>
             <button
               onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -145,7 +172,7 @@ export default function Sidebar({ isOpen, onClose }) {
             >
               <div className="flex items-center gap-3">
                 <Settings size={20} />
-                Settings
+                {t("menu.settings")}
               </div>
               <ChevronDown
                 size={16}
@@ -155,11 +182,13 @@ export default function Sidebar({ isOpen, onClose }) {
 
             <div
               className={`grid transition-all duration-300 ease-in-out ${
-                isSettingsOpen ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0"
+                isSettingsOpen
+                  ? "grid-rows-[1fr] opacity-100 mt-1"
+                  : "grid-rows-[0fr] opacity-0"
               }`}
             >
               <div className="overflow-hidden">
-                <div className="ml-4 pl-4 border-l border-white/10 space-y-1">
+                <div className="ltr:ml-4 ltr:pl-4 ltr:border-l rtl:mr-4 rtl:pr-4 rtl:border-r border-white/10 space-y-1">
                   {SETTINGS_ITEMS.map((item) => (
                     <Link
                       key={item.name}
@@ -183,7 +212,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer">
               <LogOut size={20} className="text-gray-300" />
-              Logout
+              {t("menu.logout")}
             </button>
           </div>
 
@@ -195,13 +224,13 @@ export default function Sidebar({ isOpen, onClose }) {
                   <HelpCircle size={20} />
                 </div>
                 <h4 className="text-base font-bold text-white mb-1">
-                  Help Center
+                  {t("helpCenter.title")}
                 </h4>
                 <p className="text-sm text-gray-300 mb-4">
-                  How can we help you?
+                  {t("helpCenter.sub")}
                 </p>
                 <button className="w-full py-2.5 bg-brand-primary hover:bg-brand-primary/90 text-white rounded-sm text-xs font-bold transition-all duration-200 cursor-pointer">
-                  Get Support
+                  {t("helpCenter.btn")}
                 </button>
               </div>
             </div>

@@ -12,6 +12,7 @@ import {
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const countriesList = [
   { name: "Bangladesh", phoneCode: "+880" },
@@ -20,6 +21,7 @@ const countriesList = [
 ];
 
 export default function ProfilePage() {
+  const t = useTranslations("Profile");
   const [active, setActive] = useState("profile");
   const [selectedCountry, setSelectedCountry] = useState(countriesList[0]);
 
@@ -32,7 +34,7 @@ export default function ProfilePage() {
             <div className="w-24 h-24 rounded-2xl flex items-center justify-center overflow-hidden border-4 border-[#1a5c38] shadow-lg transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/images/profile-default.webp"
-                alt="User"
+                alt={t("userAvatarAlt")}
                 width={96}
                 height={96}
                 className="w-full h-full object-cover"
@@ -41,7 +43,8 @@ export default function ProfilePage() {
                 <Upload size={20} className="text-white" />
               </div>
             </div>
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-lg border-2 border-[#0a2e1c]" />
+            {/* Active state indicator dot positioned dynamically across layouts */}
+            <div className="absolute -bottom-1 -right-1 rtl:-left-1 rtl:right-auto w-6 h-6 bg-emerald-500 rounded-lg border-2 border-[#0a2e1c]" />
           </div>
           <div className="min-w-0">
             <h2 className="text-lg font-semibold text-white tracking-tight">
@@ -56,13 +59,13 @@ export default function ProfilePage() {
         <nav className="flex flex-col gap-2 px-4">
           <SbBtn
             icon={<User size={19} />}
-            label="Profile Settings"
+            label={t("profileSettingsTab")}
             active={active === "profile"}
             onClick={() => setActive("profile")}
           />
           <SbBtn
             icon={<Lock size={19} />}
-            label="Security & Password"
+            label={t("securityPasswordTab")}
             active={active === "password"}
             onClick={() => setActive("password")}
           />
@@ -71,7 +74,7 @@ export default function ProfilePage() {
         <div className="mx-6 my-6 h-px bg-emerald-900/50" />
 
         <div className="mt-auto px-4">
-          <SbBtn icon={<Trash2 size={19} />} label="Delete Account" danger />
+          <SbBtn icon={<Trash2 size={19} />} label={t("deleteAccountTab")} danger />
         </div>
       </aside>
 
@@ -80,12 +83,10 @@ export default function ProfilePage() {
         <div className="flex items-center justify-between px-8 py-6 bg-white border-b border-gray-100">
           <div>
             <h1 className="text-xl font-bold text-gray-900 tracking-tight">
-              {active === "profile" ? "Account Settings" : "Security Settings"}
+              {active === "profile" ? t("accountSettingsHeading") : t("securitySettingsHeading")}
             </h1>
             <p className="text-sm text-gray-500 mt-0.5">
-              {active === "profile"
-                ? "Manage your public profile and personal information."
-                : "Secure your account by managing your password."}
+              {active === "profile" ? t("accountSettingsSub") : t("securitySettingsSub")}
             </p>
           </div>
         </div>
@@ -94,20 +95,20 @@ export default function ProfilePage() {
           {/* Profile panel */}
           {active === "profile" && (
             <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <PanelLabel>Personal information</PanelLabel>
+              <PanelLabel>{t("personalInfoLabel")}</PanelLabel>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <Field label="First Name*">
+                <Field label={t("firstNameField")}>
                   <input type="text" defaultValue="App" className={inp} />
                 </Field>
-                <Field label="Last Name*">
+                <Field label={t("lastNameField")}>
                   <input type="text" defaultValue="Devs" className={inp} />
                 </Field>
 
-                <Field label="Country*">
+                <Field label={t("countryField")}>
                   <Listbox value={selectedCountry} onChange={setSelectedCountry}>
                     <div className="relative">
-                      <ListboxButton className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-700 rounded-xl bg-white border border-gray-200 focus:border-emerald-500 focus:outline-none transition-all text-left cursor-pointer">
+                      <ListboxButton className="w-full flex items-center justify-between px-4 py-3 text-sm text-gray-700 rounded-xl bg-white border border-gray-200 focus:border-emerald-500 focus:outline-none transition-all text-start cursor-pointer">
                         <span>{selectedCountry.name}</span>
                         <ChevronDown size={16} className="text-gray-400" />
                       </ListboxButton>
@@ -117,12 +118,11 @@ export default function ProfilePage() {
                             key={country.name}
                             value={country}
                             className={({ active, selected }) =>
-                              `relative cursor-pointer select-none py-2.5 px-4 text-sm ${
-                                active
-                                  ? "bg-emerald-50 text-[#10b981] font-bold"
-                                  : selected
-                                    ? "text-emerald-600 font-bold bg-emerald-50/50"
-                                    : "text-gray-700"
+                              `relative cursor-pointer select-none py-2.5 px-4 text-sm ${active
+                                ? "bg-emerald-50 text-[#10b981] font-bold"
+                                : selected
+                                  ? "text-emerald-600 font-bold bg-emerald-50/50"
+                                  : "text-gray-700"
                               }`
                             }
                           >
@@ -133,9 +133,9 @@ export default function ProfilePage() {
                     </div>
                   </Listbox>
                 </Field>
-                <Field label="Phone Number">
+                <Field label={t("phoneField")}>
                   <div className="flex rounded-xl overflow-hidden border border-gray-200 focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/10 transition-all">
-                    <span className="px-4 flex items-center bg-gray-100 text-gray-600 text-sm font-semibold border-r border-gray-200">
+                    <span className="px-4 flex items-center bg-gray-100 text-gray-600 text-sm font-semibold border-e border-gray-200">
                       {selectedCountry.phoneCode}
                     </span>
                     <input
@@ -145,27 +145,27 @@ export default function ProfilePage() {
                     />
                   </div>
                 </Field>
-                <Field label="Address">
+                <Field label={t("addressField")}>
                   <input
                     type="text"
                     defaultValue="Dhaka, Bangladesh"
                     className={inp}
                   />
                 </Field>
-                <Field label="City">
+                <Field label={t("cityField")}>
                   <input type="text" defaultValue="Dhaka" className={inp} />
                 </Field>
-                <Field label="State">
+                <Field label={t("stateField")}>
                   <input type="text" defaultValue="Dhaka" className={inp} />
                 </Field>
-                <Field label="Zip Code">
+                <Field label={t("zipField")}>
                   <input type="text" defaultValue="1245" className={inp} />
                 </Field>
               </div>
 
               <div className="mt-10 flex justify-center">
                 <button className="cursor-pointer px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 active:scale-95">
-                  Save Changes
+                  {t("saveBtn")}
                 </button>
               </div>
             </div>
@@ -174,24 +174,24 @@ export default function ProfilePage() {
           {/* Password panel */}
           {active === "password" && (
             <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <PanelLabel>Security information</PanelLabel>
+              <PanelLabel>{t("securityInfoLabel")}</PanelLabel>
               <div className="flex flex-col gap-6 mt-6">
                 <PwField
-                  label="Current Password*"
-                  placeholder="Enter current password"
+                  label={t("currentPasswordLabel")}
+                  placeholder={t("currentPasswordPlaceholder")}
                 />
                 <PwField
-                  label="New Password*"
-                  placeholder="Create a strong password"
+                  label={t("newPasswordLabel")}
+                  placeholder={t("newPasswordPlaceholder")}
                 />
                 <PwField
-                  label="Confirm Password*"
-                  placeholder="Repeat new password"
+                  label={t("confirmPasswordLabel")}
+                  placeholder={t("confirmPasswordPlaceholder")}
                 />
               </div>
               <div className="mt-10 flex justify-center">
                 <button className="cursor-pointer px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 active:scale-95">
-                  Update Password
+                  {t("updatePasswordBtn")}
                 </button>
               </div>
             </div>
@@ -210,12 +210,11 @@ function SbBtn({ icon, label, active = false, danger = false, onClick }) {
     <button
       onClick={onClick}
       className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-200 group relative cursor-pointer
-        ${
-          active
-            ? "bg-emerald-500 text-white shadow-lg shadow-emerald-900/20"
-            : danger
-              ? "text-red-400 hover:bg-red-500/10"
-              : "text-emerald-100/60 hover:text-white hover:bg-white/5"
+        ${active
+          ? "bg-emerald-500 text-white shadow-lg shadow-emerald-900/20"
+          : danger
+            ? "text-red-400 hover:bg-red-500/10"
+            : "text-emerald-100/60 hover:text-white hover:bg-white/5"
         }`}
     >
       <span
@@ -225,7 +224,7 @@ function SbBtn({ icon, label, active = false, danger = false, onClick }) {
       </span>
       {label}
       {active && (
-        <span className="absolute right-3 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+        <span className="absolute right-3 rtl:left-3 rtl:right-auto w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
       )}
     </button>
   );
@@ -245,7 +244,7 @@ function PanelLabel({ children }) {
 function Field({ label, children }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[13px] font-semibold text-gray-700 ml-1">
+      <label className="text-[13px] font-semibold text-gray-700 ms-1">
         {label}
       </label>
       {children}
@@ -257,20 +256,22 @@ function PwField({ label, placeholder }) {
   const [show, setShow] = useState(false);
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[13px] font-semibold text-gray-700 ml-1">
+      <label className="text-[13px] font-semibold text-gray-700 ms-1">
         {label}
       </label>
-      <div className="relative">
+      <div className="relative w-full">
         <input
           type={show ? "text" : "password"}
           placeholder={placeholder}
-          className={inp + " pr-12"}
+
+          className={`${inp} pr-12 ltr:pr-12 rtl:pl-12 rtl:pr-4 text-start`}
         />
         <button
           type="button"
           onClick={() => setShow(!show)}
-          className="cursor-pointer absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-500 transition-colors p-1"
+          className="cursor-pointer absolute top-1/2 -translate-y-1/2 right-3.5 ltr:right-3.5 ltr:left-auto rtl:left-3.5 rtl:right-auto text-gray-400 hover:text-emerald-500 transition-colors p-1 flex items-center justify-center z-10"
         >
+
           {show ? <Eye size={18} /> : <EyeOff size={18} />}
         </button>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { History } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // ─── Status Config ─────────────────────────────────────────────────────────────
 const STATUS_MAP = {
@@ -25,13 +26,23 @@ const STATUS_MAP = {
 };
 
 function StatusBadge({ status }) {
+  const t = useTranslations("MoneyOut");
   const s = STATUS_MAP[status] ?? STATUS_MAP.Pending;
+
+  const formatStatusText = (status) => {
+    const statusKey = status.toLowerCase();
+    if (t.has(`status.${statusKey}`)) {
+      return t(`status.${statusKey}`);
+    }
+    return status;
+  };
+
   return (
     <span
       className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border shadow-xs ${s.bg} ${s.border} ${s.text}`}
     >
       <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${s.dot}`} />
-      {status}
+      {formatStatusText(status)}
     </span>
   );
 }
@@ -107,16 +118,31 @@ const TD_CLASSES =
   "px-6 py-5 whitespace-nowrap text-sm font-bold text-gray-700 border-b border-gray-50";
 
 export default function MoneyOutLog() {
-  const headers = [
-    "Title",
-    "Transaction ID",
-    "Exchange Rate",
-    "Amount",
-    "Fees & Charges",
-    "Will Get",
-    "Payable Amount",
-    "Status",
+  const t = useTranslations("MoneyOut");
+
+  const headersKeys = [
+    "title",
+    "transactionId",
+    "exchangeRate",
+    "amount",
+    "feesCharges",
+    "willGet",
+    "payableAmount",
+    "status",
   ];
+
+  const formatLogTitle = (title) => {
+    const prefix = "Money Out via ";
+    if (title.startsWith(prefix)) {
+      const gatewayName = title.slice(prefix.length);
+      let localizedGateway = gatewayName;
+      if (gatewayName === "Paypal USD") localizedGateway = t("gateways.paypal");
+      else if (gatewayName === "Stripe USD") localizedGateway = t("gateways.stripe");
+      else if (gatewayName === "ADPay USD") localizedGateway = t("gateways.adpay");
+      return t("moneyOutVia", { gateway: localizedGateway });
+    }
+    return title;
+  };
 
   return (
     <section className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden w-full relative">
@@ -128,7 +154,7 @@ export default function MoneyOutLog() {
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800 leading-tight">
-              Money Out Logs
+              {t("logsTitle")}
             </h2>
           </div>
         </div>
@@ -138,7 +164,7 @@ export default function MoneyOutLog() {
           type="button"
           className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]"
         >
-          View More
+          {t("viewMore")}
         </button>
       </div>
 
@@ -148,16 +174,16 @@ export default function MoneyOutLog() {
           <div className="py-16 text-center">
             <History size={40} className="text-gray-300 mx-auto mb-3" />
             <p className="text-sm font-semibold text-gray-400">
-              No records yet
+              {t("noRecords")}
             </p>
           </div>
         ) : (
           <table className="w-full text-left border-collapse">
             <thead className="bg-gray-50/60">
               <tr>
-                {headers.map((header) => (
-                  <th key={header} className={TH_CLASSES}>
-                    {header}
+                {headersKeys.map((key) => (
+                  <th key={key} className={TH_CLASSES}>
+                    {t(`headers.${key}`)}
                   </th>
                 ))}
               </tr>
@@ -171,7 +197,7 @@ export default function MoneyOutLog() {
                   {/* 1. Title */}
                   <td className={`${TD_CLASSES} min-w-[240px]`}>
                     <p className="text-gray-800 font-bold group-hover:text-[#10b981] transition-colors leading-tight">
-                      {log.title}
+                      {formatLogTitle(log.title)}
                     </p>
                   </td>
 

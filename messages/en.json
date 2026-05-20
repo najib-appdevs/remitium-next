@@ -188,6 +188,446 @@
     "rememberedYourPassword": "Remembered your password?",
     "backToSignIn": "Back to Sign In"
   },
+  "DashboardPage": {
+    "myWallets": "My Wallets",
+    "viewMore": "View More",
+    "unitedStates": "United States",
+    "unitedKingdom": "United Kingdom",
+    "europeanUnion": "European Union",
+    "japan": "Japan",
+    "canada": "Canada",
+    "australia": "Australia",
+    "india": "India",
+    "bangladesh": "Bangladesh"
+  },
+  "DashboardNavbar": {
+    "dashboard": "Dashboard",
+    "profileAlt": "Profile Image",
+    "routes": {
+      "overview": "Overview",
+      "add-money": "Add Money",
+      "cardyfie-virtual-card": "Cardyfie Virtual Card",
+      "money-out": "Money Out",
+      "profile": "Profile",
+      "recipient": "Recipient",
+      "send-remittance": "Send Remittance",
+      "settings": "Settings",
+      "transaction": "Transaction",
+      "2FA-Security": "2FA Security",
+      "KYC-verification": "KYC Verification"
+    }
+  },
+  "TransactionSummary": {
+    "title": "Transaction Summary",
+    "sendRemittance": "Send Remittance",
+    "moneyOut": "Money Out",
+    "all": "ALL",
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  },
+  "AddMoneyStatistics": {
+    "title": "Add Money Statistics",
+    "amount": "Amount",
+    "overview": "Add Money Overview",
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  },
+  "AddMoney": {
+    "title": "Add Money",
+    "exchangeRate": "Exchange Rate",
+    "paymentGateway": "Payment Gateway",
+    "amountCurrency": "Amount & Currency",
+    "enterAmountPlaceholder": "Enter Amount",
+    "availableBalance": "Available Balance: {balance} USD",
+    "limit": "Limit: {min} – {max} USD",
+    "summary": "Summary",
+    "enteredAmount": "Entered Amount",
+    "totalFeesCharges": "Total Fees & Charges",
+    "willGet": "Will Get",
+    "totalPayableAmount": "Total Payable Amount",
+    "logsTitle": "Add Money Logs",
+    "viewMore": "View More",
+    "noRecords": "No records yet",
+    "addBalanceVia": "Add Balance via {gateway}",
+    "gateways": {
+      "paypal": "Paypal USD",
+      "stripe": "Stripe USD"
+    },
+    "currencies": {
+      "usd": "United States (USD)",
+      "eur": "European Union (EUR)",
+      "gbp": "United Kingdom (GBP)"
+    },
+    "status": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "headers": {
+      "title": "Title",
+      "transactionId": "Transaction ID",
+      "exchangeRate": "Exchange Rate",
+      "amount": "Amount",
+      "feesCharges": "Fees & Charges",
+      "willGet": "Will Get",
+      "payableAmount": "Payable Amount",
+      "status": "Status"
+    }
+  },
+  "SendRemittance": {
+    "title": "Send Remittance",
+    "exchangeRate": "Exchange Rate",
+    "youSend": "You Send",
+    "theyGet": "They Get",
+    "transactionMethod": "Transaction Method",
+    "continue": "Continue",
+    "summary": "Summary",
+    "sendingAmount": "Sending Amount",
+    "limit": "Limit",
+    "totalFeesCharges": "Total Fees & Charges",
+    "willGet": "Will Get",
+    "totalPayableAmount": "Total Payable Amount",
+    "logsTitle": "Send Remittance Logs",
+    "viewMore": "View More",
+    "detailedReceipt": "Detailed Receipt",
+    "basicInformation": "Basic Information",
+    "recipientDestination": "Recipient Transfer Destination",
+    "pricingSettlement": "Pricing & Settlement",
+    "close": "Close",
+    "repeatTransaction": "Repeat Transaction",
+    "sendRemittanceTo": "Send Remittance To {name}",
+    "paymentMethodWallet": "Wallet (United States - USD)",
+    "status": {
+      "success": "Success",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "methods": {
+      "bankTransfer": "Bank Transfer",
+      "walletTransfer": "Wallet Transfer",
+      "mobileWallet": "Mobile Wallet"
+    },
+    "countries": {
+      "us": "United States",
+      "gb": "United Kingdom",
+      "eu": "European Union",
+      "ng": "Nigeria",
+      "gh": "Ghana",
+      "ke": "Kenya"
+    },
+    "purposes": {
+      "family": "Family",
+      "familySupport": "Family Support",
+      "education": "Education"
+    },
+    "sources": {
+      "business": "Business",
+      "salary": "Salary",
+      "savings": "Savings"
+    },
+    "headers": {
+      "remittanceTitle": "Remittance Title",
+      "totalAmount": "Total Amount",
+      "transactionId": "Transaction ID",
+      "status": "Status",
+      "method": "Method",
+      "amount": "Amount",
+      "exchangeRate": "Exchange Rate",
+      "action": "Action"
+    },
+    "modalFields": {
+      "transactionId": "Transaction ID",
+      "status": "Status",
+      "method": "Method",
+      "sendingPurpose": "Sending Purpose",
+      "sourceOfFunds": "Source of Funds",
+      "mobileMethodName": "Mobile Method Name",
+      "mobileMethodNumber": "Mobile Method Number",
+      "phoneSuffix": "Phone Suffix",
+      "amount": "Amount",
+      "exchangeRate": "Exchange Rate",
+      "feesCharges": "Fees & Charges",
+      "paymentMethod": "Payment Method",
+      "willGetAmount": "Will Get Amount"
+    }
+  },
+  "MoneyOut": {
+    "title": "Money Out",
+    "exchangeRate": "Exchange Rate",
+    "paymentGateway": "Payment Gateway",
+    "amount": "Amount",
+    "enterAmountPlaceholder": "Enter Amount",
+    "availableBalance": "Available Balance: {balance} USD",
+    "limit": "Limit: {min} – {max} USD",
+    "moneyOutBtn": "Money Out",
+    "summary": "Summary",
+    "enteredAmount": "Entered Amount",
+    "totalFeesCharges": "Total Fees & Charges",
+    "willGet": "Will Get",
+    "totalPayableAmount": "Total Payable Amount",
+    "logsTitle": "Money Out Logs",
+    "viewMore": "View More",
+    "noRecords": "No records yet",
+    "moneyOutVia": "Money Out via {gateway}",
+    "gateways": {
+      "paypal": "Paypal USD",
+      "stripe": "Stripe USD",
+      "adpay": "ADPay USD"
+    },
+    "currencies": {
+      "usd": "United States (USD)",
+      "eur": "European Union (EUR)",
+      "gbp": "United Kingdom (GBP)"
+    },
+    "status": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "headers": {
+      "title": "Title",
+      "transactionId": "Transaction ID",
+      "exchangeRate": "Exchange Rate",
+      "amount": "Amount",
+      "feesCharges": "Fees & Charges",
+      "willGet": "Will Get",
+      "payableAmount": "Payable Amount",
+      "status": "Status"
+    }
+  },
+  "TransactionsLog": {
+    "title": "Transactions Log",
+    "viewMore": "View More",
+    "details": "Details",
+    "detailedReceipt": "Detailed Receipt",
+    "totalPayableAmount": "Total Payable Amount",
+    "basicInformation": "Basic Information",
+    "recipientDestination": "Recipient Transfer Destination",
+    "phoneSuffix": "Phone Suffix",
+    "pricingSettlement": "Pricing & Settlement",
+    "close": "Close",
+    "repeatTransaction": "Repeat Transaction",
+    "sendRemittanceTo": "Send Remittance To {name}",
+    "paymentMethodWallet": "Wallet (United States - USD)",
+    "statusSuccess": "Success",
+    "statusPending": "Pending",
+    "willGetAmount": "Will Get Amount",
+    "headers": {
+      "remittanceTitle": "Remittance Title",
+      "totalAmount": "Total Amount",
+      "transactionId": "Transaction ID",
+      "status": "Status",
+      "method": "Method",
+      "amount": "Amount",
+      "exchangeRate": "Exchange Rate",
+      "action": "Action"
+    },
+    "methods": {
+      "mobileWallet": "Mobile Wallet",
+      "bankTransfer": "Bank Transfer"
+    },
+    "purposes": {
+      "family": "Family",
+      "familySupport": "Family Support",
+      "education": "Education"
+    },
+    "sources": {
+      "business": "Business",
+      "salary": "Salary",
+      "savings": "Savings"
+    },
+    "modalFields": {
+      "sendingPurpose": "Sending Purpose",
+      "sourceOfFunds": "Source of Funds",
+      "mobileMethodName": "Mobile Method Name",
+      "mobileMethodNumber": "Mobile Method Number",
+      "feesCharges": "Fees & Charges",
+      "paymentMethod": "Payment Method"
+    }
+  },
+  "Profile": {
+    "userAvatarAlt": "User Profile Picture",
+    "profileSettingsTab": "Profile Settings",
+    "securityPasswordTab": "Security & Password",
+    "deleteAccountTab": "Delete Account",
+    "accountSettingsHeading": "Account Settings",
+    "securitySettingsHeading": "Security Settings",
+    "accountSettingsSub": "Manage your public profile and personal information.",
+    "securitySettingsSub": "Secure your account by managing your password.",
+    "personalInfoLabel": "Personal information",
+    "firstNameField": "First Name*",
+    "lastNameField": "Last Name*",
+    "countryField": "Country*",
+    "phoneField": "Phone Number",
+    "addressField": "Address",
+    "cityField": "City",
+    "stateField": "State",
+    "zipField": "Zip Code",
+    "saveBtn": "Save Changes",
+    "securityInfoLabel": "Security information",
+    "currentPasswordLabel": "Current Password*",
+    "currentPasswordPlaceholder": "Enter current password",
+    "newPasswordLabel": "New Password*",
+    "newPasswordPlaceholder": "Create a strong password",
+    "confirmPasswordLabel": "Confirm Password*",
+    "confirmPasswordPlaceholder": "Repeat new password",
+    "updatePasswordBtn": "Update Password"
+  },
+  "TwoFactor": {
+    "twoFactorTitle": "Two Factor Authenticator",
+    "addressLabel": "Address",
+    "qrAlt": "QR Code",
+    "enableBtn": "Enable",
+    "googleAuthTitle": "Google Authenticator",
+    "downloadAppTitle": "Download Google Authenticator App",
+    "securityDescription": "Google Authenticator adds an extra layer of security to your online accounts by adding a second step of verification when you sign in. This means that in addition to your password, you'll also need to enter a code that is generated by the Google Authenticator app on your phone.",
+    "howToSetupLink": "How to Setup?",
+    "googleAuthAlt": "Google Authenticator Logo",
+    "downloadAndroidBtn": "Download For Android",
+    "downloadIosBtn": "Download For iOS"
+  },
+  "KYC": {
+    "proofOfIdentity": "Proof Of Identity",
+    "kycInformation": "KYC Information",
+    "statusVerified": "Verified",
+    "verifiedDescription": "Your KYC information is verified"
+  },
+  "VirtualCard": {
+    "title": "Virtual Cards",
+    "btnCreate": "Create Card",
+    "identityTypes": {
+      "nid": "National ID Card (NID)",
+      "passport": "Passport",
+      "bvn": "Bank Verification Number"
+    },
+    "countries": {
+      "bangladesh": "Bangladesh",
+      "usa": "United States",
+      "uk": "United Kingdom",
+      "canada": "Canada",
+      "australia": "Australia"
+    },
+    "card": {
+      "badge": "Virtual Card",
+      "brandName": "Cardyfie",
+      "holderLabel": "Card Holder",
+      "expiryLabel": "Expiry",
+      "cvvLabel": "CVV",
+      "accountTag": "Card Account",
+      "balanceLabel": "Balance",
+      "description": "Secure shopping with instant freezing and auto-funding from your primary wallet.",
+      "activeStatus": "Active",
+      "frozenStatus": "Frozen",
+      "btnFreeze": "Freeze Card",
+      "btnUnfreeze": "Unfreeze Card",
+      "btnDelete": "Delete Card"
+    },
+    "empty": {
+      "title": "No active virtual cards",
+      "description": "Generate a secure virtual card for your online subscriptions and safe shopping with instant freeze capabilities.",
+      "btnAction": "Create Your First Card"
+    },
+    "transactions": {
+      "title": "Recent Transactions",
+      "btnViewMore": "View More",
+      "thType": "Type",
+      "thId": "Transaction ID",
+      "thReqAmount": "Request Amount",
+      "thFees": "Fees & Charges",
+      "thTotal": "Total Amount",
+      "thStatus": "Status"
+    },
+    "transactionTypes": {
+      "cardFund": "Card Fund",
+      "bankTransfer": "Bank Transfer",
+      "mobileRecharge": "Mobile Recharge",
+      "walletTopUp": "Wallet Top-up",
+      "utilityPayment": "Utility Payment"
+    },
+    "modal": {
+      "headerTitle": "Create Virtual Card",
+      "section1Title": "1. Personal Information",
+      "labelFirstName": "First Name*",
+      "placeholderFirstName": "Enter First Name",
+      "labelLastName": "Last Name*",
+      "placeholderLastName": "Enter Last Name",
+      "labelEmail": "Email*",
+      "placeholderEmail": "Enter Email Address",
+      "labelDob": "Date Of Birth*",
+      "labelDobHint": "(Should match with your ID)",
+      "section2Title": "2. Identity Verification",
+      "labelIdentityType": "Identity Type*",
+      "labelIdentityNumber": "Identity Number*",
+      "placeholderIdentityNumber": "Enter Identity Number",
+      "labelUploadFront": "ID Card Image (Front Side)*",
+      "uploadFrontPlaceholder": "Upload Front Side",
+      "labelUploadBack": "ID Card Image (Back Side)*",
+      "uploadBackPlaceholder": "Upload Back Side",
+      "labelUploadUserPhoto": "Your Photo*",
+      "uploadUserPhotoPlaceholder": "Upload Your Photo",
+      "section3Title": "3. Address Information",
+      "labelHouseNumber": "House Number*",
+      "placeholderHouseNumber": "Enter House Number",
+      "labelCountry": "Country*",
+      "labelCity": "City*",
+      "placeholderCity": "Enter City",
+      "labelState": "State*",
+      "placeholderState": "Enter State",
+      "labelZipCode": "Zip Code*",
+      "placeholderZipCode": "Enter Code",
+      "labelAddress": "Address*",
+      "placeholderAddress": "Enter Full Residential Address",
+      "btnSubmit": "Submit"
+    }
+  },
+  "RemittanceLog": {
+    "title": "All Transaction Logs",
+    "searchPlaceholder": "Search transactions...",
+    "noRecords": "No transaction records found matching your search.",
+    "btnRepeat": "Repeat",
+    "paginationPrev": "Previous Page",
+    "paginationNext": "Next Page",
+    "tableHeaders": {
+      "recipient": "Recipient",
+      "transactionId": "Transaction ID",
+      "method": "Method",
+      "methodName": "Method Name",
+      "numberPhone": "Number/Phone",
+      "purpose": "Purpose",
+      "source": "Source",
+      "amount": "Amount",
+      "fees": "Fees",
+      "totalPayable": "Total Payable",
+      "exchangeRate": "Exchange Rate",
+      "willGet": "Will Get",
+      "status": "Status",
+      "action": "Action"
+    }
+  },
   "Footer": {
     "headingPart1": "Crafting the future of",
     "headingHighlight": "Global Liquidity.",
@@ -215,5 +655,32 @@
     "companyAddress": "bakedwith GmbH · Berlin · Europe",
     "privacyPolicy": "Privacy Policy",
     "legalNotice": "Legal notice"
+  },
+  "Sidebar": {
+    "groups": {
+      "general": "General",
+      "payments": "Payments & Transfers",
+      "finance": "Finance",
+      "accountManagement": "Account Management"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "addMoney": "Add Money",
+      "recipient": "Recipient",
+      "sendRemittance": "Send Remittance",
+      "moneyOut": "Money Out",
+      "virtualCard": "Virtual Card",
+      "transaction": "Transaction",
+      "settings": "Settings",
+      "profile": "Profile",
+      "security2fa": "2FA Security",
+      "kyc": "KYC Verification",
+      "logout": "Logout"
+    },
+    "helpCenter": {
+      "title": "Help Center",
+      "sub": "How can we help you?",
+      "btn": "Get Support"
+    }
   }
 }

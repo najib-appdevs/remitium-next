@@ -1,6 +1,7 @@
 "use client";
 
 import { ChartColumnBig } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   Bar,
   BarChart,
@@ -13,21 +14,28 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "Jan", remittance: 500, moneyOut: 5800, all: 300 },
-  { month: "Feb", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Mar", remittance: 150, moneyOut: 50, all: 100 },
-  { month: "Apr", remittance: 400, moneyOut: 0, all: 350 },
-  { month: "May", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Jun", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Jul", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Aug", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Sep", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Oct", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Nov", remittance: 0, moneyOut: 0, all: 0 },
-  { month: "Dec", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "jan", remittance: 500, moneyOut: 5800, all: 300 },
+  { monthKey: "feb", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "mar", remittance: 150, moneyOut: 50, all: 100 },
+  { monthKey: "apr", remittance: 400, moneyOut: 0, all: 350 },
+  { monthKey: "may", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "jun", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "jul", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "aug", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "sep", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "oct", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "nov", remittance: 0, moneyOut: 0, all: 0 },
+  { monthKey: "dec", remittance: 0, moneyOut: 0, all: 0 },
 ];
 
 const TransactionSummary = () => {
+  const t = useTranslations("TransactionSummary");
+
+  const chartData = data.map((item) => ({
+    ...item,
+    month: t(`months.${item.monthKey}`),
+  }));
+
   return (
     <div className="w-full bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between mb-6">
@@ -37,7 +45,7 @@ const TransactionSummary = () => {
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800 leading-tight">
-              Transaction Summary
+              {t("title")}
             </h2>
           </div>
         </div>
@@ -45,7 +53,7 @@ const TransactionSummary = () => {
       <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={data}
+            data={chartData}
             margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
             barGap={4} // Space between the 3 bars in a group
           >
@@ -86,7 +94,7 @@ const TransactionSummary = () => {
 
             {/* Thicker Bars for each category */}
             <Bar
-              name="Send Remittance"
+              name={t("sendRemittance")}
               dataKey="remittance"
               fill="#00BA88"
               radius={[4, 4, 4, 4]}
@@ -94,7 +102,7 @@ const TransactionSummary = () => {
             />
 
             <Bar
-              name="Money Out"
+              name={t("moneyOut")}
               dataKey="moneyOut"
               fill="#00BA88"
               radius={[4, 4, 4, 4]}
@@ -102,7 +110,7 @@ const TransactionSummary = () => {
             />
 
             <Bar
-              name="ALL"
+              name={t("all")}
               dataKey="all"
               fill="#00BA88"
               radius={[4, 4, 4, 4]}

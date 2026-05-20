@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Wallet,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 import SendRemittanceLog from "./SendRemittanceLog";
@@ -51,6 +52,7 @@ const card =
   "bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col gap-5 overflow-visible";
 
 export default function SendRemittancePage() {
+  const t = useTranslations("SendRemittance");
   const [sendAmount, setSendAmount] = useState(100);
   const [method, setMethod] = useState("Bank Transfer");
   const [sendCurrency, setSendCurrency] = useState(sendCurrencies[0]);
@@ -63,25 +65,35 @@ export default function SendRemittancePage() {
 
   const methods = ["Bank Transfer", "Wallet Transfer"];
 
+  const formatMethod = (m) => {
+    if (m === "Bank Transfer") return t("methods.bankTransfer");
+    if (m === "Wallet Transfer") return t("methods.walletTransfer");
+    return m;
+  };
+
+  const formatCountryName = (flag) => {
+    return t(`countries.${flag}`);
+  };
+
   const summaryRows = [
     {
       icon: <Calculator size={16} />,
-      label: "Sending Amount",
+      label: t("sendingAmount"),
       value: `${parseFloat(sendAmount).toFixed(2)} ${sendCurrency.code}`,
     },
     {
       icon: <ArrowLeftRight size={16} />,
-      label: "Limit",
+      label: t("limit"),
       value: `1 - 50,000.00 ${sendCurrency.code}`,
     },
     {
       icon: <Wallet size={16} />,
-      label: "Total Fees & Charges",
+      label: t("totalFeesCharges"),
       value: `${fees.toFixed(2)} ${sendCurrency.code}`,
     },
     {
       icon: <ShieldCheck size={16} />,
-      label: "Will Get",
+      label: t("willGet"),
       value: `${getAmount} ${receiveCurrency.code}`,
     },
   ];
@@ -103,7 +115,7 @@ export default function SendRemittancePage() {
               {/* Centered Caption */}
               <div className="flex flex-col items-center text-center gap-2.5">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl font-bold text-[#0d3d24]">Send Remittance</h2>
+                  <h2 className="text-xl font-bold text-[#0d3d24]">{t("title")}</h2>
                 </div>
               </div>
 
@@ -114,7 +126,7 @@ export default function SendRemittancePage() {
               <div className="flex justify-center">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
                   <span className="text-sm font-medium text-[#0f6e56]">
-                    Exchange Rate
+                    {t("exchangeRate")}
                   </span>
                   <span className="text-sm text-[#1d9e75]">
                     · 1 {sendCurrency.code} = {exchangeRate} {receiveCurrency.code}
@@ -129,7 +141,7 @@ export default function SendRemittancePage() {
                 {/* You Send */}
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-medium text-gray-500">
-                    You Send <span className="text-emerald-500">*</span>
+                    {t("youSend")} <span className="text-emerald-500">*</span>
                   </label>
                   <div className="flex rounded-lg border border-gray-200 focus-within:border-emerald-400 bg-white overflow-visible relative">
                     <input
@@ -143,13 +155,13 @@ export default function SendRemittancePage() {
                         <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none rounded-r-lg">
                           <Image
                             src={`https://flagcdn.com/w40/${sendCurrency.flag}.png`}
-                            alt={sendCurrency.name}
+                            alt={formatCountryName(sendCurrency.flag)}
                             className="w-5 h-3.5 object-cover rounded-[2px] border border-white/20"
                             width={20}
                             height={14}
                           />
                           <span>
-                            {sendCurrency.name} ({sendCurrency.code})
+                            {formatCountryName(sendCurrency.flag)} ({sendCurrency.code})
                           </span>
                           <ChevronDown size={12} />
                         </ListboxButton>
@@ -162,13 +174,13 @@ export default function SendRemittancePage() {
                             >
                               <Image
                                 src={`https://flagcdn.com/w40/${sc.flag}.png`}
-                                alt={sc.name}
+                                alt={formatCountryName(sc.flag)}
                                 className="w-5 h-3.5 object-cover rounded-[2px] border border-gray-100"
                                 width={20}
                                 height={14}
                               />
                               <span>
-                                {sc.name} ({sc.code})
+                                {formatCountryName(sc.flag)} ({sc.code})
                               </span>
                             </ListboxOption>
                           ))}
@@ -181,7 +193,7 @@ export default function SendRemittancePage() {
                 {/* They Get */}
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-medium text-gray-500">
-                    They Get <span className="text-emerald-500">*</span>
+                    {t("theyGet")} <span className="text-emerald-500">*</span>
                   </label>
                   <div className="flex rounded-lg border border-gray-200 bg-gray-50 overflow-visible relative">
                     <input
@@ -198,13 +210,13 @@ export default function SendRemittancePage() {
                         <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none rounded-r-lg">
                           <Image
                             src={`https://flagcdn.com/w40/${receiveCurrency.flag}.png`}
-                            alt={receiveCurrency.name}
+                            alt={formatCountryName(receiveCurrency.flag)}
                             className="w-5 h-3.5 object-cover rounded-[2px] border border-white/20"
                             width={20}
                             height={14}
                           />
                           <span>
-                            {receiveCurrency.name} ({receiveCurrency.code})
+                            {formatCountryName(receiveCurrency.flag)} ({receiveCurrency.code})
                           </span>
                           <ChevronDown size={12} />
                         </ListboxButton>
@@ -217,13 +229,13 @@ export default function SendRemittancePage() {
                             >
                               <Image
                                 src={`https://flagcdn.com/w40/${rc.flag}.png`}
-                                alt={rc.name}
+                                alt={formatCountryName(rc.flag)}
                                 className="w-5 h-3.5 object-cover rounded-[2px] border border-gray-100"
                                 width={20}
                                 height={14}
                               />
                               <span>
-                                {rc.name} ({rc.code})
+                                {formatCountryName(rc.flag)} ({rc.code})
                               </span>
                             </ListboxOption>
                           ))}
@@ -237,12 +249,12 @@ export default function SendRemittancePage() {
               {/* Transaction Method */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium text-gray-500">
-                  Transaction Method <span className="text-emerald-500">*</span>
+                  {t("transactionMethod")} <span className="text-emerald-500">*</span>
                 </label>
                 <Listbox value={method} onChange={setMethod}>
                   <div className="relative">
                     <ListboxButton className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-emerald-400 text-left cursor-pointer">
-                      <span>{method}</span>
+                      <span>{formatMethod(method)}</span>
                       <span className="text-gray-500 flex items-center pointer-events-none">
                         <svg
                           width="10"
@@ -265,7 +277,7 @@ export default function SendRemittancePage() {
                           value={m}
                           className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 data-[selected]:bg-emerald-100 data-[selected]:text-emerald-900 data-[selected]:font-semibold"
                         >
-                          {m}
+                          {formatMethod(m)}
                         </ListboxOption>
                       ))}
                     </ListboxOptions>
@@ -277,7 +289,7 @@ export default function SendRemittancePage() {
                 type="button"
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors mt-auto bg-[#10b981] hover:bg-[#059669]"
               >
-                Continue
+                {t("continue")}
               </button>
             </div>
           </div>
@@ -297,7 +309,7 @@ export default function SendRemittancePage() {
               {/* Centered Caption */}
               <div className="flex flex-col items-center text-center gap-2.5">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl font-bold text-[#0d3d24]">Summary</h2>
+                  <h2 className="text-xl font-bold text-[#0d3d24]">{t("summary")}</h2>
                 </div>
               </div>
             </div>
@@ -327,7 +339,7 @@ export default function SendRemittancePage() {
                   </span>
                 </div>
                 <span className="text-sm font-medium text-[#0d3d24]">
-                  Total Payable Amount
+                  {t("totalPayableAmount")}
                 </span>
               </div>
               <span className="text-base font-medium text-[#0d3d24]">

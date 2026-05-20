@@ -1,9 +1,11 @@
 "use client";
 
 import { FileText, RefreshCw, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function TransactionsLog() {
+  const t = useTranslations("TransactionsLog");
   const [selectedTx, setSelectedTx] = useState(null);
 
   const transactions = [
@@ -63,16 +65,56 @@ export default function TransactionsLog() {
     },
   ];
 
-  // Important 8 data column headers for the main table rows
-  const headers = [
-    "Remittance Title",
-    "Total Amount",
-    "Transaction ID",
-    "Status",
-    "Method",
-    "Amount",
-    "Exchange Rate",
-    "Action",
+  const formatHeaderTitle = (title) => {
+    const prefix = "Send Remittance To ";
+    if (title.startsWith(prefix)) {
+      const recipient = title.substring(prefix.length);
+      return t("sendRemittanceTo", { name: recipient });
+    }
+    return title;
+  };
+
+  const formatMethod = (method) => {
+    if (method === "Mobile Wallet") return t("methods.mobileWallet");
+    if (method === "Bank Transfer") return t("methods.bankTransfer");
+    return method;
+  };
+
+  const formatSendingPurpose = (purpose) => {
+    if (purpose === "Family") return t("purposes.family");
+    if (purpose === "Family Support") return t("purposes.familySupport");
+    if (purpose === "Education") return t("purposes.education");
+    return purpose;
+  };
+
+  const formatSourceOfFunds = (source) => {
+    if (source === "Business") return t("sources.business");
+    if (source === "Salary") return t("sources.salary");
+    if (source === "Savings") return t("sources.savings");
+    return source;
+  };
+
+  const formatPaymentMethod = (method) => {
+    if (method === "Wallet (United States - USD)") return t("paymentMethodWallet");
+    return method;
+  };
+
+  const formatStatus = (status) => {
+    if (status === "Success") return t("statusSuccess");
+    if (status === "Pending") return t("statusPending");
+    return status;
+  };
+
+  // Important 8 data column headers keys for translating
+  const headersKeys = [
+    "remittanceTitle",
+    "totalAmount",
+    "transactionId",
+    "status",
+    "method",
+    "amount",
+    "exchangeRate",
+    "action",
   ];
 
   const TH_CLASSES =
@@ -90,7 +132,7 @@ export default function TransactionsLog() {
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800 leading-tight">
-              Transactions Log
+              {t("title")}
             </h2>
           </div>
         </div>
@@ -98,7 +140,7 @@ export default function TransactionsLog() {
           type="button"
           className="bg-[#10b981] text-white rounded-xl border-none px-5 py-2.5 text-[13px] font-semibold tracking-[0.2px] cursor-pointer shadow-[0_4px_16px_rgba(16,185,129,0.18)] transition-[background,transform] duration-[180ms] hover:bg-[#059669] hover:-translate-y-px active:scale-[0.97]"
         >
-          View More
+          {t("viewMore")}
         </button>
       </div>
 
@@ -107,9 +149,9 @@ export default function TransactionsLog() {
         <table className="w-full text-left border-collapse">
           <thead className="bg-gray-50/60">
             <tr>
-              {headers.map((header) => (
-                <th key={header} className={TH_CLASSES}>
-                  {header}
+              {headersKeys.map((key) => (
+                <th key={key} className={TH_CLASSES}>
+                  {t(`headers.${key}`)}
                 </th>
               ))}
             </tr>
@@ -124,7 +166,7 @@ export default function TransactionsLog() {
                 {/* 1. Remittance Title */}
                 <td className={`${TD_CLASSES} min-w-[280px]`}>
                   <span className="text-gray-800 font-bold group-hover:text-[#10b981] transition-colors leading-tight">
-                    {tx.headerTitle}
+                    {formatHeaderTitle(tx.headerTitle)}
                   </span>
                 </td>
 
@@ -158,12 +200,12 @@ export default function TransactionsLog() {
                           : "bg-amber-500"
                       }`}
                     />
-                    {tx.status}
+                    {formatStatus(tx.status)}
                   </span>
                 </td>
 
                 {/* 5. Method */}
-                <td className={TD_CLASSES}>{tx.method}</td>
+                <td className={TD_CLASSES}>{formatMethod(tx.method)}</td>
 
                 {/* 6. Amount */}
                 <td className={TD_CLASSES}>{tx.amount}</td>
@@ -178,7 +220,7 @@ export default function TransactionsLog() {
                     onClick={() => setSelectedTx(tx)}
                     className="py-1.5 px-4 rounded-lg text-white text-xs font-semibold bg-[#10b981] hover:bg-[#059669] transition-all cursor-pointer shadow-sm shadow-emerald-500/10 hover:shadow-emerald-500/20 active:scale-95"
                   >
-                    Details
+                    {t("details")}
                   </button>
                 </td>
               </tr>
@@ -205,7 +247,7 @@ export default function TransactionsLog() {
                   <FileText size={16} />
                 </div>
                 <span className="text-sm font-bold text-gray-800">
-                  Detailed Receipt
+                  {t("detailedReceipt")}
                 </span>
               </div>
               <button
@@ -223,16 +265,16 @@ export default function TransactionsLog() {
               <div className="bg-[#f0faf5] border border-[#a7dfbf]/60 rounded-xl p-5 flex flex-col gap-3.5 shadow-xs">
                 <div>
                   <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none">
-                    Remittance Title
+                    {t("headers.remittanceTitle")}
                   </span>
                   <span className="text-sm font-extrabold text-[#0d3d24]">
-                    {selectedTx.headerTitle}
+                    {formatHeaderTitle(selectedTx.headerTitle)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center border-t border-[#a7dfbf]/30 pt-3">
                   <div>
                     <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none">
-                      Total Payable Amount
+                      {t("totalPayableAmount")}
                     </span>
                     <span className="text-lg font-black text-[#10b981]">
                       {selectedTx.totalAmountText}
@@ -253,7 +295,7 @@ export default function TransactionsLog() {
                             : "bg-amber-500"
                         }`}
                       />
-                      {selectedTx.status}
+                      {formatStatus(selectedTx.status)}
                     </span>
                   </div>
                 </div>
@@ -264,13 +306,13 @@ export default function TransactionsLog() {
                 {/* GROUP 1: Reference & Core Information */}
                 <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
                   <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
-                    Basic Information
+                    {t("basicInformation")}
                   </span>
                   <table className="w-full text-left border-collapse">
                     <tbody>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Transaction ID
+                          {t("headers.transactionId")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right ">
                           {selectedTx.transactionId}
@@ -278,34 +320,34 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Status
+                          {t("headers.status")}
                         </td>
                         <td className="py-2 text-xs font-bold text-[#10b981] text-right">
-                          {selectedTx.status}
+                          {formatStatus(selectedTx.status)}
                         </td>
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Method
+                          {t("headers.method")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
-                          {selectedTx.method}
+                          {formatMethod(selectedTx.method)}
                         </td>
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Sending Purpose
+                          {t("modalFields.sendingPurpose")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
-                          {selectedTx.sendingPurpose}
+                          {formatSendingPurpose(selectedTx.sendingPurpose)}
                         </td>
                       </tr>
                       <tr className="last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Source of Funds
+                          {t("modalFields.sourceOfFunds")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
-                          {selectedTx.sourceOfFunds}
+                          {formatSourceOfFunds(selectedTx.sourceOfFunds)}
                         </td>
                       </tr>
                     </tbody>
@@ -315,13 +357,13 @@ export default function TransactionsLog() {
                 {/* GROUP 2: Mobile Network Info */}
                 <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
                   <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
-                    Recipient Transfer Destination
+                    {t("recipientDestination")}
                   </span>
                   <table className="w-full text-left border-collapse">
                     <tbody>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Mobile Method Name
+                          {t("modalFields.mobileMethodName")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
                           {selectedTx.mobileMethodName}
@@ -329,7 +371,7 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Mobile Method Number
+                          {t("modalFields.mobileMethodNumber")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right ">
                           {selectedTx.mobileMethodNumber}
@@ -337,7 +379,7 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Phone Suffix
+                          {t("phoneSuffix")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
                           {selectedTx.phone}
@@ -350,13 +392,13 @@ export default function TransactionsLog() {
                 {/* GROUP 3: Pricing & Settlement */}
                 <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-4">
                   <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-gray-200/50">
-                    Pricing & Settlement
+                    {t("pricingSettlement")}
                   </span>
                   <table className="w-full text-left border-collapse">
                     <tbody>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Amount
+                          {t("headers.amount")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
                           {selectedTx.amount}
@@ -364,7 +406,7 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Exchange Rate
+                          {t("headers.exchangeRate")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
                           {selectedTx.exchangeRate}
@@ -372,7 +414,7 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Fees & Charges
+                          {t("modalFields.feesCharges")}
                         </td>
                         <td className="py-2 text-xs font-bold text-red-500 text-right">
                           +{selectedTx.feesCharges}
@@ -380,15 +422,15 @@ export default function TransactionsLog() {
                       </tr>
                       <tr className="border-b border-gray-100/70 last:border-none">
                         <td className="py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Payment Method
+                          {t("modalFields.paymentMethod")}
                         </td>
                         <td className="py-2 text-xs font-bold text-gray-700 text-right">
-                          {selectedTx.paymentMethod}
+                          {formatPaymentMethod(selectedTx.paymentMethod)}
                         </td>
                       </tr>
                       <tr className="last:border-none">
                         <td className="py-2 text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
-                          Will Get Amount
+                          {t("willGetAmount")}
                         </td>
                         <td className="py-2 text-sm font-black text-[#10b981] text-right">
                           {selectedTx.willGetAmount}
@@ -407,7 +449,7 @@ export default function TransactionsLog() {
                 onClick={() => setSelectedTx(null)}
                 className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-200 text-gray-500 text-xs font-bold hover:bg-gray-100 transition-colors cursor-pointer text-center"
               >
-                Close
+                {t("close")}
               </button>
               <button
                 type="button"
@@ -415,7 +457,7 @@ export default function TransactionsLog() {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl text-white text-xs font-bold cursor-pointer transition-all bg-[#10b981] hover:bg-[#059669] hover:-translate-y-0.5 shadow-md shadow-emerald-500/10 hover:shadow-emerald-500/20"
               >
                 <RefreshCw size={12} />
-                {selectedTx.bottomActionButton}
+                {t("repeatTransaction")}
               </button>
             </div>
           </div>

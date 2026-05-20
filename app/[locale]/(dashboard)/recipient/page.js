@@ -707,7 +707,7 @@ export default function RecipientPage() {
       {/* Edit Recipient Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-          <div className="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200" data-lenis-prevent="true">
             <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0">
               <h2 className="text-xl  text-gray-800">Recipient Edit</h2>
               <button

@@ -6,6 +6,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import MoneyOutLog from "./MoneyOutLog";
 
@@ -134,6 +135,7 @@ const card =
   "bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col gap-5 overflow-visible";
 
 export default function MoneyOutPage() {
+  const t = useTranslations("MoneyOut");
   const [amount, setAmount] = useState("");
   const [gateway, setGateway] = useState("Paypal USD");
   const [currency, setCurrency] = useState("United States (USD)");
@@ -158,20 +160,34 @@ export default function MoneyOutPage() {
     return "us";
   };
 
+  const formatGateway = (g) => {
+    if (g === "Paypal USD") return t("gateways.paypal");
+    if (g === "Stripe USD") return t("gateways.stripe");
+    if (g === "ADPay USD") return t("gateways.adpay");
+    return g;
+  };
+
+  const formatCurrency = (c) => {
+    if (c === "United States (USD)") return t("currencies.usd");
+    if (c === "European Union (EUR)") return t("currencies.eur");
+    if (c === "United Kingdom (GBP)") return t("currencies.gbp");
+    return c;
+  };
+
   const summaryRows = [
     {
       icon: <IconEntered />,
-      label: "Entered Amount",
+      label: t("enteredAmount"),
       value: `${parsedAmount.toFixed(2)} USD`,
     },
     {
       icon: <IconFees />,
-      label: "Total Fees & Charges",
+      label: t("totalFeesCharges"),
       value: `${fee.toFixed(2)} USD`,
     },
     {
       icon: <IconWillGet />,
-      label: "Will Get",
+      label: t("willGet"),
       value: `${parsedAmount.toFixed(2)} USD`,
     },
   ];
@@ -193,7 +209,9 @@ export default function MoneyOutPage() {
             {/* Centered Caption */}
             <div className="flex flex-col items-center text-center gap-2.5">
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold text-[#0d3d24]">Money Out</h2>
+                <h2 className="text-xl font-bold text-[#0d3d24]">
+                  {t("title")}
+                </h2>
               </div>
             </div>
 
@@ -204,7 +222,7 @@ export default function MoneyOutPage() {
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e1f5ee] border border-[#9fe1cb]">
                 <span className="text-sm font-medium text-[#0f6e56]">
-                  Exchange Rate
+                  {t("exchangeRate")}
                 </span>
                 <span className="text-sm text-[#1d9e75]">· 1 USD = 289.38 PKR</span>
               </div>
@@ -215,7 +233,7 @@ export default function MoneyOutPage() {
             {/* Payment Gateway */}
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-gray-500">
-                Payment Gateway <span className="text-emerald-500">*</span>
+                {t("paymentGateway")} <span className="text-emerald-500">*</span>
               </label>
               <Listbox value={gateway} onChange={setGateway}>
                 <div className="relative">
@@ -224,7 +242,7 @@ export default function MoneyOutPage() {
                       <span className="text-gray-400">
                         <IconGateway />
                       </span>
-                      <span>{gateway}</span>
+                      <span>{formatGateway(gateway)}</span>
                     </div>
                     <span className="text-gray-500 flex items-center pointer-events-none">
                       <IconChevronDown />
@@ -237,7 +255,7 @@ export default function MoneyOutPage() {
                         value={opt}
                         className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 data-[selected]:bg-emerald-100 data-[selected]:text-emerald-900 data-[selected]:font-semibold"
                       >
-                        {opt}
+                        {formatGateway(opt)}
                       </ListboxOption>
                     ))}
                   </ListboxOptions>
@@ -248,7 +266,7 @@ export default function MoneyOutPage() {
             {/* Amount & Currency */}
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-gray-500">
-                Amount <span className="text-emerald-500">*</span>
+                {t("amount")} <span className="text-emerald-500">*</span>
               </label>
               <div className="flex rounded-lg border border-gray-200 focus-within:border-emerald-400 bg-white overflow-visible relative">
                 <input
@@ -258,13 +276,13 @@ export default function MoneyOutPage() {
                   min={1}
                   max={5000}
                   step={0.01}
-                  placeholder="Enter Amount"
+                  placeholder={t("enterAmountPlaceholder")}
                   className="flex-1 min-w-0 px-3 py-2.5 text-sm text-gray-600 outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none font-bold"
                 />
                 <Listbox value={currency} onChange={setCurrency}>
                   <div className="relative flex shrink-0">
                     <ListboxButton className="px-3 flex items-center gap-2 text-white text-sm font-medium bg-[#10b981] hover:bg-[#059669] transition-colors cursor-pointer focus:outline-none rounded-r-lg">
-                      <span>{currency}</span>
+                      <span>{formatCurrency(currency)}</span>
                       <IconChevronDown />
                     </ListboxButton>
                     <ListboxOptions className="absolute right-0 z-50 mt-10 w-64 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none py-1">
@@ -274,7 +292,7 @@ export default function MoneyOutPage() {
                           value={curr}
                           className="cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-900 data-[selected]:bg-emerald-100 data-[selected]:text-emerald-900 data-[selected]:font-semibold flex items-center gap-2"
                         >
-                          <span>{curr}</span>
+                          <span>{formatCurrency(curr)}</span>
                         </ListboxOption>
                       ))}
                     </ListboxOptions>
@@ -283,10 +301,10 @@ export default function MoneyOutPage() {
               </div>
               <div className="flex flex-col gap-0.5 mt-1">
                 <p className="text-sm text-[#fca04b] font-medium">
-                  Available Balance: {availableBalance.toLocaleString()} USD
+                  {t("availableBalance", { balance: availableBalance.toLocaleString() })}
                 </p>
                 <p className="text-sm text-[#fca04b] font-medium">
-                  Limit: 1.00 – 5,000.00 USD
+                  {t("limit", { min: "1.00", max: "5,000.00" })}
                 </p>
               </div>
             </div>
@@ -295,7 +313,7 @@ export default function MoneyOutPage() {
               type="button"
               className="w-full flex items-center justify-center gap-2 py-3 rounded-lg text-white text-sm font-medium cursor-pointer transition-colors mt-auto bg-[#10b981] hover:bg-[#059669]"
             >
-              Money Out
+              {t("moneyOutBtn")}
             </button>
           </div>
         </div>
@@ -313,7 +331,9 @@ export default function MoneyOutPage() {
             {/* Centered Caption */}
             <div className="flex flex-col items-center text-center gap-2.5">
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold text-[#0d3d24]">Summary</h2>
+                <h2 className="text-xl font-bold text-[#0d3d24]">
+                  {t("summary")}
+                </h2>
               </div>
             </div>
           </div>
@@ -342,7 +362,7 @@ export default function MoneyOutPage() {
                 </span>
               </div>
               <span className="text-sm font-medium text-[#0d3d24]">
-                Total Payable Amount
+                {t("totalPayableAmount")}
               </span>
             </div>
             <span className="text-base font-medium text-[#0d3d24]">

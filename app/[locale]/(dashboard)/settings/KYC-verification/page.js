@@ -1,4 +1,10 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 export default function KYCVerificationPage() {
+  const t = useTranslations("KYC");
+
   return (
     <div className="flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-sm">
@@ -7,23 +13,23 @@ export default function KYCVerificationPage() {
           style={{ background: "#f0faf5", border: "0.5px solid #a7dfbf" }}
         >
           <h3 className="text-lg font-bold text-gray-900 mb-6 relative z-10">
-            Proof Of Identity
+            {t("proofOfIdentity")}
           </h3>
 
           <div className="flex items-center gap-3 mb-2 relative z-10">
             <h2 className="text-2xl font-bold text-gray-900">
-              KYC Information
+              {t("kycInformation")}
             </h2>
             <div className="flex items-center gap-1.5 ml-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span className="text-sm font-medium text-gray-700">
-                Verified
+                {t("statusVerified")}
               </span>
             </div>
           </div>
 
           <p className="text-emerald-500 font-medium relative z-10">
-            Your KYC information is verified
+            {t("verifiedDescription")}
           </p>
         </div>
       </div>
