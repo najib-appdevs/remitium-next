@@ -167,6 +167,27 @@
     "termsAgreement": "Al hacer clic en Iniciar sesión, aceptas nuestros",
     "termsLink": "Términos de servicio"
   },
+  "RegisterPage": {
+    "heading": "Crea tu cuenta de Remitium",
+    "subheading": "Únete a Remitium hoy y comienza a enviar dinero sin esfuerzo",
+    "firstNamePlaceholder": "Nombre",
+    "lastNamePlaceholder": "Apellido",
+    "emailPlaceholder": "Correo electrónico",
+    "passwordPlaceholder": "Contraseña",
+    "termsAgreement": "He aceptado los",
+    "termsLink": "Términos de uso y Política de privacidad",
+    "registerButton": "Registrarse ahora",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "loginNow": "Inicia sesión ahora"
+  },
+  "ForgotPasswordPage": {
+    "heading": "¿Olvidaste tu contraseña?",
+    "subheading": "Recupera el acceso a tu cuenta restableciendo tu contraseña. Nuestra página de recuperación de contraseña te guía a través de los pasos necesarios para restablecer tu contraseña de forma segura.",
+    "emailPlaceholder": "Introduce tu correo electrónico",
+    "sendResetLinkButton": "Enviar enlace de restablecimiento",
+    "rememberedYourPassword": "¿Ya recordaste tu contraseña?",
+    "backToSignIn": "Volver a Iniciar sesión"
+  },
   "Footer": {
     "headingPart1": "Creando el futuro de la",
     "headingHighlight": "Liquidez Global.",

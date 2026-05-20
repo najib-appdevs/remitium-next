@@ -167,6 +167,27 @@
     "termsAgreement": "بالنقر فوق تسجيل الدخول ، فإنك توافق على",
     "termsLink": "شروط الخدمة"
   },
+  "RegisterPage": {
+    "heading": "أنشئ حساب ريمتيوم الخاص بك",
+    "subheading": "انضم إلى ريمتيوم اليوم وابدأ في إرسال الأموال دون عناء",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastNamePlaceholder": "اسم العائلة",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "termsAgreement": "لقد وافقت على",
+    "termsLink": "شروط الاستخدام وسياسة الخصوصية",
+    "registerButton": "سجل الآن",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "loginNow": "سجل الدخول الآن"
+  },
+  "ForgotPasswordPage": {
+    "heading": "نسيت كلمة المرور",
+    "subheading": "تحكم في حسابك عن طريق إعادة تعيين كلمة المرور. صفحة استرداد كلمة المرور ترشدك خلال الخطوات اللازمة لإعادة تعيين كلمة المرور بأمان.",
+    "emailPlaceholder": "أدخل البريد الإلكتروني",
+    "sendResetLinkButton": "إرسال رابط إعادة التعيين",
+    "rememberedYourPassword": "هل تذكرت كلمة المرور؟",
+    "backToSignIn": "العودة إلى تسجيل الدخول"
+  },
   "Footer": {
     "headingPart1": "صياغة مستقبل",
     "headingHighlight": "السيولة العالمية.",

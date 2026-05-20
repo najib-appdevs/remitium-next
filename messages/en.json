@@ -167,6 +167,27 @@
     "termsAgreement": "By clicking Login you are agreeing with our",
     "termsLink": "Terms of Service"
   },
+  "RegisterPage": {
+    "heading": "Create Your Remitium Account",
+    "subheading": "Join Remitium Today and Start Sending Money Effortlessly",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "termsAgreement": "I have agreed with",
+    "termsLink": "Terms Of Use & Privacy Policy",
+    "registerButton": "Register Now",
+    "alreadyHaveAccount": "Already Have An Account?",
+    "loginNow": "Login Now"
+  },
+  "ForgotPasswordPage": {
+    "heading": "Forgot Password",
+    "subheading": "Take control of your account by resetting your password. Our password recovery page guides you through the necessary steps to securely reset your password.",
+    "emailPlaceholder": "Enter Email Address",
+    "sendResetLinkButton": "Send Reset Link",
+    "rememberedYourPassword": "Remembered your password?",
+    "backToSignIn": "Back to Sign In"
+  },
   "Footer": {
     "headingPart1": "Crafting the future of",
     "headingHighlight": "Global Liquidity.",

@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function ForgotPassword() {
+  const t = useTranslations("ForgotPasswordPage");
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 pt-32 pb-24">
       {/* Main Card */}
@@ -22,12 +24,10 @@ export default function ForgotPassword() {
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl md:text-[28px] font-bold text-slate-900 mb-2">
-            Forgot Password
+            {t("heading")}
           </h2>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
-            Take control of your account by resetting your password. Our
-            password recovery page guides you through the necessary steps to
-            securely reset your password.
+            {t("subheading")}
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function ForgotPassword() {
               name="email"
               type="email"
               required
-              placeholder="Enter Email Address"
+              placeholder={t("emailPlaceholder")}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
           </div>
@@ -50,19 +50,19 @@ export default function ForgotPassword() {
             type="submit"
             className="w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-4 text-lg cursor-pointer"
           >
-            Send Reset Link
+            {t("sendResetLinkButton")}
           </button>
         </form>
 
         {/* Back to Sign In */}
         <div className="mt-8 text-center">
           <p className="text-sm text-slate-600 font-medium">
-            Remembered your password?{" "}
+            {t("rememberedYourPassword")}{" "}
             <Link
               href="/login"
               className="text-emerald-500 font-bold hover:text-emerald-600 hover:underline"
             >
-              Back to Sign In
+              {t("backToSignIn")}
             </Link>
           </p>
         </div>

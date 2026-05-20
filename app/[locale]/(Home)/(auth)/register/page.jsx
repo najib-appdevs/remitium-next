@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function RegisterPage() {
+  const t = useTranslations("RegisterPage");
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 py-12 pt-32 pb-24">
       {/* Main Card */}
@@ -24,10 +27,10 @@ export default function RegisterPage() {
         {/* Header */}
         <div className="mb-8 text-left md:text-left">
           <h2 className="text-2xl md:text-[28px] font-bold text-slate-900 mb-2">
-            Create Your Remitium Account
+            {t("heading")}
           </h2>
           <p className="text-slate-500 text-sm md:text-base font-medium">
-            Join Remitium Today and Start Sending Money Effortlessly
+            {t("subheading")}
           </p>
         </div>
 
@@ -40,7 +43,7 @@ export default function RegisterPage() {
                 name="first-name"
                 type="text"
                 required
-                placeholder="First Name"
+                placeholder={t("firstNamePlaceholder")}
                 className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
               />
             </div>
@@ -50,7 +53,7 @@ export default function RegisterPage() {
                 name="last-name"
                 type="text"
                 required
-                placeholder="Last Name"
+                placeholder={t("lastNamePlaceholder")}
                 className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
               />
             </div>
@@ -62,7 +65,7 @@ export default function RegisterPage() {
               name="email"
               type="email"
               required
-              placeholder="Email"
+              placeholder={t("emailPlaceholder")}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
           </div>
@@ -73,7 +76,7 @@ export default function RegisterPage() {
               name="password"
               type="password"
               required
-              placeholder="Password"
+              placeholder={t("passwordPlaceholder")}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
             <button 
@@ -94,9 +97,9 @@ export default function RegisterPage() {
               className="h-5 w-5 text-emerald-500 focus:ring-emerald-500 border-slate-300 rounded-md"
             />
             <label htmlFor="terms" className="ml-3 block text-sm text-slate-500 font-medium">
-              I have agreed with{" "}
+              {t("termsAgreement")}{" "}
               <Link href="#" className="text-slate-600 decoration-slate-400 font-bold">
-                Terms Of Use & Privacy Policy
+                {t("termsLink")}
               </Link>
             </label>
           </div>
@@ -106,19 +109,19 @@ export default function RegisterPage() {
             type="submit"
             className="w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-6 text-xl"
           >
-            Register Now
+            {t("registerButton")}
           </button>
         </form>
 
         {/* Footer Link */}
         <div className="mt-8 text-center">
           <p className="text-sm text-slate-600 font-medium">
-            Already Have An Account?{" "}
+            {t("alreadyHaveAccount")}{" "}
             <Link
               href="/login"
               className="text-emerald-500 font-bold hover:text-emerald-600"
             >
-              Login Now
+              {t("loginNow")}
             </Link>
           </p>
         </div>
