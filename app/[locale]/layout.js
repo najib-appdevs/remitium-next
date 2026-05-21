@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Jost } from "next/font/google";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
 
 const jost = Jost({
   variable: "--font-jost",
@@ -28,6 +29,27 @@ export default async function LocaleLayout({ children, params }) {
       <body className="min-h-full flex flex-col font-sans">
         <NextIntlClientProvider messages={messages}>
           {children}
+
+          {/* Added Toaster */}
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#333',
+                color: '#fff',
+                padding: '16px',
+                borderRadius: '10px',
+                fontSize: '15px',
+              },
+              success: {
+                style: { background: '#22c55e', color: '#fff' },
+              },
+              error: {
+                style: { background: '#ef4444', color: '#fff' },
+              },
+            }}
+          />
         </NextIntlClientProvider>
       </body>
     </html>
