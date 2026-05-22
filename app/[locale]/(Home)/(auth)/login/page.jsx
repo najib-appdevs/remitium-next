@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { EyeOff, Eye } from "lucide-react";   
+import { EyeOff, Eye } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -32,11 +32,11 @@ export default function LoginPage() {
     try {
       const response = await authService.login(email, password);
       const responseData = response.data;
-      
+
       // Save the token if successful
       const token = responseData?.data?.user_data?.token;
       if (token) {
-        localStorage.setItem("accessToken", token);
+        sessionStorage.setItem("accessToken", token);
       }
 
       // Show message from API response
@@ -80,7 +80,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 pt-32 pb-24">
       {/* Main Card */}
       <div className="w-full max-w-[480px] bg-slate-100 rounded-[24px] p-8 md:p-12 shadow-sm border border-slate-200">
-        
+
         {/* Logo */}
         <div className="flex justify-center mb-10">
           <Image
@@ -128,7 +128,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
-            <button 
+            <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
@@ -168,7 +168,7 @@ export default function LoginPage() {
               {t("registerNow")}
             </Link>
           </p>
-          
+
           <p className="text-xs text-slate-500 leading-relaxed font-medium">
             {t("termsAgreement")}{" "}
             <Link href="/terms" className="text-emerald-500 font-bold hover:text-emerald-600 hover:underline">

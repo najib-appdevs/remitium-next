@@ -111,12 +111,12 @@ export default function ResetPassword() {
         </div>
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <h2 className="text-2xl md:text-[28px] font-bold text-slate-900 mb-2">
             Reset Password
           </h2>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
-            Please enter your new password.
+            Please enter your new password
           </p>
         </div>
 
@@ -137,7 +137,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
             >
               {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
@@ -157,7 +157,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
             >
               {showConfirmPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
@@ -167,7 +167,7 @@ export default function ResetPassword() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-400 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-6 text-lg disabled:cursor-not-allowed"
+            className="cursor-pointer w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-400 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-6 text-lg disabled:cursor-not-allowed"
           >
             {loading ? "Resetting Password..." : "Reset Password"}
           </button>

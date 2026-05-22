@@ -62,7 +62,7 @@ export default function RegisterPage() {
       // Save the token if successful
       const token = responseData?.data?.token;
       if (token) {
-        localStorage.setItem("accessToken", token);
+        sessionStorage.setItem("accessToken", token);
       }
 
       // Show message from API response
@@ -106,7 +106,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 py-12 pt-32 pb-24">
       {/* Main Card */}
       <div className="w-full max-w-[550px] bg-slate-100 rounded-[24px] p-8 md:p-12 shadow-sm border border-slate-200">
-        
+
         {/* Logo */}
         <div className="flex justify-center mb-10">
           <Image
@@ -181,7 +181,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
-            <button 
+            <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"

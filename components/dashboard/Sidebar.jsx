@@ -72,7 +72,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
       showToast.error(errorMsg);
     } finally {
-      localStorage.removeItem("accessToken");
+      sessionStorage.removeItem("accessToken");
       setIsLogoutModalOpen(false);
       setLoading(false);
       router.push("/login");
@@ -183,10 +183,9 @@ export default function Sidebar({ isOpen, onClose }) {
                       href={item.href}
                       className={`
                         flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
-                        ${
-                          isActive(item.href)
-                            ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20"
-                            : "text-gray-300 hover:text-white hover:bg-white/5"
+                        ${isActive(item.href)
+                          ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20"
+                          : "text-gray-300 hover:text-white hover:bg-white/5"
                         }
                       `}
                     >
@@ -212,10 +211,9 @@ export default function Sidebar({ isOpen, onClose }) {
                 onClick={() => setIsSettingsOpen(!isSettingsOpen)}
                 className={`
                   w-full flex items-center justify-between px-4 py-3 rounded-sm text-sm font-medium transition-all duration-200 cursor-pointer
-                  ${
-                    pathname.includes("/settings") || pathname === "/profile"
-                      ? "text-white bg-white/5"
-                      : "text-gray-300 hover:text-white hover:bg-white/5"
+                  ${pathname.includes("/settings") || pathname === "/profile"
+                    ? "text-white bg-white/5"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
                   }
                 `}
               >
@@ -230,11 +228,10 @@ export default function Sidebar({ isOpen, onClose }) {
               </button>
 
               <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                  isSettingsOpen
+                className={`grid transition-all duration-300 ease-in-out ${isSettingsOpen
                     ? "grid-rows-[1fr] opacity-100 mt-1"
                     : "grid-rows-[0fr] opacity-0"
-                }`}
+                  }`}
               >
                 <div className="overflow-hidden">
                   <div className="ltr:ml-4 ltr:pl-4 ltr:border-l rtl:mr-4 rtl:pr-4 rtl:border-r border-white/10 space-y-1">
@@ -244,10 +241,9 @@ export default function Sidebar({ isOpen, onClose }) {
                         href={item.href}
                         className={`
                           flex items-center gap-3 px-4 py-2.5 rounded-sm text-[13px] font-medium transition-all duration-200
-                          ${
-                            isActive(item.href)
-                              ? "text-brand-primary"
-                              : "text-gray-300 hover:text-white hover:bg-white/5"
+                          ${isActive(item.href)
+                            ? "text-brand-primary"
+                            : "text-gray-300 hover:text-white hover:bg-white/5"
                           }
                         `}
                       >
