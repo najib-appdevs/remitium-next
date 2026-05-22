@@ -291,7 +291,7 @@ export default function Sidebar({ isOpen, onClose }) {
       {isLogoutModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
           <div className="bg-white rounded-[2rem] w-full max-w-md overflow-hidden shadow-2xl border border-gray-100 p-8 flex flex-col items-center text-center animate-in fade-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-5">
+            <div className="w-16 h-16 rounded-full bg-red-50 text-red-500 flex items-center justify-center mb-5">
               <LogOut size={28} className="translate-x-0.5" />
             </div>
             <h3 className="text-lg font-bold text-gray-800 mb-2">
@@ -313,7 +313,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 type="button"
                 disabled={loading}
                 onClick={handleLogout}
-                className="flex-1 py-3 bg-emerald-500 text-white rounded-xl text-sm font-semibold hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/10 cursor-pointer disabled:opacity-50"
+                className="flex-1 py-3 bg-red-500 text-white rounded-xl text-sm font-semibold hover:bg-red-600 transition-all shadow-md shadow-red-500/10 cursor-pointer disabled:opacity-50"
               >
                 {loading ? t("logoutConfirm.loggingOut") : t("logoutConfirm.yes")}
               </button>
