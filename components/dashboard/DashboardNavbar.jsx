@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import NotificationsDropdown from "../NotificationsDropdown";
 
 export default function DashboardNavbar({ onMenuClick }) {
   const pathname = usePathname();
@@ -106,11 +107,8 @@ export default function DashboardNavbar({ onMenuClick }) {
           )}
         </div>
 
-        {/* Notifications */}
-        <button className="cursor-pointer relative p-2 text-gray-400 hover:text-brand-navy hover:bg-gray-50 rounded-full transition-all border border-gray-100">
-          <Bell size={18} />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-        </button>
+        {/* Notifications - Now using separate component */}
+        <NotificationsDropdown />
 
         {/* Profile */}
         <Link
