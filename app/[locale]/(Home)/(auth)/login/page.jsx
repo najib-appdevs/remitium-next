@@ -2,11 +2,79 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { EyeOff } from "lucide-react";
+import { EyeOff, Eye } from "lucide-react";   
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { showToast } from '@/lib/toast';
+import { authService } from '@/lib/services/api';
 
 export default function LoginPage() {
   const t = useTranslations("LoginPage");
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Login Logic
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      showToast.error("Please enter your Email and Password");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await authService.login(email, password);
+      const responseData = response.data;
+      
+      // Save the token if successful
+      const token = responseData?.data?.user_data?.token;
+      if (token) {
+        localStorage.setItem("accessToken", token);
+      }
+
+      // Show message from API response
+      const successMsg = Array.isArray(responseData?.message?.success)
+        ? responseData.message.success[0]
+        : (responseData?.message?.success || "Login Successful");
+
+      showToast.success(successMsg);
+
+      // Redirect to dashboard or home page
+      router.push("/dashboard");
+
+    } catch (error) {
+      const errorData = error.response?.data;
+      let errorMsg = "Login failed";
+
+      if (errorData?.message) {
+        if (typeof errorData.message === "string") {
+          errorMsg = errorData.message;
+        } else if (typeof errorData.message === "object") {
+          // Extract the first error message from the object keys
+          const firstKey = Object.keys(errorData.message)[0];
+          if (firstKey) {
+            const val = errorData.message[firstKey];
+            errorMsg = Array.isArray(val) ? val[0] : (typeof val === "string" ? val : JSON.stringify(val));
+          }
+        }
+      } else if (errorData?.error) {
+        errorMsg = typeof errorData.error === "string" ? errorData.error : JSON.stringify(errorData.error);
+      } else if (error.message) {
+        errorMsg = error.message;
+      }
+
+      showToast.error(errorMsg);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 pt-32 pb-24">
@@ -35,7 +103,7 @@ export default function LoginPage() {
         </div>
 
         {/* Form */}
-        <form className="space-y-4" action="#" method="POST">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <input
               id="email"
@@ -43,6 +111,8 @@ export default function LoginPage() {
               type="email"
               required
               placeholder={t("emailPlaceholder")}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
           </div>
@@ -51,16 +121,19 @@ export default function LoginPage() {
             <input
               id="password"
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
               placeholder={t("passwordPlaceholder")}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-5 py-4 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700 placeholder-slate-400"
             />
             <button 
-              type="button" 
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
             >
-              <EyeOff size={20} />
+              {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
           </div>
 
@@ -77,9 +150,10 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-4 text-lg"
+            disabled={loading}
+            className="cursor-pointer w-full py-4 px-4 bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-400 text-white font-bold rounded-xl transition-all shadow-md active:scale-[0.99] mt-4 text-lg disabled:cursor-not-allowed"
           >
-            {t("loginButton")}
+            {loading ? "Login..." : t("loginButton")}
           </button>
         </form>
 

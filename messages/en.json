@@ -184,7 +184,13 @@
     "heading": "Forgot Password",
     "subheading": "Take control of your account by resetting your password. Our password recovery page guides you through the necessary steps to securely reset your password.",
     "emailPlaceholder": "Enter Email Address",
-    "sendResetLinkButton": "Send Reset Link",
+    "sendResetLinkButton": "Send OTP",
+    "otpHeading": "Verify Verification Code",
+    "otpSubheading": "Please enter the verification code sent to your email address and create your new password.",
+    "otpPlaceholder": "Enter Verification Code",
+    "newPasswordPlaceholder": "Enter New Password",
+    "confirmPasswordPlaceholder": "Confirm New Password",
+    "resetPasswordButton": "Reset Password",
     "rememberedYourPassword": "Remembered your password?",
     "backToSignIn": "Back to Sign In"
   },
@@ -681,6 +687,13 @@
       "title": "Help Center",
       "sub": "How can we help you?",
       "btn": "Get Support"
+    },
+    "logoutConfirm": {
+      "title": "Confirm Logout",
+      "text": "Are you sure you want to log out of your account?",
+      "yes": "Yes, Logout",
+      "no": "Cancel",
+      "loggingOut": "Logging out..."
     }
   }
 }

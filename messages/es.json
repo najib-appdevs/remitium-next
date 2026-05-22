@@ -184,7 +184,13 @@
     "heading": "¿Olvidaste tu contraseña?",
     "subheading": "Recupera el acceso a tu cuenta restableciendo tu contraseña. Nuestra página de recuperación de contraseña te guía a través de los pasos necesarios para restablecer tu contraseña de forma segura.",
     "emailPlaceholder": "Introduce tu correo electrónico",
-    "sendResetLinkButton": "Enviar enlace de restablecimiento",
+    "sendResetLinkButton": "Enviar OTP",
+    "otpHeading": "Verificar Código de Verificación",
+    "otpSubheading": "Por favor ingrese el código de verificación enviado a su correo electrónico y cree su nueva contraseña.",
+    "otpPlaceholder": "Ingrese el Código de Verificación",
+    "newPasswordPlaceholder": "Ingrese la Nueva Contraseña",
+    "confirmPasswordPlaceholder": "Confirme la Nueva Contraseña",
+    "resetPasswordButton": "Restablecer Contraseña",
     "rememberedYourPassword": "¿Ya recordaste tu contraseña?",
     "backToSignIn": "Volver a Iniciar sesión"
   },
@@ -681,6 +687,13 @@
       "title": "Centro de ayuda",
       "sub": "¿Cómo podemos ayudarte?",
       "btn": "Obtener soporte"
+    },
+    "logoutConfirm": {
+      "title": "Confirmar Cierre de Sesión",
+      "text": "¿Está seguro de que desea cerrar la sesión de su cuenta?",
+      "yes": "Sí, Cerrar Sesión",
+      "no": "Cancelar",
+      "loggingOut": "Cerrando sesión..."
     }
   }
 }
