@@ -612,8 +612,10 @@
     "paginationPrev": "الصفحة السابقة",
     "paginationNext": "الصفحة التالية",
     "tableHeaders": {
+      "date": "التاريخ",
       "recipient": "المستلم",
       "transactionId": "رقم المعاملة",
+      "type": "النوع",
       "method": "الطريقة",
       "methodName": "اسم الطريقة",
       "numberPhone": "الرقم/الهاتف",
@@ -622,6 +624,7 @@
       "amount": "المبلغ",
       "fees": "الرسوم",
       "totalPayable": "إجمالي المستحق",
+      "receiveAmount": "سيحصل على",
       "exchangeRate": "سعر الصرف",
       "willGet": "سيحصل على",
       "status": "الحالة",

@@ -618,8 +618,10 @@
     "paginationPrev": "Página Anterior",
     "paginationNext": "Página Siguiente",
     "tableHeaders": {
+      "date": "Fecha",
       "recipient": "Destinatario",
       "transactionId": "ID de Transacción",
+      "type": "Tipo",
       "method": "Método",
       "methodName": "Nombre del Método",
       "numberPhone": "Número/Teléfono",
@@ -628,6 +630,7 @@
       "amount": "Monto",
       "fees": "Comisiones",
       "totalPayable": "Total a Pagar",
+      "receiveAmount": "Recibirá",
       "exchangeRate": "Tipo de Cambio",
       "willGet": "Recibirá",
       "status": "Estado",

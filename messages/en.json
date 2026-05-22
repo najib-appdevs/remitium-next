@@ -618,8 +618,10 @@
     "paginationPrev": "Previous Page",
     "paginationNext": "Next Page",
     "tableHeaders": {
+      "date": "Date",
       "recipient": "Recipient",
       "transactionId": "Transaction ID",
+      "type": "Type",
       "method": "Method",
       "methodName": "Method Name",
       "numberPhone": "Number/Phone",
@@ -628,6 +630,7 @@
       "amount": "Amount",
       "fees": "Fees",
       "totalPayable": "Total Payable",
+      "receiveAmount": "Will Get",
       "exchangeRate": "Exchange Rate",
       "willGet": "Will Get",
       "status": "Status",
